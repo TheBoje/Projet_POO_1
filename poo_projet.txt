@@ -18,15 +18,15 @@ Sorties:
 	
 
 Objets:
-	ressorts [case]
-	marteaux
+	ressorts
 	glacon
 	harpons
 	fusée éclairantes
 	manteau
 	couteau
 	radio
-	briquet 
+	briquet
+	marteaux (ntm!)
 	bois
 	graisse d'animaux
 	peaux d'animaux
@@ -44,7 +44,6 @@ Personnages:
 	ours
 	scientifiques
 	pingouins
-	bébé pingouins
 	inuits	
 	
 Fin:
@@ -55,16 +54,17 @@ Fin:
 Commandes:
 	go
 	eat
-	drink
 	use [note_code]
 	rest
 	look
 	quit
 	scout
 	talk
+	search
+	pet
 
 FEATURE: Fonte de la banquise
 -> la pièce de shrek (pls)
 	
-
+Pas de bug (bannis)
 SERIALIZATION !
