@@ -1,20 +1,27 @@
 package Personnages;
 
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
-public abstract class Animal extends Personnage {
+public abstract class Animal extends Personnage
+{
 
-	private List<String> dialogs;
+    private List<String> dialogs;
 
-	public void pet() {
-		// TODO - implement Animal.pet
-		throw new UnsupportedOperationException();
-	}
+    public void pet()
+    {
+        Random random = new Random();
 
-	public void print() {
-		// TODO - implement Animal.print
-		throw new UnsupportedOperationException();
-	}
+        int r = random.nextInt(this.dialogs.size());
+        System.out.println("- " + this.dialogs.get(r));
+    }
+
+    public void print()
+    {
+        System.out.println(this.getName());
+        System.out.println(this.isAlive() ? "Vivant" : "Mort");
+    }
 
 }

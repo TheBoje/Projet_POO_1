@@ -10,7 +10,7 @@ public abstract class Personnage
 {
 
     private Tile tile;
-    private Collection<Item> items;
+    private List<Item> items;
     private static int DEFAULT_HP = 10;
     private String name;
     private int hp;
