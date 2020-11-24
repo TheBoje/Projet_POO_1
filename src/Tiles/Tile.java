@@ -29,9 +29,10 @@ public class Tile {
 	 * 
 	 * @param crossings
 	 */
-	public Tile(ArrayList<Crossing> crossings) {
-		// TODO - implement Tile.Tile
-		throw new UnsupportedOperationException();
+	public Tile() {
+		this.personnages = new ArrayList<>();
+		this.items = new ArrayList<>();
+		this.crossings = new ArrayList<>();
 	}
 
 	public void generateObjects() {

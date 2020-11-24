@@ -2,11 +2,17 @@ package Crossings;
 
 import Tiles.Tile;
 
-import java.util.Collection;
+import java.util.ArrayList;
 
 public class Door implements Crossing {
 
 	private boolean isOpen;
+
+	@Override
+	public void setTiles(ArrayList<Tile> tiles)
+	{
+		this.tiles = tiles;
+	}
 
 	public void isOpen() {
 		// TODO - implement Door.isOpen
@@ -24,13 +30,7 @@ public class Door implements Crossing {
 	}
 
 	public Door() {
-		// TODO - implement Door.Door
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public Collection<Tile> getTiles()
-	{
-		return null;
+		this.isOpen = false;
+		this.tiles = null;
 	}
 }

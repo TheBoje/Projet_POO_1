@@ -5,6 +5,6 @@ import Tiles.*;
 
 public interface Crossing {
 
-	Collection<Tile> getTiles();
-
+	ArrayList<Tile> tiles = null;
+	public void setTiles(ArrayList<Tile> tiles);
 }
