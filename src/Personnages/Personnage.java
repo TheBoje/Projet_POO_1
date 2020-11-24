@@ -21,7 +21,11 @@ public abstract class Personnage
         return this.name;
     }
 
-    public abstract void print();
+    public void print()
+    {
+        System.out.println("----- " + this.name + " -----");
+        System.out.println(this.isAlive() ? "Vivant" : "Mort");
+    }
 
     public boolean isAlive()
     {
