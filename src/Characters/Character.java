@@ -25,17 +25,19 @@ public abstract class Character
 
     public boolean isAlive()
     {
-        // TODO - implement Character.isAlive
-        throw new UnsupportedOperationException();
+        return (this.hp > 0);
     }
 
     /**
-     * @param cible
+     * @param target Cible recevant les dégats
+     * @param amount Montant des dégats infligés à la cible
      */
-    public void attack(Character cible)
+    public void attack(Character target, int amount) throws Exception
     {
-        // TODO - implement Character.attack
-        throw new UnsupportedOperationException();
+        if(target != null)
+            target.takeDamage(amount);
+        else
+            throw new Exception("Character.attack : target is null");
     }
 
     /**
@@ -43,8 +45,10 @@ public abstract class Character
      */
     public void takeDamage(int amount)
     {
-        // TODO - implement Character.takeDamage
-        throw new UnsupportedOperationException();
+        this.hp -= amount;
+
+        if(this.hp < 0)
+            this.hp = 0;
     }
 
 }
