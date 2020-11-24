@@ -4,11 +4,11 @@ import Personnages.*;
 
 public class World {
 
-	private Collection<Tile> tiles;
+	private ArrayList<Tile> tiles;
 
 	public World() {
 		// TODO - implement World.World
-		throw new UnsupportedOperationException();
+		//throw new UnsupportedOperationException();
 	}
 
 	public void init() {
@@ -16,9 +16,19 @@ public class World {
 		throw new UnsupportedOperationException();
 	}
 
-	public Player getPlayer() {
-		// TODO - implement World.getPlayer
-		throw new UnsupportedOperationException();
+	public Player getPlayer() throws Exception
+	{
+		for (Tile tile:tiles)
+		{
+			for (Personnage personnage: tile.getPersonnages())
+			{
+				if (personnage instanceof Player)
+				{
+					return (Player)personnage;
+				}
+			}
+		}
+		throw new Exception("Can't find player");
 	}
 
 }

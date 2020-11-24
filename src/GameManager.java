@@ -8,9 +8,15 @@ public class GameManager {
 
 	public GameManager() {
 		this.world = new World();
-		this.interpreteur = new Interpreteur();
-		this.player = world.getPlayer();
-		throw new UnsupportedOperationException();
+		this.interpreteur = new Interpreteur(this);
+		try
+		{
+			this.player = world.getPlayer();
+		} catch (Exception e)
+		{
+			System.out.println("Can't find player");
+			//e.printStackTrace();
+		}
 	}
 
 	/**
@@ -18,8 +24,9 @@ public class GameManager {
 	 * @param direction
 	 */
 	public void go(String direction) {
+		System.out.format("The player is asked to go to [%s]\n", direction);
 		// TODO - implement GameManager.go
-		throw new UnsupportedOperationException();
+		//throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -27,13 +34,21 @@ public class GameManager {
 	 * @param to
 	 */
 	public void talk(String to) {
+		System.out.format("The player is asked to talk to [%s]\n", to);
 		// TODO - implement GameManager.talk
-		throw new UnsupportedOperationException();
+		//throw new UnsupportedOperationException();
 	}
 
 	public void nextTurn() {
+		try
+		{
+			interpreteur.read();
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+		}
 		// TODO - implement GameManager.nextTurn
-		throw new UnsupportedOperationException();
+		//throw new UnsupportedOperationException();
 	}
 
 }
