@@ -8,9 +8,9 @@ public class Tile {
 
 	private Collection<Character> characters;
 	private Collection<Crossing> crossings;
-	private Collection<Object> objects;
+	private Collection<Item> items;
 
-	public List<Object> search() {
+	public List<Item> search() {
 		// TODO - implement Tile.search
 		throw new UnsupportedOperationException();
 	}
@@ -19,7 +19,7 @@ public class Tile {
 	 * 
 	 * @param object
 	 */
-	public void take(Object object) {
+	public void take(Item object) {
 		// TODO - implement Tile.take
 		throw new UnsupportedOperationException();
 	}

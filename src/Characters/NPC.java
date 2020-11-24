@@ -23,4 +23,9 @@ public class NPC extends Human {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
+	public String talk()
+	{
+		return null;
+	}
 }

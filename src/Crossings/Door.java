@@ -1,5 +1,9 @@
 package Crossings;
 
+import Tiles.Tile;
+
+import java.util.Collection;
+
 public class Door implements Crossing {
 
 	private boolean isOpen;
@@ -24,4 +28,9 @@ public class Door implements Crossing {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
+	public Collection<Tile> getTiles()
+	{
+		return null;
+	}
 }

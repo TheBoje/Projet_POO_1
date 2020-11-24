@@ -1,6 +1,6 @@
 package Objects;
 
-public class Object {
+public class Item {
 
 	private String name;
 

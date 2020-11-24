@@ -1,5 +1,8 @@
 package Characters;
 
+
+import java.util.List;
+
 public abstract class Animal extends Character {
 
 	private List<String> dialogs;

@@ -12,7 +12,7 @@ public class Player extends Human {
 	 * @param input
 	 * @param output
 	 */
-	public boolean trade(Object input, Object output) {
+	public boolean trade(Item input, Item output) {
 		// TODO - implement Player.trade
 		throw new UnsupportedOperationException();
 	}
@@ -37,18 +37,18 @@ public class Player extends Human {
 
 	/**
 	 * 
-	 * @param food
+	 * @param object
 	 */
-	public void eat(Food food) {
+	public void eat(Object object) {
 		// TODO - implement Player.eat
 		throw new UnsupportedOperationException();
 	}
 
 	/**
 	 * 
-	 * @param clothes
+	 * @param object
 	 */
-	public void wear(Clothes clothes) {
+	public void wear(Object object) {
 		// TODO - implement Player.wear
 		throw new UnsupportedOperationException();
 	}
@@ -66,9 +66,30 @@ public class Player extends Human {
 	 * 
 	 * @param object
 	 */
-	public void take(Object object) {
+	public void take(Item object) {
 		// TODO - implement Player.take
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
+	public String talk()
+	{
+		return null;
+	}
+
+	/**
+	 * 
+	 * @param item
+	 */
+	public void eat(Item item) {
+
+	}
+
+	/**
+	 * 
+	 * @param item
+	 */
+	public void wear(Item item) {
+
+	}
 }

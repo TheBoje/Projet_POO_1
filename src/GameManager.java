@@ -1,7 +1,10 @@
+import Characters.*;
+
 public class GameManager {
 
 	private World world;
 	private Interpreteur interpreteur;
+	private Player player;
 
 	public GameManager() {
 		// TODO - implement GameManager.GameManager
