@@ -7,7 +7,9 @@ public class GameManager {
 	private Player player;
 
 	public GameManager() {
-		// TODO - implement GameManager.GameManager
+		this.world = new World();
+		this.interpreteur = new Interpreteur();
+		this.player = world.getPlayer();
 		throw new UnsupportedOperationException();
 	}
 

@@ -1,5 +1,6 @@
 import java.util.*;
 import Tiles.*;
+import Characters.*;
 
 public class World {
 
@@ -12,6 +13,11 @@ public class World {
 
 	public void init() {
 		// TODO - implement World.init
+		throw new UnsupportedOperationException();
+	}
+
+	public Player getPlayer() {
+		// TODO - implement World.getPlayer
 		throw new UnsupportedOperationException();
 	}
 
