@@ -16,10 +16,31 @@ public abstract class Personnage
     private int hp;
     private List<String> speeches;
 
+    public Personnage(Tile t, List<Item> i, String n, int health, List<String> sp)
+    {
+        this.tile = t;
+        this.items = i;
+        this.name = n;
+        this.hp = health;
+        this. speeches = sp;
+    }
+
+    public Personnage(Tile t, List<Item> i, String n, List<String> sp)
+    {
+        this.tile = t;
+        this.items = i;
+        this.name = n;
+        this.hp = DEFAULT_HP;
+        this. speeches = sp;
+    }
+
+
     public String getName()
     {
         return this.name;
     }
+
+    public String getRandomSpeech()
 
     public void print()
     {

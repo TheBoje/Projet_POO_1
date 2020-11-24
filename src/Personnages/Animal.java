@@ -1,19 +1,27 @@
 package Personnages;
 
+import Items.Item;
+import Tiles.Tile;
+
 import java.util.List;
 import java.util.Random;
 
 public abstract class Animal extends Personnage
 {
+    public Animal(Tile tile, List<Item> items, String name, int health, List<String> speeches)
+    {
+        super(tile, items, name, health, speeches);
+    }
 
-    private List<String> dialogs;
+    public Animal(Tile tile, List<Item> items, String name, List<String> speeches)
+    {
+        super(tile, items, name, speeches);
+    }
+
 
     public void pet()
     {
-        Random random = new Random();
 
-        int r = random.nextInt(this.dialogs.size());
-        System.out.println("- " + this.dialogs.get(r));
     }
 
 }
