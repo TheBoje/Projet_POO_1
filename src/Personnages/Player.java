@@ -1,29 +1,24 @@
 package Personnages;
 
 import Items.*;
+import Tiles.*;
+import java.util.List;
 
 public class Player extends Human {
 
 	private int hunger;
-	private int coldness;
+	private int bodyHeat;
+	private static final int MAX_HUNGER = 10;
+	private static final int MAX_HEAT = 10;
 
-	/**
-	 * 
-	 * @param input
-	 * @param output
-	 */
-	public boolean trade(Item input, Item output) {
-		// TODO - implement Player.trade
-		throw new UnsupportedOperationException();
+	public Player(Tile t, List<Item> items, String name, List<String> sp) {
+		super(t, items, name, sp);
+		this.bodyHeat = MAX_HEAT;
+		this.hunger = MAX_HUNGER;
 	}
 
-	/**
-	 * 
-	 * @param name
-	 */
-	public Player(String name) {
-		// TODO - implement Player.Player
-		throw new UnsupportedOperationException();
+	public boolean trade(Item input, Item output) {
+
 	}
 
 	/**
@@ -31,26 +26,7 @@ public class Player extends Human {
 	 * @param direction
 	 */
 	public void go(int direction) {
-		// TODO - implement Player.go
-		throw new UnsupportedOperationException();
-	}
 
-	/**
-	 * 
-	 * @param object
-	 */
-	public void eat(Object object) {
-		// TODO - implement Player.eat
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * 
-	 * @param object
-	 */
-	public void wear(Object object) {
-		// TODO - implement Player.wear
-		throw new UnsupportedOperationException();
 	}
 
 	/**
