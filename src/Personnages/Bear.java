@@ -1,4 +1,4 @@
-package Characters;
+package Personnages;
 
 public class Bear extends Animal {
 

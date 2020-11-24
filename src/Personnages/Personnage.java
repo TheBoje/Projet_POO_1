@@ -1,12 +1,12 @@
-package Characters;
+package Personnages;
 
 import Tiles.*;
 
 import java.util.*;
 
-import Objects.*;
+import Items.*;
 
-public abstract class Character
+public abstract class Personnage
 {
 
     private Tile tile;
@@ -32,7 +32,7 @@ public abstract class Character
      * @param target Cible recevant les dégats
      * @param amount Montant des dégats infligés à la cible
      */
-    public void attack(Character target, int amount) throws Exception
+    public void attack(Personnage target, int amount) throws Exception
     {
         if(target != null)
             target.takeDamage(amount);

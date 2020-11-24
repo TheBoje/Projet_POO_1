@@ -1,6 +1,6 @@
-package Characters;
+package Personnages;
 
-import Objects.*;
+import Items.*;
 
 public class Player extends Human {
 

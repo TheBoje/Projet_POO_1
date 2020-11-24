@@ -1,6 +1,6 @@
 import java.util.*;
 import Tiles.*;
-import Characters.*;
+import Personnages.*;
 
 public class World {
 

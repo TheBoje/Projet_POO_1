@@ -1,8 +1,8 @@
 package Tiles;
 
 import java.util.*;
-import Crossings.*;
-import Objects.*;
+
+import Items.*;
 
 public class Tile {
 

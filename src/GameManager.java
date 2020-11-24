@@ -1,4 +1,4 @@
-import Characters.*;
+import Personnages.*;
 
 public class GameManager {
 

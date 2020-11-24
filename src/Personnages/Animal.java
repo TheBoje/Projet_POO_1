@@ -1,9 +1,9 @@
-package Characters;
+package Personnages;
 
 
 import java.util.List;
 
-public abstract class Animal extends Character {
+public abstract class Animal extends Personnage {
 
 	private List<String> dialogs;
 
