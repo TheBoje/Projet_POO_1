@@ -76,6 +76,14 @@ public abstract class Personnage
         items.add(object);
     }
 
+    public String getRandomSpeech()
+    {
+        Random random = new Random();
+
+        int r = random.nextInt(this.speeches.size());
+        return this.speeches.get(r);
+    }
+
     /***********************************SETTERS***********************************/
     public void setTile(Tile tile)
     {
