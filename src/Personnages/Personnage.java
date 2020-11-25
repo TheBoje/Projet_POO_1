@@ -72,8 +72,13 @@ public abstract class Personnage
     }
 
 
-    public void addItem(Item object){
-        items.add(object);
+    public boolean addItem(Item object){
+        return items.add(object);
+    }
+
+    public boolean removeItem(Item toRemove)
+    {
+        return items.remove(toRemove);
     }
 
     /***********************************SETTERS***********************************/
