@@ -6,7 +6,7 @@ import Tiles.Tile;
 import java.util.List;
 import java.util.Random;
 
-public abstract class Animal extends Personnage
+public class Animal extends Personnage
 {
     public Animal(Tile tile, List<Item> items, String name, int health, List<String> speeches)
     {
@@ -21,7 +21,7 @@ public abstract class Animal extends Personnage
 
     public void pet()
     {
-
+        // TODO
     }
 
 }

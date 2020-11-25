@@ -1,18 +1,20 @@
 package Personnages;
 
+import Items.Item;
+import Tiles.Tile;
+
+import java.util.List;
+
 public class Dog extends Animal {
 
-	/**
-	 * 
-	 * @param name
-	 */
-	public Dog(String name) {
-
+	public Dog(Tile tile, List<Item> items, String name, int health, List<String> speeches)
+	{
+		super(tile, items, name, health, speeches);
 	}
 
-	public Dog() {
-		// TODO - implement Dog.Dog
-		throw new UnsupportedOperationException();
+	public Dog(Tile tile, List<Item> items, String name, List<String> speeches)
+	{
+		super(tile, items, name, speeches);
 	}
 
 }
