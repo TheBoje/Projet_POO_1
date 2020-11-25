@@ -7,11 +7,12 @@ public class Interpreteur {
 
 	public void read() throws Exception
 	{
-		System.out.print("Action : ");
+		System.out.print("> ");
 		String input = scanner.nextLine().toLowerCase();
 		String[] input_split = input.split(" ");
 		switch (input_split[0])
 		{
+			case "directions" -> gameManager.getDirections();
 			case "go" -> gameManager.go(input_split[1]);
 			case "talk" -> gameManager.talk(input_split[1]);
 			default -> throw new Exception("wrong input interpreteur");

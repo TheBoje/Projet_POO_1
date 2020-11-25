@@ -7,7 +7,7 @@ public class GameManager {
 	private Player player;
 
 	public GameManager() {
-		this.world = new World();
+		this.world = new World(4);
 		this.interpreteur = new Interpreteur(this);
 		try
 		{
@@ -17,6 +17,11 @@ public class GameManager {
 			System.out.println("Can't find player");
 			//e.printStackTrace();
 		}
+	}
+
+	public void printWorld()
+	{
+		this.world.print();
 	}
 
 	/**
@@ -37,6 +42,11 @@ public class GameManager {
 		System.out.format("The player is asked to talk to [%s]\n", to);
 		// TODO - implement GameManager.talk
 		//throw new UnsupportedOperationException();
+	}
+
+	public void getDirections()
+	{
+		// TODO This
 	}
 
 	public void nextTurn() {
