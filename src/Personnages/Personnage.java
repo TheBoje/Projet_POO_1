@@ -2,6 +2,7 @@ package Personnages;
 
 import Tiles.*;
 
+import java.lang.reflect.Array;
 import java.util.*;
 
 import Items.*;
@@ -10,7 +11,7 @@ public abstract class Personnage
 {
 
     private Tile tile;
-    private Collection<Item> items;
+    private List<Item> items;
     private static int DEFAULT_HP = 10;
     private String name;
     private int hp;
@@ -46,6 +47,7 @@ public abstract class Personnage
         return (this.hp > 0);
     }
 
+
     /**
      * @param target Cible recevant les dégats
      * @param amount Montant des dégats infligés à la cible
@@ -69,4 +71,29 @@ public abstract class Personnage
             this.hp = 0;
     }
 
+
+    public void addItem(Item object){
+        items.add(object);
+    }
+
+    /***********************************SETTERS***********************************/
+    public void setTile(Tile tile)
+    {
+        this.tile = tile;
+    }
+
+    public void setItems(Collection<Item> items)
+    {
+        this.items = new ArrayList<Item>();
+    }
+    /***********************************GETTERS***********************************/
+    public Tile getPos()
+    {
+        return this.tile;
+    }
+
+    public Collection<Item> getItems()
+    {
+        return this.items;
+    }
 }

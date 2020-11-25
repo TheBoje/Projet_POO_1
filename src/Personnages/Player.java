@@ -20,19 +20,6 @@ public class Player extends Human {
 	public boolean trade(Item input, Item output) {
 
 	}
-
-	/**
-	 * 
-	 * @param direction
-	 */
-	public void go(int direction) {
-
-	}
-
-	/**
-	 * 
-	 * @param animal
-	 */
 	public void pet(Animal animal) {
 		// TODO - implement Player.pet
 		throw new UnsupportedOperationException();
@@ -43,8 +30,7 @@ public class Player extends Human {
 	 * @param object
 	 */
 	public void take(Item object) {
-		// TODO - implement Player.take
-		throw new UnsupportedOperationException();
+		this.addItem(object);
 	}
 
 	@Override
