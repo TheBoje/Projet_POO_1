@@ -1,19 +1,21 @@
 package Personnages;
 
+import Items.Item;
+import Tiles.Tile;
+
+import java.util.List;
+
 public class Bear extends Animal {
 
-	/**
-	 * 
-	 * @param name
-	 */
-	public Bear(String name) {
-		// TODO - implement Bear.Bear
-		throw new UnsupportedOperationException();
+
+	public Bear(Tile tile, List<Item> items, String name, int health, List<String> speeches)
+	{
+		super(tile, items, name, health, speeches);
 	}
 
-	public Bear() {
-		// TODO - implement Bear.Bear
-		throw new UnsupportedOperationException();
+	public Bear(Tile tile, List<Item> items, String name, List<String> speeches)
+	{
+		super(tile, items, name, speeches);
 	}
 
 }

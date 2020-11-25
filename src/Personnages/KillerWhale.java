@@ -1,19 +1,20 @@
 package Personnages;
 
+import Items.Item;
+import Tiles.Tile;
+
+import java.util.List;
+
 public class KillerWhale extends Animal {
 
-	/**
-	 * 
-	 * @param name
-	 */
-	public KillerWhale(String name) {
-		// TODO - implement KillerWhale.KillerWhale
-		throw new UnsupportedOperationException();
+	public KillerWhale(Tile tile, List<Item> items, String name, int health, List<String> speeches)
+	{
+		super(tile, items, name, health, speeches);
 	}
 
-	public KillerWhale() {
-		// TODO - implement KillerWhale.KillerWhale
-		throw new UnsupportedOperationException();
+	public KillerWhale(Tile tile, List<Item> items, String name, List<String> speeches)
+	{
+		super(tile, items, name, speeches);
 	}
 
 }
