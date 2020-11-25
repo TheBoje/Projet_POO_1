@@ -1,10 +1,21 @@
 package Crossings;
 
-import java.util.*;
-import Tiles.*;
+import Tiles.Tile;
 
-public interface Crossing {
+import java.util.ArrayList;
+import java.util.Arrays;
 
-	Collection<Tile> getTiles();
+public abstract class Crossing
+{
 
+	ArrayList<Tile> tiles = null;
+
+	public void setTiles(ArrayList<Tile> tiles)
+	{
+		this.tiles = tiles;
+		for (Tile tile : this.tiles)
+		{
+			tile.addCrossing(this);
+		}
+	}
 }

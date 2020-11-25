@@ -2,35 +2,39 @@ package Crossings;
 
 import Tiles.Tile;
 
-import java.util.Collection;
+import java.util.ArrayList;
 
-public class Door implements Crossing {
+public class Door extends Crossing
+{
 
 	private boolean isOpen;
 
-	public void isOpen() {
-		// TODO - implement Door.isOpen
-		throw new UnsupportedOperationException();
-	}
-
-	public void open() {
-		// TODO - implement Door.open
-		throw new UnsupportedOperationException();
-	}
-
-	public void close() {
-		// TODO - implement Door.close
-		throw new UnsupportedOperationException();
-	}
-
-	public Door() {
-		// TODO - implement Door.Door
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public Collection<Tile> getTiles()
+	public Door(ArrayList<Tile> tiles)
 	{
-		return null;
+		this.isOpen = false;
+		this.tiles = null;
+		this.tiles = tiles;
+	}
+
+	public Door()
+	{
+		this.isOpen = false;
+		this.tiles = null;
+		this.tiles = new ArrayList<Tile>();
+	}
+
+	public boolean isOpen()
+	{
+		return this.isOpen;
+	}
+
+	public void open()
+	{
+		this.isOpen = true;
+	}
+
+	public void close()
+	{
+		this.isOpen = false;
 	}
 }

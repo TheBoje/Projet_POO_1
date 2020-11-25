@@ -2,40 +2,46 @@ package Tiles;
 
 import java.util.*;
 
+import Crossings.Crossing;
 import Items.*;
+import Personnages.Personnage;
 
 public class Tile {
 
-	private Collection<Character> characters;
-	private Collection<Crossing> crossings;
-	private Collection<Item> items;
+	private ArrayList<Personnage> personnages;
+	private ArrayList<Crossing> crossings;
+	private ArrayList<Item> items;
 
-	public List<Item> search() {
-		// TODO - implement Tile.search
-		throw new UnsupportedOperationException();
+	public ArrayList<Item> search() {
+		return this.items;
 	}
 
-	/**
-	 * 
-	 * @param object
-	 */
-	public void take(Item object) {
+	public void addCrossing(Crossing crossing)
+	{
+		this.crossings.add(crossing);
+	}
+
+
+	public void take(Item item) {
 		// TODO - implement Tile.take
 		throw new UnsupportedOperationException();
 	}
 
-	/**
-	 * 
-	 * @param crossings
-	 */
-	public Tile(List<Crossing> crossings) {
-		// TODO - implement Tile.Tile
-		throw new UnsupportedOperationException();
+	public Tile() {
+		this.personnages = new ArrayList<>();
+		this.items = new ArrayList<>();
+		this.crossings = new ArrayList<>();
 	}
 
-	public void generateObjects() {
-		// TODO - implement Tile.generateObjects
-		throw new UnsupportedOperationException();
+	public void print()
+	{
+		System.out.format("\tTILE : \n");
+		System.out.format("\t\tCrossing count : %d\n", this.crossings.size());
+	}
+
+	public ArrayList<Personnage> getPersonnages()
+	{
+		return this.personnages;
 	}
 
 }
