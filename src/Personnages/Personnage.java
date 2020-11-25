@@ -71,6 +71,10 @@ public abstract class Personnage
             this.hp = 0;
     }
 
+    public void addItem(Item object){
+        items.add(object);
+    }
+
     /***********************************SETTERS***********************************/
     public void setTile(Tile tile)
     {
