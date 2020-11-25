@@ -10,7 +10,7 @@ public abstract class Personnage
 {
 
     private Tile tile;
-    private List<Item> items;
+    private Collection<Item> items;
     private static int DEFAULT_HP = 10;
     private String name;
     private int hp;
@@ -34,19 +34,12 @@ public abstract class Personnage
         this. speeches = sp;
     }
 
-
     public String getName()
     {
         return this.name;
     }
 
-    public String getRandomSpeech()
-
-    public void print()
-    {
-        System.out.println("----- " + this.name + " -----");
-        System.out.println(this.isAlive() ? "Vivant" : "Mort");
-    }
+    public abstract void print();
 
     public boolean isAlive()
     {
