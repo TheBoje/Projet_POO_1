@@ -89,4 +89,18 @@ public class Player extends Human {
 		}
 		System.out.println("################################################################");
 	}
+
+	public void  printDebug(){
+		System.out.format("Player : %s : \n",this.getName());
+		System.out.println("Inventory : \n");
+		for (Item item : getItems()){
+			System.out.format("- %s\n ", item.getName());
+		}
+		System.out.println("Wearing : \n");
+		for (Item item : this.wearing)
+		{
+			System.out.format("-%s\n", item.getName());
+		}
+		System.out.format("Hunger : %d\n BodyHeat : %d\n",this.hunger, this.bodyHeat);
+	}
 }
