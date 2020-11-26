@@ -14,8 +14,8 @@ public class Player extends Human {
 	private static final int MAX_HUNGER = 10;
 	private static final int MAX_HEAT = 10;
 
-	public Player( List<Item> items, String name, List<String> sp) {
-		super(null, items, name, sp);
+	public Player( Tile tile, List<Item> items, String name, List<String> sp) {
+		super(tile, items, name, sp);
 		this.bodyHeat = MAX_HEAT;
 		this.hunger = MAX_HUNGER;
 		this.wearing = new ArrayList<Item>();
