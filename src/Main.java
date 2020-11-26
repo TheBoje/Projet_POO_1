@@ -4,5 +4,8 @@ public class Main
 	{
 		GameManager gameManager = new GameManager();
 		gameManager.printWorld();
+		gameManager.nextTurn();
+		gameManager.nextTurn();
+		gameManager.nextTurn();
 	}
 }

@@ -72,8 +72,13 @@ public abstract class Personnage
     }
 
 
-    public void addItem(Item object){
-        items.add(object);
+    public boolean addItem(Item object){
+        return items.add(object);
+    }
+
+    public boolean removeItem(Item toRemove)
+    {
+        return items.remove(toRemove);
     }
 
     public String getRandomSpeech()
@@ -95,7 +100,7 @@ public abstract class Personnage
         this.items = new ArrayList<Item>();
     }
     /***********************************GETTERS***********************************/
-    public Tile getPos()
+    public Tile getTile()
     {
         return this.tile;
     }
