@@ -7,5 +7,10 @@ public class Main
 		gameManager.nextTurn();
 		gameManager.nextTurn();
 		gameManager.nextTurn();
+		gameManager.nextTurn();
+		gameManager.nextTurn();
+		gameManager.nextTurn();
+		gameManager.nextTurn();
+
 	}
 }
