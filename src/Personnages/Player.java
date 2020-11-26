@@ -14,11 +14,11 @@ public class Player extends Human {
 	private static final int MAX_HUNGER = 10;
 	private static final int MAX_HEAT = 10;
 
-	public Player( List<Item> items, String name, List<String> sp) {
-		super(null, items, name, sp);
+	public Player( Tile tile, List<Item> items, String name, List<String> sp) {
+		super(tile, items, name, sp);
 		this.bodyHeat = MAX_HEAT;
 		this.hunger = MAX_HUNGER;
-		this.wearing = new ArrayList<Item>();
+		this.wearing = new ArrayList<>();
 		Item clothes = new Item("clothes");
 		this.wearing.add(clothes);
 	}
@@ -91,16 +91,22 @@ public class Player extends Human {
 	}
 
 	public void  printDebug(){
-		System.out.format("Player : %s : \n",this.getName());
-		System.out.println("Inventory : \n");
-		for (Item item : getItems()){
-			System.out.format("- %s\n ", item.getName());
-		}
-		System.out.println("Wearing : \n");
-		for (Item item : this.wearing)
+		System.out.format("Player : %s\n",this.getName());
+		if (this.getItems().size() > 0)
 		{
-			System.out.format("-%s\n", item.getName());
+			System.out.println("Inventory :");
+			for (Item item : getItems()){
+				System.out.format("\t%s\n ", item.getName());
+			}
 		}
-		System.out.format("Hunger : %d\n BodyHeat : %d\n",this.hunger, this.bodyHeat);
+		if (this.wearing.size() > 0)
+		{
+			System.out.println("Wearing :");
+			for (Item item : this.wearing)
+			{
+				System.out.format("\t%s\n", item.getName());
+			}
+		}
+		System.out.format("Hunger : %d\nBodyHeat : %d\n",this.hunger, this.bodyHeat);
 	}
 }

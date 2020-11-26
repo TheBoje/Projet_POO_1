@@ -5,6 +5,7 @@ import java.util.*;
 import Crossings.Crossing;
 import Items.*;
 import Personnages.Personnage;
+import Personnages.Player;
 
 public class Tile {
 	/***********************************ATTRIBUTES***********************************/
@@ -85,7 +86,15 @@ public class Tile {
 		System.out.format("\t\tCrossing count : %d\n", this.crossings.size());
 		for (Personnage personnage: this.personnages)
 		{
-			personnage.print();
+			if (personnage instanceof Player)
+			{
+				((Player)personnage).printDebug();
+			}
+			else
+			{
+				personnage.print();
+			}
+
 		}
 //		for (Item item: this.items)
 //		{
