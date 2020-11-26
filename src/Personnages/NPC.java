@@ -1,26 +1,35 @@
 package Personnages;
 
+import Items.Item;
+import Tiles.Tile;
+
+import java.util.Collection;
+import java.util.List;
+
 public class NPC extends Human {
 
 	private int speechCount;
 
-	/**
-	 * 
-	 * @param name
-	 */
-	public NPC(String name) {
-		// TODO - implement NPC.NPC
-		throw new UnsupportedOperationException();
+	public NPC(Tile tile, List<Item> items, String name, int health, List<String> speeches)
+	{
+		super(tile, items, name, health, speeches);
 	}
 
-	/**
-	 * 
-	 * @param name
-	 * @param hp
-	 */
-	public NPC(String name, int hp) {
-		// TODO - implement NPC.NPC
-		throw new UnsupportedOperationException();
+	public NPC(Tile tile, List<Item> items, String name, List<String> speeches)
+	{
+		super(tile, items, name, speeches);
+	}
+
+	public void print()
+	{
+		System.out.println("----- " + this.getName() + " -----");
+		System.out.println(this.isAlive() ? "Vivant" : "Mort");
+		Collection<Item> it = this.getItems();
+
+		for(Item i : it)
+		{
+			System.out.println(i.toString());
+		}
 	}
 
 	@Override
