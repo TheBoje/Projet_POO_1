@@ -1,4 +1,8 @@
+import Crossings.Crossing;
 import Personnages.*;
+import Tiles.Tile;
+
+import java.util.ArrayList;
 
 public class GameManager {
 
@@ -46,7 +50,11 @@ public class GameManager {
 
 	public void getDirections()
 	{
-		// TODO This
+		ArrayList<Crossing> playerCrossings = this.player.getTile().getCrossings();
+		for (int i = 0; i < playerCrossings.size(); i++)
+		{
+			System.out.format("\t[%d] %s \n", i, playerCrossings.get(i).getClass().getSimpleName());
+		}
 	}
 
 	public void nextTurn() {

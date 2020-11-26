@@ -87,7 +87,7 @@ public abstract class Personnage
         this.items = new ArrayList<Item>();
     }
     /***********************************GETTERS***********************************/
-    public Tile getPos()
+    public Tile getTile()
     {
         return this.tile;
     }

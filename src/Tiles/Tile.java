@@ -44,4 +44,9 @@ public class Tile {
 		return this.personnages;
 	}
 
+	public ArrayList<Crossing> getCrossings()
+	{
+		return this.crossings;
+	}
+
 }
