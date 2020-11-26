@@ -18,6 +18,8 @@ public abstract class Human extends Personnage
         super(tile, items, name, speeches);
     }
 
-    public abstract String talk();
+    public String talk(){
+        return null;
+    }
 
 }
