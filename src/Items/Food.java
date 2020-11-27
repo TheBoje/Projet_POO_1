@@ -3,6 +3,7 @@ package Items;
 import Personnages.Personnage;
 import Personnages.Player;
 
+
 public class Food extends Item
 {
 
