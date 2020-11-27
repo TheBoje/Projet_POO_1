@@ -1,6 +1,7 @@
 package Items;
 
 import Personnages.Personnage;
+import Personnages.Player;
 
 public class Food extends Item
 {
@@ -15,5 +16,10 @@ public class Food extends Item
 
     public void use(Personnage perso)
     {
+        if(perso instanceof Player)
+        {
+            // TODO appelle la modification de la jauge de bouffe du personnage
+            // perso.fillHunger(this.nutValue);
+        }
     }
 }
