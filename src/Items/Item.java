@@ -1,18 +1,21 @@
 package Items;
 
-public class Item {
+import Personnages.Personnage;
 
-	private String name;
+public abstract class Item
+{
 
-	public Item(String name){
-		this.name = name;
-	}
-	public void use() {
-		// TODO - implement Object.use
-		throw new UnsupportedOperationException();
-	}
+    private String name;
 
-	public String getName(){
-		return this.name;
-	}
+    public Item(String name)
+    {
+        this.name = name;
+    }
+
+    public abstract void use(Personnage perso);
+
+    public String getName()
+    {
+        return this.name;
+    }
 }
