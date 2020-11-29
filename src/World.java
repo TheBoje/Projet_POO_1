@@ -1,13 +1,11 @@
 import Crossings.Crossing;
 import Crossings.Door;
-import Items.Item;
 import Personnages.Personnage;
 import Personnages.Player;
+import Tiles.Direction;
 import Tiles.Tile;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Random;
 
 public class World
@@ -21,17 +19,26 @@ public class World
 	public World(int size)
 	{
 		// Methode temporaire pour créer un monde de [size] cases, avec case [i] reliée à case [i+1]
+		Random rn = new Random();
 		this.tiles = new ArrayList<>();
 		for (int i = 0; i < size; i++)
 		{
 			tiles.add(new Tile());
 		}
+		Tile beforeTile = null;
+		Direction beforeDirection = null;
 		for (int i = 0; i < tiles.size() - 1; i++)
 		{
+			Direction newDir = Direction.intToDirection(rn.nextInt(3));
+			Tile newTile = new Tile(new ArrayList<>(), new ArrayList<>(), new Tile[4], new Crossing[4]);
+			if (i != 0)
+			{
+				//beforeTile.setNearbyTile(newTile, new Door(true), );
+			}
 
-			Crossing crossing = new Door(new ArrayList<>(Arrays.asList(tiles.get(i), tiles.get(i + 1))), true);
-			tiles.get(i).addCrossing(crossing);
-			tiles.get(i + 1).addCrossing(crossing);
+
+			beforeTile = newTile;
+			beforeDirection = newDir;
 		}
 		this.createPlayer();
 	}
@@ -55,10 +62,12 @@ public class World
 
 	public void createPlayer()
 	{
-		Player player = new Player(this.tiles.get(0),new ArrayList<>(0), "Good Player", new ArrayList<>(0));
+		Player player = new Player(this.tiles.get(0), new ArrayList<>(0), "Good Player", new ArrayList<>(0));
 		this.tiles.get(0).addPersonnage(player);
 	}
 
+
+	// TODO REDO ME
 	public void movePlayer(Player player, Crossing crossing) throws Exception
 	{
 		if (crossing.isOpen())

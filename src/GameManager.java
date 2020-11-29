@@ -1,20 +1,21 @@
 import Crossings.Crossing;
-import Personnages.*;
-import Tiles.Tile;
+import Personnages.Player;
 
 import java.util.ArrayList;
 
-public class GameManager {
+public class GameManager
+{
 
 	/***********************************ATTRIBUTES***********************************/
 
-	private World world;
-	private Interpreteur interpreteur;
+	private final World world;
+	private final Interpreteur interpreteur;
 	private Player player;
 
 	/***********************************CONSTRUCTOR***********************************/
 
-	public GameManager() {
+	public GameManager()
+	{
 		this.world = new World(4);
 		this.interpreteur = new Interpreteur(this);
 		try
@@ -22,32 +23,27 @@ public class GameManager {
 			this.player = world.getPlayer();
 		} catch (Exception e)
 		{
-			System.out.println("Can't find player");
+			System.out.println("Can't find the player");
 		}
 	}
 
 	/***********************************METHODS***********************************/
 
-	/**
-	 *
-	 * @param direction
-	 */
 	public void go(String direction) throws Exception
 	{
 		System.out.format("The player is asked to go to [%s]\n", direction);
 		this.world.movePlayer(this.player, this.player.getTile().getCrossings().get(Integer.parseInt(direction)));
 	}
-	/**
-	 *
-	 * @param to
-	 */
-	public void talk(String to) {
+
+	public void talk(String to)
+	{
 		System.out.format("The player is asked to talk to [%s]\n", to);
 		// TODO - implement GameManager.talk
 		//throw new UnsupportedOperationException();
 	}
 
-	public void nextTurn() {
+	public void nextTurn()
+	{
 		try
 		{
 			interpreteur.read();
@@ -55,8 +51,6 @@ public class GameManager {
 		{
 			e.printStackTrace();
 		}
-		// TODO - implement GameManager.nextTurn
-		//throw new UnsupportedOperationException();
 	}
 
 	/***********************************GETTERS***********************************/
@@ -70,6 +64,7 @@ public class GameManager {
 	}
 
 	/***********************************SETTERS***********************************/
+
 	public void setPlayer(Player player)
 	{
 		this.player = player;
@@ -80,13 +75,6 @@ public class GameManager {
 	{
 		this.world.print();
 	}
-
-
-
-
-
-
-
 
 
 }

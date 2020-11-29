@@ -11,7 +11,8 @@ public class Tile {
 	/***********************************ATTRIBUTES***********************************/
 
 	private ArrayList<Personnage> personnages;
-	private ArrayList<Crossing> crossings;
+	private Tile nearbyTiles[];
+	private Crossing nearbyCrossing[];
 	private ArrayList<Item> items;
 
 	/***********************************CONSTRUCTORS***********************************/
@@ -19,13 +20,15 @@ public class Tile {
 	public Tile() {
 		this.personnages = new ArrayList<>();
 		this.items = new ArrayList<>();
-		this.crossings = new ArrayList<>();
+		this.nearbyTiles = new Tile[4];
+		this.nearbyCrossing = new Crossing[4];
 	}
 
-	public Tile(ArrayList<Personnage> personnages, ArrayList<Item> items, ArrayList<Crossing> crossings) {
+	public Tile(ArrayList<Personnage> personnages, ArrayList<Item> items, Tile tiles[], Crossing crossings[]) {
 		this.personnages = personnages;
 		this.items = items;
-		this.crossings = crossings;
+		this.nearbyTiles = tiles;
+		this.nearbyCrossing = crossings;
 	}
 
 	/***********************************METHODS***********************************/
@@ -46,21 +49,27 @@ public class Tile {
 		return this.personnages;
 	}
 
-	public ArrayList<Crossing> getCrossings()
+	public Crossing[] getCrossings()
 	{
-		return this.crossings;
+		return this.nearbyCrossing;
+	}
+
+	public Crossing getCrossing(Direction dir)
+	{
+		return this.nearbyCrossing[dir.toIndex()];
+	}
+
+	public Tile getNextTile(Direction dir)
+	{
+		return this.nearbyTiles[dir.toIndex()];
 	}
 
 	/***********************************SETTERS***********************************/
-
-	public void addCrossing(Crossing crossing)
+	public void setNearbyTile(Tile tile, Crossing crossing, Direction dir)
 	{
-		this.crossings.add(crossing);
-	}
-
-	public void addCrossings(ArrayList<Crossing> crossings)
-	{
-		this.crossings.addAll(crossings);
+		int index = dir.toIndex();
+		this.nearbyTiles[index] = tile;
+		this.nearbyCrossing[index] = crossing;
 	}
 
 	public void addPersonnage(Personnage personnage)
@@ -83,7 +92,7 @@ public class Tile {
 	public void print()
 	{
 		System.out.format("\tTILE : \n");
-		System.out.format("\t\tCrossing count : %d\n", this.crossings.size());
+		System.out.format("");
 		for (Personnage personnage: this.personnages)
 		{
 			if (personnage instanceof Player)
@@ -96,9 +105,5 @@ public class Tile {
 			}
 
 		}
-//		for (Item item: this.items)
-//		{
-//			item.print();
-//		}
 	}
 }
