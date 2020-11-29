@@ -79,11 +79,11 @@ public class Player extends Human {
 		} else {
 			System.out.println("You're about to die from coldness\n");
 		}
-		System.out.println("Inventory :\n");
+		System.out.println("Inventory :");
 		for (Item current : getItems()) {
 			System.out.format("- %s\n ", current.getName());
 		}
-		System.out.println("Wearing :\n");
+		System.out.println("Wearing :");
 		for (Item current : this.wearing) {
 			System.out.format("- %s\n", current.getName());
 		}
