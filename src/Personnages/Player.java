@@ -6,13 +6,17 @@ import Tiles.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Player extends Human {
+public class Player extends Human
+{
+	/***********************************ATTRIBUTES***********************************/
 
 	private int hunger;
 	private int bodyHeat;
 	private List<Item> wearing;
 	private static final int MAX_HUNGER = 10;
 	private static final int MAX_HEAT = 10;
+
+	/***********************************CONSTRUCTOR***********************************/
 
 	public Player( Tile tile, List<Item> items, String name, List<String> sp) {
 		super(tile, items, name, sp);
@@ -23,39 +27,71 @@ public class Player extends Human {
 		this.wearing.add(clothes);
 	}
 
+	/***********************************METHODS***********************************/
+
 	public boolean trade(Item input, Item output) {
 		return (addItem(input) && removeItem(output));
 	}
 
-	public void pet(Animal animal) {
+	public void pet(Animal animal)
+	{
 		animal.pet();
 	}
 
-	public void take(Item object) {
+	public void take(Item object)
+	{
 		this.addItem(object);
 	}
 
-	public void eat(Item item) {
+	public void eat (Item item)
+	{
 		this.removeItem(item);
-		/*if (this.hunger + item.nutValue > MAX_HUNGER)
+		this.fillHunger(item.nutValue);
+	}
+
+	public void fillHunger(Integer nutValue)
+	{
+		if (this.hunger + nutValue > MAX_HUNGER)
 		{
 			this.hunger = MAX_HUNGER;
 		}
 		else
 		{
-			this.hunger += item.nutValue
-		}*/
+			this.hunger += nutValue;
+		}
 	}
 
-	public void wear(Item item) {
+	public void warm (Integer warmValue)
+	{
+		if (this.bodyHeat + warmValue > MAX_HEAT)
+		{
+			this.bodyHeat = MAX_HEAT;
+		}
+		else
+		{
+			this.bodyHeat += warmValue;
+		}
+	}
+
+
+
+
+
+	/***********************************GETTERS***********************************/
+	/***********************************SETTERS***********************************/
+
+	public void wear(Item item)
+	{
 		if (this.removeItem(item))
 			this.wearing.add(item);
 	}
 
-	public void takeOff(Item item) {
+	public void takeOff(Item item)
+	{
 		if (this.wearing.remove(item))
 			this.addItem(item);
 	}
+	/***********************************DISPLAY***********************************/
 
 	@Override
 	public void print() {
