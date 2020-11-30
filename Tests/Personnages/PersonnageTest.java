@@ -15,6 +15,16 @@ class PersonnageTest {
 
 
     @Test
+    void Player(){
+        p1 = new Player(null, null, null,null );
+        assertEquals(null, p1.getTile());
+        assertEquals(null, p1.getItems());
+        assertEquals(null, p1.getName());
+        assertEquals(null, p1.getRandomSpeech());
+    }
+
+
+    @Test
     void getName() {
         String name = "Arouf";
         p1 = new Player(null, null,name,null );

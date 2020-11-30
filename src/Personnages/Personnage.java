@@ -81,10 +81,18 @@ public abstract class Personnage
 
     public String getRandomSpeech()
     {
-        Random random = new Random();
+        if (this.speeches == null)
+        {
+            return null;
+        }
+        else
+        {
+            Random random = new Random();
 
-        int r = random.nextInt(this.speeches.size());
-        return this.speeches.get(r);
+            int r = random.nextInt(this.speeches.size());
+            return this.speeches.get(r);
+        }
+
     }
 
     /***********************************GETTERS***********************************/

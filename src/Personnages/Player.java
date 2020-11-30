@@ -2,6 +2,7 @@ package Personnages;
 
 import Items.*;
 import Tiles.*;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,11 +30,15 @@ public class Player extends Human
 
 	/***********************************METHODS***********************************/
 
-	public boolean trade(Item input, Item output) {
-		return (addItem(input) && removeItem(output));
+	public boolean trade(Item input, Item output) throws Exception {
+		if (input == null || output == null) {
+			throw new Exception("Player.trade input our output is null");
+		}
+		else
+			return (addItem(input) && removeItem(output));
 	}
 
-	public void pet(Animal animal)
+	public void pet(@NotNull Animal animal)
 	{
 		animal.pet();
 	}
@@ -46,7 +51,7 @@ public class Player extends Human
 	public void eat (Item item)
 	{
 		this.removeItem(item);
-		this.fillHunger(item.nutValue);
+		//this.fillHunger(item.nutValue);
 	}
 
 	public void fillHunger(Integer nutValue)
