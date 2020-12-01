@@ -9,23 +9,15 @@ public class Door extends Crossing
 
 	private boolean isOpen;
 
-	public Door(ArrayList<Tile> tiles)
+	public Door(ArrayList<Tile> tiles, boolean isOpen)
 	{
-		this.isOpen = false;
-		this.tiles = null;
-		this.tiles = tiles;
+		super(true, tiles);
+		this.isOpen = true;
 	}
 
 	public Door()
 	{
-		this.isOpen = false;
-		this.tiles = null;
-		this.tiles = new ArrayList<Tile>();
-	}
-
-	public boolean isOpen()
-	{
-		return this.isOpen;
+		super(true, new ArrayList<>());
 	}
 
 	public void open()
