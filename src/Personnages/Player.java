@@ -2,14 +2,11 @@ package Personnages;
 
 import Items.*;
 import Tiles.*;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Player extends Human
-{
-	/***********************************ATTRIBUTES***********************************/
+public class Player extends Human {
 
 	private int hunger;
 	private int bodyHeat;
@@ -17,91 +14,48 @@ public class Player extends Human
 	private static final int MAX_HUNGER = 10;
 	private static final int MAX_HEAT = 10;
 
-	/***********************************CONSTRUCTOR***********************************/
-
 	public Player( Tile tile, List<Item> items, String name, List<String> sp) {
 		super(tile, items, name, sp);
 		this.bodyHeat = MAX_HEAT;
 		this.hunger = MAX_HUNGER;
-		this.wearing = new ArrayList<Item>();
-		Item clothes = new Clothes("clothes", 5);
+		this.wearing = new ArrayList<>();
+		Item clothes = new Item("clothes");
 		this.wearing.add(clothes);
 	}
 
-	/***********************************METHODS***********************************/
-
-	public boolean trade(Item input, Item output) throws Exception {
-		if (input == null || output == null) {
-			throw new Exception("Player.trade input our output is null");
-		}
-		else
-			return (addItem(input) && removeItem(output));
+	public boolean trade(Item input, Item output) {
+		return (addItem(input) && removeItem(output));
 	}
 
-	public void pet(@NotNull Animal animal)
-	{
+	public void pet(Animal animal) {
 		animal.pet();
 	}
 
-	public void take(Item object)
-	{
+	public void take(Item object) {
 		this.addItem(object);
 	}
 
-	public void eat (Food item) throws Exception
-	{
-		if (item.getClass().getSimpleName() == "food")
-		{
-			this.removeItem(item);
-			item.use(this);
-		}
-		else
-			new Exception("You don't want to eat that\n");
-	}
-
-	public void fillHunger(Integer nutValue)
-	{
-		if (this.hunger + nutValue > MAX_HUNGER)
+	public void eat(Item item) {
+		this.removeItem(item);
+		/*if (this.hunger + item.nutValue > MAX_HUNGER)
 		{
 			this.hunger = MAX_HUNGER;
 		}
 		else
 		{
-			this.hunger += nutValue;
-		}
+			this.hunger += item.nutValue
+		}*/
 	}
 
-	public void warm (Integer warmValue)
-	{
-		if (this.bodyHeat + warmValue > MAX_HEAT)
-		{
-			this.bodyHeat = MAX_HEAT;
-		}
-		else
-		{
-			this.bodyHeat += warmValue;
-		}
-	}
-
-
-
-
-
-	/***********************************GETTERS***********************************/
-	/***********************************SETTERS***********************************/
-
-	public void wear(Item item)
-	{
+	public void wear(Item item) {
 		if (this.removeItem(item))
 			this.wearing.add(item);
 	}
 
-	public void takeOff(Item item)
-	{
+	public void takeOff(Item item) {
 		if (this.wearing.remove(item))
 			this.addItem(item);
 	}
-	/***********************************DISPLAY***********************************/
 
 	@Override
 	public void print() {
@@ -125,11 +79,11 @@ public class Player extends Human
 		} else {
 			System.out.println("You're about to die from coldness\n");
 		}
-		System.out.println("Inventory :");
+		System.out.println("Inventory :\n");
 		for (Item current : getItems()) {
 			System.out.format("- %s\n ", current.getName());
 		}
-		System.out.println("Wearing :");
+		System.out.println("Wearing :\n");
 		for (Item current : this.wearing) {
 			System.out.format("- %s\n", current.getName());
 		}
@@ -137,16 +91,22 @@ public class Player extends Human
 	}
 
 	public void  printDebug(){
-		System.out.format("Player : %s : \n",this.getName());
-		System.out.println("Inventory : \n");
-		for (Item item : getItems()){
-			System.out.format("- %s\n ", item.getName());
-		}
-		System.out.println("Wearing : \n");
-		for (Item item : this.wearing)
+		System.out.format("Player : %s\n",this.getName());
+		if (this.getItems().size() > 0)
 		{
-			System.out.format("-%s\n", item.getName());
+			System.out.println("Inventory :");
+			for (Item item : getItems()){
+				System.out.format("\t%s\n ", item.getName());
+			}
 		}
-		System.out.format("Hunger : %d\n BodyHeat : %d\n",this.hunger, this.bodyHeat);
+		if (this.wearing.size() > 0)
+		{
+			System.out.println("Wearing :");
+			for (Item item : this.wearing)
+			{
+				System.out.format("\t%s\n", item.getName());
+			}
+		}
+		System.out.format("Hunger : %d\nBodyHeat : %d\n",this.hunger, this.bodyHeat);
 	}
 }

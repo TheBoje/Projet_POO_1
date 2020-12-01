@@ -5,12 +5,14 @@ import java.util.*;
 import Crossings.Crossing;
 import Items.*;
 import Personnages.Personnage;
+import Personnages.Player;
 
 public class Tile {
 	/***********************************ATTRIBUTES***********************************/
 
 	private ArrayList<Personnage> personnages;
-	private ArrayList<Crossing> crossings;
+	private int nearbyTilesID[];
+	private Crossing nearbyCrossing[];
 	private ArrayList<Item> items;
 
 	/***********************************CONSTRUCTORS***********************************/
@@ -18,13 +20,15 @@ public class Tile {
 	public Tile() {
 		this.personnages = new ArrayList<>();
 		this.items = new ArrayList<>();
-		this.crossings = new ArrayList<>();
+		this.nearbyTilesID = new int[4];
+		this.nearbyCrossing = new Crossing[4];
 	}
 
-	public Tile(ArrayList<Personnage> personnages, ArrayList<Item> items, ArrayList<Crossing> crossings) {
+	public Tile(ArrayList<Personnage> personnages, ArrayList<Item> items, int tilesID[], Crossing crossings[]) {
 		this.personnages = personnages;
 		this.items = items;
-		this.crossings = crossings;
+		this.nearbyTilesID = tilesID;
+		this.nearbyCrossing = crossings;
 	}
 
 	/***********************************METHODS***********************************/
@@ -45,21 +49,27 @@ public class Tile {
 		return this.personnages;
 	}
 
-	public ArrayList<Crossing> getCrossings()
+	public Crossing[] getCrossings()
 	{
-		return this.crossings;
+		return this.nearbyCrossing;
+	}
+
+	public Crossing getCrossing(Direction dir)
+	{
+		return this.nearbyCrossing[dir.toIndex()];
+	}
+
+	public int getNextTileID(Direction dir)
+	{
+		return this.nearbyTilesID[dir.toIndex()];
 	}
 
 	/***********************************SETTERS***********************************/
-
-	public void addCrossing(Crossing crossing)
+	public void setNearbyTile(int tileID, Crossing crossing, Direction dir)
 	{
-		this.crossings.add(crossing);
-	}
-
-	public void addCrossings(ArrayList<Crossing> crossings)
-	{
-		this.crossings.addAll(crossings);
+		int index = dir.toIndex();
+		this.nearbyTilesID[index] = tileID;
+		this.nearbyCrossing[index] = crossing;
 	}
 
 	public void addPersonnage(Personnage personnage)
@@ -82,14 +92,18 @@ public class Tile {
 	public void print()
 	{
 		System.out.format("\tTILE : \n");
-		System.out.format("\t\tCrossing count : %d\n", this.crossings.size());
+		System.out.format("");
 		for (Personnage personnage: this.personnages)
 		{
-			personnage.print();
+			if (personnage instanceof Player)
+			{
+				((Player)personnage).printDebug();
+			}
+			else
+			{
+				personnage.print();
+			}
+
 		}
-//		for (Item item: this.items)
-//		{
-//			item.print();
-//		}
 	}
 }
