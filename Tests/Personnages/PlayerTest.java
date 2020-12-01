@@ -1,5 +1,6 @@
 package Personnages;
 
+import Items.Clothes;
 import Items.Item;
 import org.junit.jupiter.api.Test;
 
@@ -16,8 +17,8 @@ class PlayerTest extends HumanTest {
     void trade() throws Exception
     {
         p1 = new Player(null, new ArrayList<Item>(), null,null );
-        Item itemIn = new Item("Some");
-        Item itemOut = new Item("Thing");
+        Item itemIn = new Clothes("Some", 3);
+        Item itemOut = new Clothes("Thing", 5);
         p1.addItem(itemOut);
         assertEquals(true,p1.trade(itemIn, itemOut));
     }
@@ -26,8 +27,8 @@ class PlayerTest extends HumanTest {
     void tradeFail() throws Exception
     {
         p1 = new Player(null, new ArrayList<Item>(), null,null );
-        Item itemIn = new Item("Some");
-        Item itemOut = new Item("Thing");
+        Item itemIn = new Clothes("Some", 5);
+        Item itemOut = new Clothes("Thing", 5);
         assertEquals(false,p1.trade(itemIn, itemOut));
     }
 
@@ -46,7 +47,7 @@ class PlayerTest extends HumanTest {
     void tradeSemiNull()
     {
         p1 = new Player(null, new ArrayList<Item>(), null,null );
-        Item itemIn = new Item("Some");
+        Item itemIn = new Clothes("Some", 5);
         try {
             assertEquals(false,p1.trade(itemIn, null));
         } catch (Exception e) {

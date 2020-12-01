@@ -19,7 +19,7 @@ public class Player extends Human {
 		this.bodyHeat = MAX_HEAT;
 		this.hunger = MAX_HUNGER;
 		this.wearing = new ArrayList<>();
-		Item clothes = new Item("clothes");
+		Item clothes = new Clothes("clothes", 5);
 		this.wearing.add(clothes);
 	}
 

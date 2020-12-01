@@ -100,7 +100,7 @@ class PersonnageTest {
     @Test
     void addItem() {
         p1 = new Player(null, new ArrayList<Item>(),null,null );
-        Item item = new Item("swampWater");
+        Item item = new Food("swampWater",3);
         p1.addItem(item);
         assertEquals(true, p1.getItems().contains(item));
     }
@@ -108,8 +108,8 @@ class PersonnageTest {
     @Test
     void removeItem() {
         p1 = new Player(null, new ArrayList<Item>(),null,null );
-        Item item1 = new Item("swampWater");
-        Item item2 = new Item("ogreJuice");
+        Item item1 = new Food("swampWater", 3);
+        Item item2 = new Food("ogreJuice", 5);
         p1.addItem(item1);
         p1.addItem(item2);
         p1.removeItem(item1);
