@@ -24,7 +24,7 @@ public class Player extends Human
 		this.bodyHeat = MAX_HEAT;
 		this.hunger = MAX_HUNGER;
 		this.wearing = new ArrayList<Item>();
-		Item clothes = new Item("clothes");
+		Item clothes = new Clothes("clothes", 5);
 		this.wearing.add(clothes);
 	}
 
@@ -48,10 +48,15 @@ public class Player extends Human
 		this.addItem(object);
 	}
 
-	public void eat (Item item)
+	public void eat (Food item) throws Exception
 	{
-		this.removeItem(item);
-		//this.fillHunger(item.nutValue);
+		if (item.getClass().getSimpleName() == "food")
+		{
+			this.removeItem(item);
+			item.use(this);
+		}
+		else
+			new Exception("You don't want to eat that\n");
 	}
 
 	public void fillHunger(Integer nutValue)
