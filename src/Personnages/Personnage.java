@@ -2,7 +2,6 @@ package Personnages;
 
 import Tiles.*;
 
-import java.lang.reflect.Array;
 import java.util.*;
 
 import Items.*;
@@ -35,10 +34,9 @@ public abstract class Personnage
         this. speeches = sp;
     }
 
-    public String getName()
-    {
-        return this.name;
-    }
+    /***********************************METHODS***********************************/
+
+
 
     public abstract void print();
 
@@ -52,7 +50,7 @@ public abstract class Personnage
      * @param target Cible recevant les dégats
      * @param amount Montant des dégats infligés à la cible
      */
-    public void attack(Personnage target, int amount) throws Exception
+    public void attack(Personnage target, Integer amount) throws Exception
     {
         if(target != null)
             target.takeDamage(amount);
@@ -83,10 +81,39 @@ public abstract class Personnage
 
     public String getRandomSpeech()
     {
-        Random random = new Random();
+        if (this.speeches == null)
+        {
+            return null;
+        }
+        else
+        {
+            Random random = new Random();
 
-        int r = random.nextInt(this.speeches.size());
-        return this.speeches.get(r);
+            int r = random.nextInt(this.speeches.size());
+            return this.speeches.get(r);
+        }
+
+    }
+
+    /***********************************GETTERS***********************************/
+    public Tile getTile()
+    {
+        return this.tile;
+    }
+
+    public Collection<Item> getItems()
+    {
+        return this.items;
+    }
+
+    public String getName()
+    {
+        return this.name;
+    }
+
+    public int getHp()
+    {
+        return this.hp;
     }
 
     /***********************************SETTERS***********************************/
@@ -98,15 +125,5 @@ public abstract class Personnage
     public void setItems(Collection<Item> items)
     {
         this.items = new ArrayList<Item>();
-    }
-    /***********************************GETTERS***********************************/
-    public Tile getTile()
-    {
-        return this.tile;
-    }
-
-    public Collection<Item> getItems()
-    {
-        return this.items;
     }
 }
