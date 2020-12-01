@@ -20,7 +20,7 @@ public class Food extends Item
         if(perso instanceof Player)
         {
             // TODO appelle la modification de la jauge de bouffe du personnage
-            // perso.fillHunger(this.nutValue);
+            ((Player) perso).fillHunger(this.nutValue);
         }
     }
 }

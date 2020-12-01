@@ -47,7 +47,9 @@ public class Player extends Human
 		this.addItem(object);
 	}
 
-	public void eat(Item item) {
+	public void eat(Food item) {
+
+		item.use(this);
 		this.removeItem(item);
 	}
 
@@ -75,7 +77,16 @@ public class Player extends Human
 		}
 	}
 
+	public void starve ()
+	{
+		this.hunger -= 1;
+	}
+
 	/***********************************GETTERS***********************************/
+	public int getHunger()
+	{
+		return this.hunger;
+	}
 	/***********************************SETTERS***********************************/
 
 	public void wear(Item item) {

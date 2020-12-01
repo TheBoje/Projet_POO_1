@@ -1,19 +1,20 @@
 package TestsPersonnages;
 
 import Items.Clothes;
+import Items.Food;
 import Items.Item;
 import Personnages.Player;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 class PlayerTest extends HumanTest
 {
 
 	private Player p1;
+	private Food food;
 
 	@Test
 	void trade() throws Exception
@@ -69,6 +70,14 @@ class PlayerTest extends HumanTest
 	@Test
 	void eat()
 	{
+		food = new Food("Kebab", 6);
+		p1 = new Player(null, new ArrayList<Item>(), null, null);
+		int initHunger = p1.getHunger();
+		p1.starve();
+		assertEquals(p1.getHunger(), initHunger - 1);
+		p1.addItem(food);
+		p1.eat(food);
+		assertEquals(p1.getHunger(), initHunger);
 	}
 
 	@Test
