@@ -91,8 +91,14 @@ public class Tile {
 
 	public void print()
 	{
-		System.out.format("\tTILE : \n");
-		System.out.format("");
+		System.out.format("\tTILE :\n");
+		for (int i = 0; i < 4; i++)
+		{
+			if (nearbyCrossing[i] != null)
+			{
+				System.out.format("\t\t[%s] %s\n", Direction.intToDirection(i).toString(), nearbyCrossing[i].getClass().getSimpleName());
+			}
+		}
 		for (Personnage personnage: this.personnages)
 		{
 			if (personnage instanceof Player)
