@@ -14,7 +14,6 @@ class PlayerTest extends HumanTest
 {
 
 	private Player p1;
-	private Player p2;
 
 	@Test
 	void trade() throws Exception
@@ -42,28 +41,6 @@ class PlayerTest extends HumanTest
 		try
 		{
 			assertTrue(p1.trade(null, null));
-		} catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-	}
-
-	@Test
-	void tradeSemiNull()
-	{
-		p1 = new Player(null, new ArrayList<Item>(), null, null);
-		Item itemIn = new Clothes("Some", 5);
-		try
-		{
-			assertFalse(p1.trade(itemIn, null));
-		} catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-		p1.addItem(itemIn);
-		try
-		{
-			assertFalse(p1.trade(null, itemIn));
 		} catch (Exception e)
 		{
 			e.printStackTrace();
@@ -101,16 +78,6 @@ class PlayerTest extends HumanTest
 
 	@Test
 	void takeOff()
-	{
-	}
-
-	@Test
-	void testPrint()
-	{
-	}
-
-	@Test
-	void printDebug()
 	{
 	}
 }
