@@ -1,5 +1,6 @@
 import Crossings.Crossing;
 import Personnages.Player;
+import Tiles.Direction;
 
 import java.util.ArrayList;
 
@@ -16,7 +17,7 @@ public class GameManager
 
 	public GameManager()
 	{
-		this.world = new World(4);
+		this.world = new World(5, 8);
 		this.interpreteur = new Interpreteur(this);
 		try
 		{
@@ -31,8 +32,8 @@ public class GameManager
 
 	public void go(String direction) throws Exception
 	{
-		System.out.format("The player is asked to go to [%s]\n", direction);
-		this.world.movePlayer(this.player, this.player.getTile().getCrossings().get(Integer.parseInt(direction)));
+		System.out.format("The player is asked to go to [%s]\n", direction.toUpperCase());
+		this.world.movePlayer(this.player, Direction.stringToDir(direction));
 	}
 
 	public void talk(String to)
@@ -56,10 +57,13 @@ public class GameManager
 	/***********************************GETTERS***********************************/
 	public void getDirections()
 	{
-		ArrayList<Crossing> playerCrossings = this.player.getTile().getCrossings();
-		for (int i = 0; i < playerCrossings.size(); i++)
+		Crossing[] playerCrossings = this.player.getTile().getCrossings();
+		for (int i = 0; i < playerCrossings.length; i++)
 		{
-			System.out.format("\t[%d] %s \n", i, playerCrossings.get(i).getClass().getSimpleName());
+			if (playerCrossings[i] != null)
+			{
+				System.out.format("\t[%s] %s \n", Direction.intToDirection(i).toString() , playerCrossings[i].getClass().getSimpleName());
+			}
 		}
 	}
 

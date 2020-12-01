@@ -6,39 +6,43 @@ import Tiles.Direction;
 import Tiles.Tile;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 public class World
 {
 	/***********************************ATTRIBUTES***********************************/
 
-	private ArrayList<Tile> tiles;
+	private Map<Integer, Tile> tilesMap;
 
 	/***********************************CONSTRUCTOR***********************************/
 
-	public World(int size)
+	public World(int tilesAmount, int crossingsAmount)
 	{
 		// Methode temporaire pour créer un monde de [size] cases, avec case [i] reliée à case [i+1]
 		Random rn = new Random();
-		this.tiles = new ArrayList<>();
-		for (int i = 0; i < size; i++)
+		this.tilesMap = new HashMap<>();
+		for (int i = 0; i < tilesAmount; i++)
 		{
-			tiles.add(new Tile());
+			this.tilesMap.put(i, new Tile());
 		}
-		Tile beforeTile = null;
-		Direction beforeDirection = null;
-		for (int i = 0; i < tiles.size() - 1; i++)
+		for (int i = 0; i < crossingsAmount; i++)
 		{
-			Direction newDir = Direction.intToDirection(rn.nextInt(3));
-			Tile newTile = new Tile(new ArrayList<>(), new ArrayList<>(), new Tile[4], new Crossing[4]);
-			if (i != 0)
+			Direction randomDir = Direction.intToDirection(rn.nextInt(3));
+			Direction invertedRandomDir = Direction.invert(randomDir);
+			int randomIndex1 = rn.nextInt(tilesAmount);
+			int randomIndex2;
+			do
 			{
-				//beforeTile.setNearbyTile(newTile, new Door(true), );
+				randomIndex2 = rn.nextInt(tilesAmount);
 			}
+			while (randomIndex2 == randomIndex1);
 
-
-			beforeTile = newTile;
-			beforeDirection = newDir;
+			Tile tileTemp = this.tilesMap.get(randomIndex1);
+			tileTemp.setNearbyTile(randomIndex2, new Door(), randomDir);
+			Tile tileTempInverted = this.tilesMap.get(randomIndex2);
+			tileTempInverted.setNearbyTile(randomIndex1, new Door(), invertedRandomDir);
 		}
 		this.createPlayer();
 	}
@@ -47,8 +51,8 @@ public class World
 
 	public Player getPlayer() throws Exception
 	{
-		for (Tile tile : tiles)
-		{
+		for (Map.Entry<Integer, Tile> entry : this.tilesMap.entrySet()) {
+			Tile tile = entry.getValue();
 			for (Personnage personnage : tile.getPersonnages())
 			{
 				if (personnage instanceof Player)
@@ -62,21 +66,25 @@ public class World
 
 	public void createPlayer()
 	{
-		Player player = new Player(this.tiles.get(0), new ArrayList<>(0), "Good Player", new ArrayList<>(0));
-		this.tiles.get(0).addPersonnage(player);
+		Player player = new Player(this.tilesMap.get(0), new ArrayList<>(0), "Good Player", new ArrayList<>(0));
+		this.tilesMap.get(0).addPersonnage(player);
 	}
 
 
 	// TODO REDO ME
-	public void movePlayer(Player player, Crossing crossing) throws Exception
+	public void movePlayer(Player player, Direction direction)
 	{
-		if (crossing.isOpen())
+		Tile playerTile = player.getTile();
+		Crossing playerTileCrossing = playerTile.getCrossing(direction);
+
+		if (playerTileCrossing.isOpen())
 		{
-			Tile targetTile = crossing.getOtherWay(player.getTile());
-			Tile oldTile = player.getTile();
-			player.setTile(targetTile);
-			oldTile.remotePersonnage(player);
-			targetTile.addPersonnage(player);
+			int newTileID = playerTile.getNextTileID(direction);
+			Tile nextTile = this.tilesMap.get(newTileID);
+
+			player.setTile(nextTile);
+			playerTile.remotePersonnage(player);
+			nextTile.addPersonnage(player);
 		}
 		else
 		{
@@ -91,10 +99,10 @@ public class World
 	public void print()
 	{
 		System.out.format("WORLD : \n");
-		System.out.format("\tSize : %d\n", this.tiles.size());
-		for (Tile tile : tiles)
+		System.out.format("\tSize : %d\n", this.tilesMap.size());
+		for (Map.Entry<Integer, Tile> entry : this.tilesMap.entrySet())
 		{
-			tile.print();
+			entry.getValue().print();
 		}
 	}
 }

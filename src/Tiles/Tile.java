@@ -11,7 +11,7 @@ public class Tile {
 	/***********************************ATTRIBUTES***********************************/
 
 	private ArrayList<Personnage> personnages;
-	private Tile nearbyTiles[];
+	private int nearbyTilesID[];
 	private Crossing nearbyCrossing[];
 	private ArrayList<Item> items;
 
@@ -20,14 +20,14 @@ public class Tile {
 	public Tile() {
 		this.personnages = new ArrayList<>();
 		this.items = new ArrayList<>();
-		this.nearbyTiles = new Tile[4];
+		this.nearbyTilesID = new int[4];
 		this.nearbyCrossing = new Crossing[4];
 	}
 
-	public Tile(ArrayList<Personnage> personnages, ArrayList<Item> items, Tile tiles[], Crossing crossings[]) {
+	public Tile(ArrayList<Personnage> personnages, ArrayList<Item> items, int tilesID[], Crossing crossings[]) {
 		this.personnages = personnages;
 		this.items = items;
-		this.nearbyTiles = tiles;
+		this.nearbyTilesID = tilesID;
 		this.nearbyCrossing = crossings;
 	}
 
@@ -59,16 +59,16 @@ public class Tile {
 		return this.nearbyCrossing[dir.toIndex()];
 	}
 
-	public Tile getNextTile(Direction dir)
+	public int getNextTileID(Direction dir)
 	{
-		return this.nearbyTiles[dir.toIndex()];
+		return this.nearbyTilesID[dir.toIndex()];
 	}
 
 	/***********************************SETTERS***********************************/
-	public void setNearbyTile(Tile tile, Crossing crossing, Direction dir)
+	public void setNearbyTile(int tileID, Crossing crossing, Direction dir)
 	{
 		int index = dir.toIndex();
-		this.nearbyTiles[index] = tile;
+		this.nearbyTilesID[index] = tileID;
 		this.nearbyCrossing[index] = crossing;
 	}
 

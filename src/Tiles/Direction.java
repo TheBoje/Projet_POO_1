@@ -51,4 +51,71 @@ public enum Direction
 			}
 		}
 	}
+
+	public static Direction invert(Direction input)
+	{
+		switch (input)
+		{
+			case N -> {
+				return S;
+			}
+			case E -> {
+				return W;
+			}
+			case S -> {
+				return N;
+			}
+			case W -> {
+				return E;
+			}
+			default -> {
+				throw new IllegalArgumentException();
+			}
+		}
+	}
+
+	@Override
+	public String toString()
+	{
+		switch (this)
+		{
+			case N -> {
+				return "N";
+			}
+			case E -> {
+				return "E";
+			}
+			case S -> {
+				return "S";
+			}
+			case W -> {
+				return "W";
+			}
+			default -> {
+				throw new IllegalArgumentException();
+			}
+		}
+	}
+
+	public static Direction stringToDir(String input)
+	{
+		switch (input.toLowerCase())
+		{
+			case "n" -> {
+				return N;
+			}
+			case "e" -> {
+				return E;
+			}
+			case "s" -> {
+				return S;
+			}
+			case "w" -> {
+				return W;
+			}
+			default -> {
+				throw new IllegalArgumentException();
+			}
+		}
+	}
 }
