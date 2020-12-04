@@ -7,12 +7,12 @@ import java.util.List;
 
 public class KillerWhale extends Animal {
 
-	public KillerWhale(Tile tile, List<Item> items, String name, int health, List<String> speeches)
+	public KillerWhale(int tile, List<Item> items, String name, int health, List<String> speeches)
 	{
 		super(tile, items, name, health, speeches);
 	}
 
-	public KillerWhale(Tile tile, List<Item> items, String name, List<String> speeches)
+	public KillerWhale(int tile, List<Item> items, String name, List<String> speeches)
 	{
 		super(tile, items, name, speeches);
 	}

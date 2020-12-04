@@ -22,7 +22,7 @@ public class Player extends Human
 
 	/***********************************CONSTRUCTOR***********************************/
 
-	public Player(Tile tile, List<Item> items, String name, List<String> sp)
+	public Player(int tile, List<Item> items, String name, List<String> sp)
 	{
 		super(tile, items, name, sp);
 		this.bodyHeat = MAX_HEAT;

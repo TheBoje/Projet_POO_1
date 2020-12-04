@@ -17,4 +17,14 @@ public abstract class Crossing
 	{
 		return this.isOpen;
 	}
+
+	public void open()
+	{
+		this.isOpen = true;
+	}
+
+	public void close()
+	{
+		this.isOpen = false;
+	}
 }

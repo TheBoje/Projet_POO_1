@@ -9,25 +9,25 @@ import Items.*;
 public abstract class Personnage
 {
 
-    private Tile tile;
+    private int tileID;
     private List<Item> items;
     private static int DEFAULT_HP = 10;
     private String name;
     private int hp;
     private List<String> speeches;
 
-    public Personnage(Tile t, List<Item> i, String n, int health, List<String> sp)
+    public Personnage(int t, List<Item> i, String n, int health, List<String> sp)
     {
-        this.tile = t;
+        this.tileID = t;
         this.items = i;
         this.name = n;
         this.hp = health;
         this.speeches = sp;
     }
 
-    public Personnage(Tile t, List<Item> i, String n, List<String> sp)
+    public Personnage(int t, List<Item> i, String n, List<String> sp)
     {
-        this.tile = t;
+        this.tileID = t;
         this.items = i;
         this.name = n;
         this.hp = DEFAULT_HP;
@@ -96,9 +96,9 @@ public abstract class Personnage
     }
 
     /***********************************GETTERS***********************************/
-    public Tile getTile()
+    public int getTileID()
     {
-        return this.tile;
+        return this.tileID;
     }
 
     public List<Item> getItems()
@@ -122,9 +122,9 @@ public abstract class Personnage
     }
 
     /***********************************SETTERS***********************************/
-    public void setTile(Tile tile)
+    public void setTile(int tile)
     {
-        this.tile = tile;
+        this.tileID = tile;
     }
 
     public void setItems(List<Item> items)

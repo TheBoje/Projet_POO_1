@@ -15,11 +15,14 @@ public class GameManager
 	private final Interpreteur interpreteur;
 	private Player player;
 
+
 	/***********************************CONSTRUCTOR***********************************/
 
 	public GameManager()
 	{
-		this.world = new World(5, 8);
+		this.world = (World)Serializer.fromJSON("poggerino");
+		//this.world = new World(3, 4);
+		//Serializer.toJSON(new Food("poggerino", 10, 99), "nope");
 		this.interpreteur = new Interpreteur(this);
 		try
 		{
@@ -28,6 +31,8 @@ public class GameManager
 		{
 			System.out.println("Can't find the player");
 		}
+		//Serializer.toJSON(this.world, "poggerino");
+
 	}
 
 	/***********************************METHODS***********************************/
@@ -57,8 +62,8 @@ public class GameManager
 
 	public void take(String index) // TODO fix index out of bounds
 	{
-		Item temp = this.player.getTile().getItem(Integer.parseInt(index));
-		this.player.getTile().take(temp);
+		Item temp = this.world.getTile(this.player.getTileID()).getItem(Integer.parseInt(index));
+		this.world.getTile(this.player.getTileID()).take(temp);
 		this.player.take(temp);
 	}
 
@@ -77,7 +82,7 @@ public class GameManager
 	/***********************************GETTERS***********************************/
 	public void getDirection()
 	{
-		Crossing[] playerCrossings = this.player.getTile().getCrossings();
+		Crossing[] playerCrossings = this.world.getTile(this.player.getTileID()).getCrossings();
 		for (int i = 0; i < playerCrossings.length; i++)
 		{
 			if (playerCrossings[i] != null)
@@ -102,7 +107,7 @@ public class GameManager
 
 	public void getItemsOnTile()
 	{
-		List<Item> items = this.player.getTile().getItems();
+		List<Item> items = this.world.getTile(this.player.getTileID()).getItems();
 		if (items.size() == 0)
 		{
 			System.out.format("\t\tTile is empty\n");
@@ -118,18 +123,18 @@ public class GameManager
 
 	public void getTalk()
 	{
-		if (this.player.getTile().getPersonnages().size() == 1)
+		if (this.world.getTile(this.player.getTileID()).getPersonnages().size() == 1)
 		{
 			System.out.format("\tNo character to talk to\n");
 		}
 		else
 		{
-			for (int i = 0; i < this.player.getTile().getPersonnages().size(); i++)
+			for (int i = 0; i < this.world.getTile(this.player.getTileID()).getPersonnages().size(); i++)
 			{
-				Personnage p = this.player.getTile().getPersonnage(i);
+				Personnage p = this.world.getTile(this.player.getTileID()).getPersonnage(i);
 				if (!(p instanceof Player))
 				{
-					System.out.format("\t\t[%d] %s\n", i, this.player.getTile().getPersonnage(i).getName());
+					System.out.format("\t\t[%d] %s\n", i, this.world.getTile(this.player.getTileID()).getPersonnage(i).getName());
 				}
 			}
 		}

@@ -31,16 +31,16 @@
         }
       ],
       "nearbyTilesID": [
-        2,
         0,
+        2,
         2,
         0
       ],
       "nearbyCrossing": [
+        null,
         {
           "isOpen": true
         },
-        null,
         {
           "isOpen": true
         },
@@ -57,7 +57,9 @@
         0
       ],
       "nearbyCrossing": [
-        null,
+        {
+          "isOpen": true
+        },
         null,
         {
           "isOpen": true
@@ -79,10 +81,10 @@
           "isOpen": true
         },
         null,
+        null,
         {
           "isOpen": true
-        },
-        null
+        }
       ],
       "items": []
     }

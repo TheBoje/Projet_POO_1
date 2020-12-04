@@ -52,7 +52,7 @@ public class World
 
 	public void createPlayer()
 	{
-		Player player = new Player(this.tilesMap.get(0), new ArrayList<>(0), "Good Player", new ArrayList<>(0));
+		Player player = new Player(0, new ArrayList<>(0), "Good Player", new ArrayList<>(0));
 		player.addItem(new Clothes("Manto", 10));
 		player.addItem(new Food("Doritos", 2));
 		this.tilesMap.get(0).addPersonnage(player);
@@ -61,7 +61,8 @@ public class World
 
 	public void movePlayer(Player player, Direction direction) throws Exception
 	{
-		Tile playerTile = player.getTile();
+		int playerTileID = player.getTileID();
+		Tile playerTile = this.getTile(playerTileID);
 		if (playerTile.getCrossing(direction) != null)
 		{
 			Crossing playerTileCrossing = playerTile.getCrossing(direction);
@@ -71,7 +72,7 @@ public class World
 				int newTileID = playerTile.getNextTileID(direction);
 				Tile nextTile = this.tilesMap.get(newTileID);
 
-				player.setTile(nextTile);
+				player.setTile(newTileID);
 				playerTile.remotePersonnage(player);
 				nextTile.addPersonnage(player);
 			}
@@ -101,6 +102,16 @@ public class World
 			}
 		}
 		throw new Exception("Can't find player");
+	}
+
+	public Tile getTile(int ID)
+	{
+		return this.tilesMap.get(ID);
+	}
+
+	public int getTileAmount()
+	{
+		return this.tilesMap.size();
 	}
 	/***********************************SETTERS***********************************/
 	/***********************************DISPLAY***********************************/

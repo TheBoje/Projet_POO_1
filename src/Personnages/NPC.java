@@ -10,12 +10,12 @@ public class NPC extends Human {
 
 	private int speechCount;
 
-	public NPC(Tile tile, List<Item> items, String name, int health, List<String> speeches)
+	public NPC(int tile, List<Item> items, String name, int health, List<String> speeches)
 	{
 		super(tile, items, name, health, speeches);
 	}
 
-	public NPC(Tile tile, List<Item> items, String name, List<String> speeches)
+	public NPC(int tile, List<Item> items, String name, List<String> speeches)
 	{
 		super(tile, items, name, speeches);
 	}
