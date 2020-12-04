@@ -1,8 +1,9 @@
 import Crossings.Crossing;
+import Items.Item;
 import Personnages.Player;
 import Tiles.Direction;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class GameManager
 {
@@ -32,7 +33,6 @@ public class GameManager
 
 	public void go(String direction) throws Exception
 	{
-		System.out.format("The player is asked to go to [%s]\n", direction.toUpperCase());
 		this.world.movePlayer(this.player, Direction.stringToDir(direction));
 	}
 
@@ -43,6 +43,23 @@ public class GameManager
 		//throw new UnsupportedOperationException();
 	}
 
+	public void use(String arg) // TODO fix index out of bounds
+	{
+		this.player.getItem(Integer.parseInt(arg)).use(player);
+	}
+
+	public void use(String arg1, String arg2)
+	{
+		// TODO me
+	}
+
+	public void take(String index) // TODO fix index out of bounds
+	{
+		Item temp = this.player.getTile().getItem(Integer.parseInt(index));
+		this.player.getTile().take(temp);
+		this.player.take(temp);
+	}
+
 	public void nextTurn()
 	{
 		try
@@ -50,19 +67,49 @@ public class GameManager
 			interpreteur.read();
 		} catch (Exception e)
 		{
-			e.printStackTrace();
+			System.out.format("Error: %s\n", e.getMessage());
+			this.nextTurn();
 		}
 	}
 
 	/***********************************GETTERS***********************************/
-	public void getDirections()
+	public void getDirection()
 	{
 		Crossing[] playerCrossings = this.player.getTile().getCrossings();
 		for (int i = 0; i < playerCrossings.length; i++)
 		{
 			if (playerCrossings[i] != null)
 			{
-				System.out.format("\t[%s] %s \n", Direction.intToDirection(i).toString() , playerCrossings[i].getClass().getSimpleName());
+				System.out.format("\t[%s] %s - %s\n",
+						Direction.intToDirection(i).toString(),
+						playerCrossings[i].getClass().getSimpleName(),
+						playerCrossings[i].isOpen() ? "open" : "close");
+			}
+		}
+	}
+
+	public void getUse()
+	{
+		List<Item> items = player.getItems();
+
+		for (int i = 0; i < items.size(); i++)
+		{
+			System.out.format("\t\t[%d] %s\n", i, items.get(i).getName());
+		}
+	}
+
+	public void getItemsOnTile()
+	{
+		List<Item> items = this.player.getTile().getItems();
+		if (items.size() == 0)
+		{
+			System.out.format("\t\tTile is empty\n");
+		}
+		else
+		{
+			for (int i = 0; i < items.size(); i++)
+			{
+				System.out.format("\t\t[%d] %s\n", i, items.get(i).getName());
 			}
 		}
 	}
