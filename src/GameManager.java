@@ -1,5 +1,6 @@
 import Crossings.Crossing;
 import Items.Item;
+import Personnages.Personnage;
 import Personnages.Player;
 import Tiles.Direction;
 
@@ -45,7 +46,8 @@ public class GameManager
 
 	public void use(String arg) // TODO fix index out of bounds
 	{
-		this.player.getItem(Integer.parseInt(arg)).use(player);
+		Item item = this.player.getItem(Integer.parseInt(arg));
+		this.player.use(item);
 	}
 
 	public void use(String arg1, String arg2)
@@ -114,13 +116,26 @@ public class GameManager
 		}
 	}
 
-	/***********************************SETTERS***********************************/
-
-	public void setPlayer(Player player)
+	public void getTalk()
 	{
-		this.player = player;
+		if (this.player.getTile().getPersonnages().size() == 1)
+		{
+			System.out.format("\tNo character to talk to\n");
+		}
+		else
+		{
+			for (int i = 0; i < this.player.getTile().getPersonnages().size(); i++)
+			{
+				Personnage p = this.player.getTile().getPersonnage(i);
+				if (!(p instanceof Player))
+				{
+					System.out.format("\t\t[%d] %s\n", i, this.player.getTile().getPersonnage(i).getName());
+				}
+			}
+		}
 	}
 
+	/***********************************SETTERS***********************************/
 	/***********************************DISPLAY***********************************/
 	public void printWorld()
 	{

@@ -50,22 +50,6 @@ public class World
 
 	/***********************************METHODS***********************************/
 
-	public Player getPlayer() throws Exception
-	{
-		for (Map.Entry<Integer, Tile> entry : this.tilesMap.entrySet())
-		{
-			Tile tile = entry.getValue();
-			for (Personnage personnage : tile.getPersonnages())
-			{
-				if (personnage instanceof Player)
-				{
-					return (Player) personnage;
-				}
-			}
-		}
-		throw new Exception("Can't find player");
-	}
-
 	public void createPlayer()
 	{
 		Player player = new Player(this.tilesMap.get(0), new ArrayList<>(0), "Good Player", new ArrayList<>(0));
@@ -103,6 +87,21 @@ public class World
 	}
 
 	/***********************************GETTERS***********************************/
+	public Player getPlayer() throws Exception
+	{
+		for (Map.Entry<Integer, Tile> entry : this.tilesMap.entrySet())
+		{
+			Tile tile = entry.getValue();
+			for (Personnage personnage : tile.getPersonnages())
+			{
+				if (personnage instanceof Player)
+				{
+					return (Player) personnage;
+				}
+			}
+		}
+		throw new Exception("Can't find player");
+	}
 	/***********************************SETTERS***********************************/
 	/***********************************DISPLAY***********************************/
 

@@ -49,8 +49,13 @@ public class Interpreteur
 					case 2 -> gameManager.take(argv[2]);
 				}
 				break;
+			// case "take" TODO
 			case "talk":
-				gameManager.talk(argv[1]);
+				switch (argc)
+				{
+					case 1 -> gameManager.getTalk();
+					default -> gameManager.talk(argv[1]);
+				}
 				break;
 			case "help":
 			case "?":
