@@ -1,23 +1,79 @@
 {
-  "tiles":
-  [
+  "tiles": [
     {
-      "personnages": [],
-      "crossings": [
+      "id": 0,
+      "personnages": [
         {
-          "tiles": [0, 1]
+          "nom": "plip-plop",
+          "items": [
+            {
+              "type": "Clothes",
+              "name": "Veste",
+              "warmness": 2
+            }
+          ],
+          "speeches": [
+            "speech1",
+            "2hceeps"
+          ]
         }
       ],
-      "items": []
+      "items": [
+        {
+          "type": "Weapon",
+          "name": "pistolaid",
+          "damages": 1
+        }
+      ],
+      "crossing": [
+        {
+          "id": 1,
+          "direction": "n",
+          "type": "Door"
+        },
+        {
+          "id": 2,
+          "direction": "s",
+          "type": "Door"
+        }
+      ]
     },
     {
-      "personnages": [],
-      "crossings": [
+      "id": 1,
+      "crossing": [
         {
-          "tiles": [0, 1]
+          "id": 0,
+          "direction": "s",
+          "type": "Door"
         }
-      ],
-      "items": []
+      ]
+    },
+    {
+      "id": 2,
+      "crossing": [
+        {
+          "id": 0,
+          "direction": "n",
+          "type": "Door"
+        }
+      ]
     }
-  ]
+  ],
+  "player":
+  {
+    "tileID": 0,
+    "items": [
+      {
+        "type": "Clothes",
+        "name": "Manto",
+        "warmness": 10
+      },
+      {
+        "type": "Food",
+        "name": "Doritos",
+        "nVal": 2
+      }
+    ],
+    "name": "Yummy yumm"
+  }
 }

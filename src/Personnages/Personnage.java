@@ -22,7 +22,7 @@ public abstract class Personnage
         this.items = i;
         this.name = n;
         this.hp = health;
-        this. speeches = sp;
+        this.speeches = sp;
     }
 
     public Personnage(Tile t, List<Item> i, String n, List<String> sp)
@@ -31,7 +31,7 @@ public abstract class Personnage
         this.items = i;
         this.name = n;
         this.hp = DEFAULT_HP;
-        this. speeches = sp;
+        this.speeches = sp;
     }
 
     /***********************************METHODS***********************************/
