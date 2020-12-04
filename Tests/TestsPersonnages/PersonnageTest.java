@@ -4,7 +4,9 @@ import Items.Food;
 import Items.Item;
 import Personnages.Player;
 import Tiles.Tile;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +18,6 @@ class PersonnageTest
 
 	private Player p1;
 	private Player p2;
-
 
 	@Test
 	void Player()
