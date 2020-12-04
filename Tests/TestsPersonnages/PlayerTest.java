@@ -76,7 +76,7 @@ class PlayerTest extends HumanTest
 		p1.starve();
 		assertEquals(p1.getHunger(), initHunger - 1);
 		p1.addItem(food);
-		p1.eat(food);
+		p1.use(food);
 		assertEquals(p1.getHunger(), initHunger);
 	}
 
