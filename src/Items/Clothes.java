@@ -18,7 +18,12 @@ public class Clothes extends Item
         if(perso instanceof Player)
         {
             // TODO implémenter la méthode warm de player
-            // perso.warm(this.warmness);
+            ((Player) perso).warm(this.warmness);
+            System.out.println("You wear " + this.getName());
+        }
+        else
+        {
+            System.out.println("It's freezing outside, you'd better keep this " + this.getName() + " for you");
         }
     }
 }
