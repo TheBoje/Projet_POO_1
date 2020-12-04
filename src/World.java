@@ -20,7 +20,6 @@ public class World
 
 	public World(int tilesAmount, int crossingsAmount)
 	{
-		// Methode temporaire pour créer un monde de [size] cases, avec case [i] reliée à case [i+1]
 		Random rn = new Random();
 		this.tilesMap = new HashMap<>();
 		for (int i = 0; i < tilesAmount; i++)
@@ -51,7 +50,8 @@ public class World
 
 	public Player getPlayer() throws Exception
 	{
-		for (Map.Entry<Integer, Tile> entry : this.tilesMap.entrySet()) {
+		for (Map.Entry<Integer, Tile> entry : this.tilesMap.entrySet())
+		{
 			Tile tile = entry.getValue();
 			for (Personnage personnage : tile.getPersonnages())
 			{
@@ -71,24 +71,30 @@ public class World
 	}
 
 
-	// TODO REDO ME
-	public void movePlayer(Player player, Direction direction)
+	public void movePlayer(Player player, Direction direction) throws Exception
 	{
 		Tile playerTile = player.getTile();
-		Crossing playerTileCrossing = playerTile.getCrossing(direction);
-
-		if (playerTileCrossing.isOpen())
+		if (playerTile.getCrossing(direction) != null)
 		{
-			int newTileID = playerTile.getNextTileID(direction);
-			Tile nextTile = this.tilesMap.get(newTileID);
+			Crossing playerTileCrossing = playerTile.getCrossing(direction);
 
-			player.setTile(nextTile);
-			playerTile.remotePersonnage(player);
-			nextTile.addPersonnage(player);
+			if (playerTileCrossing.isOpen())
+			{
+				int newTileID = playerTile.getNextTileID(direction);
+				Tile nextTile = this.tilesMap.get(newTileID);
+
+				player.setTile(nextTile);
+				playerTile.remotePersonnage(player);
+				nextTile.addPersonnage(player);
+			}
+			else
+			{
+				System.out.println("Crossing is closed");
+			}
 		}
 		else
 		{
-			System.out.println("Crossing is closed");
+			throw new Exception("Asked direction doesnt exists");
 		}
 	}
 

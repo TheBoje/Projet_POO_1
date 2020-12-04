@@ -2,8 +2,6 @@ import Crossings.Crossing;
 import Personnages.Player;
 import Tiles.Direction;
 
-import java.util.ArrayList;
-
 public class GameManager
 {
 
@@ -32,7 +30,6 @@ public class GameManager
 
 	public void go(String direction) throws Exception
 	{
-		System.out.format("The player is asked to go to [%s]\n", direction.toUpperCase());
 		this.world.movePlayer(this.player, Direction.stringToDir(direction));
 	}
 
@@ -43,6 +40,16 @@ public class GameManager
 		//throw new UnsupportedOperationException();
 	}
 
+	public void use(String arg)
+	{
+		// TODO me
+	}
+
+	public void use(String arg1, String arg2)
+	{
+		// TODO me
+	}
+
 	public void nextTurn()
 	{
 		try
@@ -50,21 +57,30 @@ public class GameManager
 			interpreteur.read();
 		} catch (Exception e)
 		{
-			e.printStackTrace();
+			System.out.format("Error: %s\n", e.getMessage());
+			this.nextTurn();
 		}
 	}
 
 	/***********************************GETTERS***********************************/
-	public void getDirections()
+	public void getDirection()
 	{
 		Crossing[] playerCrossings = this.player.getTile().getCrossings();
 		for (int i = 0; i < playerCrossings.length; i++)
 		{
 			if (playerCrossings[i] != null)
 			{
-				System.out.format("\t[%s] %s \n", Direction.intToDirection(i).toString() , playerCrossings[i].getClass().getSimpleName());
+				System.out.format("\t[%s] %s - %s\n",
+						Direction.intToDirection(i).toString(),
+						playerCrossings[i].getClass().getSimpleName(),
+						playerCrossings[i].isOpen() ? "open" : "close");
 			}
 		}
+	}
+
+	public void getUse()
+	{
+
 	}
 
 	/***********************************SETTERS***********************************/

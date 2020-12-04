@@ -96,7 +96,7 @@ public class Tile {
 		{
 			if (nearbyCrossing[i] != null)
 			{
-				System.out.format("\t\t[%s] %s\n", Direction.intToDirection(i).toString(), nearbyCrossing[i].getClass().getSimpleName());
+				System.out.format("\t\t[%s] %s - %s\n", Direction.intToDirection(i).toString(), nearbyCrossing[i].getClass().getSimpleName(), nearbyCrossing[i].isOpen() ? "open" : "close");
 			}
 		}
 		for (Personnage personnage: this.personnages)
