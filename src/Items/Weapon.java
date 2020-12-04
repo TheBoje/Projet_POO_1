@@ -2,7 +2,7 @@ package Items;
 
 import Personnages.Personnage;
 
-public class Weapon extends Item
+public abstract class Weapon extends Item
 {
     private int damages;
 
@@ -12,9 +12,17 @@ public class Weapon extends Item
         this.damages = dam;
     }
 
-
-    public void use(Personnage personnage)
+    public Weapon(String name,int value, int dam)
     {
-        personnage.takeDamage(this.damages);
+        super(name, value);
+        this.damages = dam;
     }
+
+    public abstract void use(Personnage personnage);
+
+    public int getDamages()
+    {
+        return this.damages;
+    }
+
 }

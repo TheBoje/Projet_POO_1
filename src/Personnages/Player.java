@@ -3,6 +3,7 @@ package Personnages;
 import Items.Clothes;
 import Items.Food;
 import Items.Item;
+import Items.Weapon;
 import Tiles.Tile;
 import org.jetbrains.annotations.NotNull;
 
@@ -32,6 +33,23 @@ public class Player extends Human
 	}
 
 	/***********************************METHODS***********************************/
+
+	public void use (Item item)
+	{
+		if ( item instanceof Food)
+		{
+			this.eat((Food)item);
+		}
+		if ( item instanceof Clothes)
+		{
+			this.wear((Clothes)item);
+		}
+		if ( item instanceof Weapon)
+		{
+			this.wear((Clothes)item);
+		}
+
+	}
 
 	public boolean trade(Item input, Item output) throws Exception
 	{
