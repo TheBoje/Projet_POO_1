@@ -1,5 +1,7 @@
 import Crossings.Crossing;
 import Crossings.Door;
+import Items.Clothes;
+import Items.Food;
 import Personnages.Personnage;
 import Personnages.Player;
 import Tiles.Direction;
@@ -67,6 +69,8 @@ public class World
 	public void createPlayer()
 	{
 		Player player = new Player(this.tilesMap.get(0), new ArrayList<>(0), "Good Player", new ArrayList<>(0));
+		player.addItem(new Clothes("Manto", 10));
+		player.addItem(new Food("Doritos", 2));
 		this.tilesMap.get(0).addPersonnage(player);
 	}
 

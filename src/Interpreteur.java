@@ -39,10 +39,16 @@ public class Interpreteur
 				{
 					case 1 -> gameManager.getUse();
 					case 2 -> gameManager.use(argv[1]);
-					case 3 -> gameManager.use(argv[2]);
+					case 3 -> gameManager.use(argv[2]); // TODO cas de l'arme ?
 				}
 				break;
-			// case "take" TODO
+			case "take":
+				switch (argc)
+				{
+					case 1 -> gameManager.getItemsOnTile();
+					case 2 -> gameManager.take(argv[2]);
+				}
+				break;
 			case "talk":
 				gameManager.talk(argv[1]);
 				break;
@@ -57,7 +63,9 @@ public class Interpreteur
 					this.help();
 				}
 				break;
-
+			case "debug":
+				gameManager.printWorld();
+				break;
 			default:
 				throw new Exception("Wrong input interpreteur");
 		}

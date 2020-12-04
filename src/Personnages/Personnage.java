@@ -101,9 +101,14 @@ public abstract class Personnage
         return this.tile;
     }
 
-    public Collection<Item> getItems()
+    public List<Item> getItems()
     {
         return this.items;
+    }
+
+    public Item getItem(int index)
+    {
+        return this.items.get(index);
     }
 
     public String getName()
@@ -122,7 +127,7 @@ public abstract class Personnage
         this.tile = tile;
     }
 
-    public void setItems(Collection<Item> items)
+    public void setItems(List<Item> items)
     {
         this.items = new ArrayList<Item>();
     }
