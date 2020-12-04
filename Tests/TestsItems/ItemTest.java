@@ -37,7 +37,7 @@ public class ItemTest
     {
         this.clothe = new Clothes(CLOTHE_NAME_1, WARMNESS_1);
         this.food = new Food(FOOD_NAME_1, NUT_VALUE_1);
-        this.weapon = new Weapon(WEAPON_NAME_1, DAMAGES_1);
+        this.weapon = new Weapon(WEAPON_NAME_1, DAMAGES_1, 3);
 
         this.player = new Player(null, new ArrayList<>(), "Bertrand", new ArrayList<>());
         this.npc = new NPC(null, new ArrayList<>(), "Benoit", new ArrayList<>());
@@ -48,14 +48,32 @@ public class ItemTest
     @Test
     void weaponDoDamage()
     {
-        int lifeBefore = this.npc.getHp();
-        this.weapon.use(this.npc);
+        int lifeBefore;
 
-        assertNotEquals(lifeBefore, this.npc.getHp());
+        try
+        {
+            lifeBefore = this.npc.getHp();
 
-        lifeBefore = this.player.getHp();
-        this.weapon.use(this.player);
+            this.weapon.use(this.npc);
+            assertNotEquals(lifeBefore, this.npc.getHp());
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+        }
 
-        assertNotEquals(lifeBefore, this.player.getHp());
+        try
+        {
+            lifeBefore = this.player.getHp();
+            this.weapon.use(this.player);
+
+            assertNotEquals(lifeBefore, this.player.getHp());
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+        }
+
+
     }
 }
