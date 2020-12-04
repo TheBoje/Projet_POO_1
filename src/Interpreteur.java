@@ -23,32 +23,51 @@ public class Interpreteur
 	{
 		System.out.print("> ");
 		String input = scanner.nextLine().toLowerCase();
-		String[] input_split = input.split(" ");
-		switch (input_split[0])
+		String[] argv = input.split(" ");
+		int argc = argv.length;
+		switch (argv[0])
 		{
-			case "direction":
-				gameManager.getDirections();
-				break;
 			case "go":
-				gameManager.go(input_split[1]); // FIXME Crash si 1 seul argument
+				switch (argc)
+				{
+					case 1 -> gameManager.getDirection();
+					default -> gameManager.go(argv[1]);
+				}
+				break;
+			case "use":
+				switch (argc)
+				{
+					case 1 -> gameManager.getUse();
+					case 2 -> gameManager.use(argv[1]);
+					case 3 -> gameManager.use(argv[2]); // TODO cas de l'arme ?
+				}
+				break;
+			case "take":
+				switch (argc)
+				{
+					case 1 -> gameManager.getItemsOnTile();
+					case 2 -> gameManager.take(argv[2]);
+				}
 				break;
 			case "talk":
-				gameManager.talk(input_split[1]); // FIXME Crash si 1 seul argument
+				gameManager.talk(argv[1]);
 				break;
 			case "help":
 			case "?":
-				if (input_split.length >= 2)
+				if (argv.length >= 2)
 				{
-					this.help(input_split[1]);
+					this.help(argv[1]);
 				}
 				else
 				{
 					this.help();
 				}
 				break;
-
+			case "debug":
+				gameManager.printWorld();
+				break;
 			default:
-				throw new Exception("wrong input interpreteur");
+				throw new Exception("Wrong input interpreteur");
 		}
 	}
 
