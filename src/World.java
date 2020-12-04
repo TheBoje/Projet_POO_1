@@ -50,6 +50,11 @@ public class World
 
 	/***********************************METHODS***********************************/
 
+	public void readJSON()
+	{
+
+	}
+
 	public void createPlayer()
 	{
 		Player player = new Player(this.tilesMap.get(0), new ArrayList<>(0), "Good Player", new ArrayList<>(0));

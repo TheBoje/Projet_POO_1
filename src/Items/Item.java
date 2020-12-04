@@ -12,7 +12,7 @@ public abstract class Item
 		this.name = name;
 	}
 
-	public abstract void use(Personnage perso);
+	public abstract void use(Personnage perso) throws Exception;
 
     public String getName()
 	{
