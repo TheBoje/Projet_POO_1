@@ -1,15 +1,13 @@
 package Tiles;
 
+import java.util.*;
+
 import Crossings.Crossing;
-import Items.Item;
+import Items.*;
 import Personnages.Personnage;
 import Personnages.Player;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class Tile
-{
+public class Tile {
 	/***********************************ATTRIBUTES***********************************/
 
 	private List<Personnage> personnages;
@@ -19,8 +17,7 @@ public class Tile
 
 	/***********************************CONSTRUCTORS***********************************/
 
-	public Tile()
-	{
+	public Tile() {
 		this.personnages = new ArrayList<>();
 		this.items = new ArrayList<>();
 		this.nearbyTilesID = new int[4];
@@ -37,11 +34,18 @@ public class Tile
 
 	/***********************************METHODS***********************************/
 
-	public void take(Item item)
-	{
+	public List<Item> search() {
+		return this.items;
+	}
+
+	public void take(Item item) {
 		// TODO - implement Tile.take
-		// Supprime l'object de la case
 		throw new UnsupportedOperationException();
+	}
+
+	public void removeItem(Item item)
+	{
+		this.items.remove(item);
 	}
 
 	/***********************************GETTERS***********************************/
@@ -49,6 +53,11 @@ public class Tile
 	public List<Personnage> getPersonnages()
 	{
 		return this.personnages;
+	}
+
+	public Personnage getPersonnage(int index)
+	{
+		return this.personnages.get(index);
 	}
 
 	public Crossing[] getCrossings()
@@ -66,14 +75,14 @@ public class Tile
 		return this.nearbyTilesID[dir.toIndex()];
 	}
 
-	public List<Item> getItems()
-	{
-		return this.items;
-	}
-
 	public Item getItem(int index)
 	{
 		return this.items.get(index);
+	}
+
+	public List<Item> getItems()
+	{
+		return this.items;
 	}
 
 	/***********************************SETTERS***********************************/
@@ -111,11 +120,11 @@ public class Tile
 				System.out.format("\t\t[%s] %s - %s\n", Direction.intToDirection(i).toString(), nearbyCrossing[i].getClass().getSimpleName(), nearbyCrossing[i].isOpen() ? "open" : "close");
 			}
 		}
-		for (Personnage personnage : this.personnages)
+		for (Personnage personnage: this.personnages)
 		{
 			if (personnage instanceof Player)
 			{
-				((Player) personnage).printDebug();
+				((Player)personnage).printDebug();
 			}
 			else
 			{
