@@ -21,6 +21,11 @@ public class Food extends Item
 		{
 			// TODO appelle la modification de la jauge de bouffe du personnage
 			((Player) perso).fillHunger(this.nutValue);
+			System.out.println("You ate " + this.getName());
+		}
+		else
+		{
+			System.out.println("You think that keep the food for yourself is a better idea");
 		}
 	}
 }
