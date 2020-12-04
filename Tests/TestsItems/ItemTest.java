@@ -37,7 +37,7 @@ public class ItemTest
     {
         this.clothe = new Clothes(CLOTHE_NAME_1, WARMNESS_1);
         this.food = new Food(FOOD_NAME_1, NUT_VALUE_1);
-        this.weapon = new Weapon(WEAPON_NAME_1, DAMAGES_1, 3);
+        //this.weapon = new Weapon(WEAPON_NAME_1, DAMAGES_1, 3);
 
         this.player = new Player(null, new ArrayList<>(), "Bertrand", new ArrayList<>());
         this.npc = new NPC(null, new ArrayList<>(), "Benoit", new ArrayList<>());

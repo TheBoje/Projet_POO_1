@@ -15,6 +15,14 @@ public class Food extends Item
 		this.nutValue = nVal;
 	}
 
+	public Food(String name, int value, int nVal)
+	{
+		super(name, value);
+		this.nutValue = nVal;
+	}
+
+
+
 	public void use(Personnage perso)
 	{
 		if (perso instanceof Player)
