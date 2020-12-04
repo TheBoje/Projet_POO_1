@@ -37,4 +37,9 @@ public class ThrowWeapon extends Weapon
             System.out.println("You need a target");
         }
     }
+
+    public boolean getHasBeenLaunched()
+    {
+        return this.hasBeenLaunched;
+    }
 }
