@@ -47,7 +47,7 @@ public class GameManager
 	public void use(String arg) // TODO fix index out of bounds
 	{
 		Item item = this.player.getItem(Integer.parseInt(arg));
-		this.player.use(item);
+		//this.player.use(item);
 	}
 
 	public void use(String arg1, String arg2)
