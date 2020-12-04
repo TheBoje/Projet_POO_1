@@ -13,11 +13,16 @@ public class Clothes extends Item
         this.warmness = warmValue;
     }
 
+    public Clothes(String name, int value, int warmValue)
+    {
+        super(name, value);
+        this.warmness = warmValue;
+    }
+
     public void use(Personnage perso)
     {
         if(perso instanceof Player)
         {
-            // TODO implémenter la méthode warm de player
             ((Player) perso).warm(this.warmness);
             System.out.println("You wear " + this.getName());
         }
