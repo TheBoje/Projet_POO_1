@@ -1,6 +1,7 @@
+package Serialisation;
+
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -15,9 +16,12 @@ public abstract class Serializer
 	public static void toJSON(Object input, String fileName)
 	{
 		System.out.format("Serialising %s to %s\n", input.getClass(), fileName + ".json");
-		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+		Gson gson = GsonUtils.getGson();
+
 		String Json = gson.toJson(input);
-		try (PrintStream out = new PrintStream(new FileOutputStream("Data\\"+ fileName + ".json"))) {
+		try (PrintStream out = new PrintStream(new FileOutputStream("Data\\" + fileName + ".json")))
+		{
 			out.print(Json);
 		} catch (FileNotFoundException e)
 		{
@@ -29,18 +33,19 @@ public abstract class Serializer
 	public static Object fromJSON(String fileName)
 	{
 		Object out;
-		Gson gson = new Gson();
+		Gson gson = GsonUtils.getGson();
 
-		Path filePath = Path.of("Data\\"+ fileName + ".json");
+		Path filePath = Path.of("Data\\" + fileName + ".json");
 		try
 		{
 			String readRes = Files.readString(filePath);
-			out = gson.fromJson(readRes, World.class);
+			out = "";
+			//out = gson.fromJson(readRes, World.class); // FIXME
 			return out;
 		} catch (IOException e)
 		{
 			e.printStackTrace();
-			return null; // TODO This is not fancy
+			return null; // FIXME This is not fancy
 		}
 	}
 }

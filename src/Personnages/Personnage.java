@@ -1,10 +1,11 @@
 package Personnages;
 
-import Tiles.*;
+import Serialisation.GsonUtils;
 
 import java.util.*;
 
 import Items.*;
+import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
 
 public abstract class Personnage
 {
@@ -18,6 +19,7 @@ public abstract class Personnage
 
     public Personnage(int t, List<Item> i, String n, int health, List<String> sp)
     {
+        registerClass(); // FIXME GSON
         this.tileID = t;
         this.items = i;
         this.name = n;
@@ -27,6 +29,7 @@ public abstract class Personnage
 
     public Personnage(int t, List<Item> i, String n, List<String> sp)
     {
+        registerClass(); // FIXME GSON
         this.tileID = t;
         this.items = i;
         this.name = n;
@@ -34,7 +37,25 @@ public abstract class Personnage
         this.speeches = sp;
     }
 
+
+    /***********************************GSON*********************************** FIXME */
+    private static final RuntimeTypeAdapterFactory<Personnage> adapter =
+            RuntimeTypeAdapterFactory.of(Personnage.class);
+
+    private static final HashSet<Class<?>> registeredClasses= new HashSet<Class<?>>();
+
+    static {
+        GsonUtils.registerType(adapter);
+    }
+
+    private synchronized void registerClass() {
+        if (!registeredClasses.contains(this.getClass())) {
+            registeredClasses.add(this.getClass());
+            adapter.registerSubtype(this.getClass());
+        }
+    }
     /***********************************METHODS***********************************/
+
 
 
 

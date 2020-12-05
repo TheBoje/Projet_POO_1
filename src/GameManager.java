@@ -2,6 +2,7 @@ import Crossings.Crossing;
 import Items.Item;
 import Personnages.Personnage;
 import Personnages.Player;
+import Serialisation.Serializer;
 import Tiles.Direction;
 
 import java.util.List;
@@ -20,9 +21,9 @@ public class GameManager
 
 	public GameManager()
 	{
-		this.world = (World)Serializer.fromJSON("poggerino");
+		this.world = (World) Serializer.fromJSON("poggerino");
 		//this.world = new World(3, 4);
-		//Serializer.toJSON(new Food("poggerino", 10, 99), "nope");
+		//Serialisation.Serializer.toJSON(new Food("poggerino", 10, 99), "nope");
 		this.interpreteur = new Interpreteur(this);
 		try
 		{
@@ -31,7 +32,7 @@ public class GameManager
 		{
 			System.out.println("Can't find the player");
 		}
-		//Serializer.toJSON(this.world, "poggerino");
+		//Serialisation.Serializer.toJSON(this.world, "poggerino");
 
 	}
 
