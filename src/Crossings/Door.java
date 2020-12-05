@@ -1,18 +1,19 @@
 package Crossings;
 
-import Tiles.Tile;
-
-import java.util.ArrayList;
+import Items.Item;
+import java.util.List;
 
 public class Door extends Crossing
 {
-
-	private boolean isOpen;
-
 	public Door(boolean isOpen)
 	{
-		super(true);
-		this.isOpen = true;
+		super(isOpen);
+	}
+
+	@Override
+	public void tryOpen(List<Item> items)
+	{
+		this.open();
 	}
 
 	public Door()

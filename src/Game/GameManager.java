@@ -1,5 +1,6 @@
 package Game;
 
+import Crossings.CantOpenCrossing;
 import Crossings.ClosedCrossing;
 import Crossings.Crossing;
 import Interpreteur.Interpreteur;
@@ -54,9 +55,17 @@ public class GameManager
 		}
 	}
 
-	public void talk()
+	public void talk(int index) throws InputError
 	{
-
+		if (index >= 0 || index > this.player.getTile().getPersonnages().size())
+		{
+			String talk_res = this.player.getTile().getPersonnage(index).getRandomSpeech();
+			System.out.format("[%s]: %s\n", this.player.getTile().getPersonnage(index).getName(), talk_res);
+		}
+		else
+		{
+			throw new InputError();
+		}
 	}
 
 	public void use(String[] args) throws InputError
@@ -109,6 +118,11 @@ public class GameManager
 		}
 	}
 
+	public void open(Direction dir) throws CantOpenCrossing
+	{
+		this.player.getTile().getCrossing(dir).tryOpen(this.player.getItems());
+	}
+
 	public void quit()
 	{
 		System.out.println("Closing app");
@@ -136,7 +150,8 @@ public class GameManager
 
 		for (int i = 0; i < items.size(); i++)
 		{
-			System.out.format("\t[%d] %s\n", i, items.get(i).getName());
+			System.out.format("\t[%d] %s\n", i, items.get(i).getName()); // TODO Use the other one
+			//System.out.format("\t[%d] %s\n", i, items.get(i).getUsage());
 		}
 	}
 

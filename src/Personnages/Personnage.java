@@ -81,9 +81,9 @@ public abstract class Personnage
 
     public String getRandomSpeech()
     {
-        if (this.speeches == null)
+        if (this.speeches == null || this.speeches.size() == 0)
         {
-            return null;
+            return null; // TODO Retourner une exception ?
         }
         else
         {

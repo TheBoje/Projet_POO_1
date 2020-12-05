@@ -1,5 +1,6 @@
 package Interpreteur;
 
+import Crossings.CantOpenCrossing;
 import Crossings.ClosedCrossing;
 import Game.GameManager;
 import Game.InputError;
@@ -31,7 +32,7 @@ public class Interpreteur
 	/***********************************METHODS***********************************/
 
 
-	public void read() throws Exception
+	public void read() throws UnknownOrder, CantOpenCrossing, InputError, UnknownDirection, InsufficientArguments
 	{
 		System.out.format("> ");
 		String input = this.scanner.nextLine();
@@ -50,7 +51,7 @@ public class Interpreteur
 		this.exec(request);
 	}
 
-	public void exec(Request request) throws InputError, UnknownDirection, InsufficientArguments
+	public void exec(Request request) throws InputError, UnknownDirection, InsufficientArguments, CantOpenCrossing
 	{
 		switch (request.getOrder())
 		{
@@ -83,6 +84,10 @@ public class Interpreteur
 					this.help(Order.TALK);
 					throw new InsufficientArguments();
 				}
+				else
+				{
+					this.gameManager.talk(request.getIntArg(0));
+				}
 
 			}
 			case OPEN -> {
@@ -93,7 +98,7 @@ public class Interpreteur
 				}
 				else
 				{
-					// TODO This
+					this.gameManager.open(Direction.stringToDirection(request.getArg(0)));
 				}
 			}
 			case LIST -> {
@@ -147,7 +152,6 @@ public class Interpreteur
 		}
 	}
 
-
 	public void help()
 	{
 		System.out.format("LIST OF COMMANDS:\n");
@@ -162,21 +166,4 @@ public class Interpreteur
 	{
 		System.out.format("[%s] %s\n", order.getString(), order.getHelpMessage());
 	}
-
-	public void go() throws Exception
-	{
-	}
-
-	public void use() throws Exception
-	{
-	}
-
-	public void take()
-	{
-	}
-
-	public void talk()
-	{
-	}
-
 }

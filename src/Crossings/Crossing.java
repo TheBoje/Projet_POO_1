@@ -1,17 +1,19 @@
 package Crossings;
 
-import Tiles.Tile;
+import Items.Item;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public abstract class Crossing
 {
-	private boolean isOpen;
+	boolean isOpen; // package private
 
 	protected Crossing(boolean isOpen)
 	{
 		this.isOpen = isOpen;
 	}
+
+	public abstract void tryOpen(List<Item> items) throws CantOpenCrossing;
 
 	public boolean isOpen()
 	{

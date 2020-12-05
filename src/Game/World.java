@@ -6,6 +6,7 @@ import Items.Clothes;
 import Items.Food;
 import Items.Item;
 import Items.RangeWeapon;
+import Personnages.NPC;
 import Personnages.Personnage;
 import Personnages.Player;
 import Tiles.Direction;
@@ -32,8 +33,20 @@ public class World
 		for (int i = 0; i < tilesAmount; i++)
 		{
 			this.tilesMap.put(i, new Tile());
-			if (rn.nextInt(4) % 2 != 0){
+			if (rn.nextBoolean())
+			{
 				this.tilesMap.get(i).addItem(Item.generateRandomItem(rn));
+			}
+			if (rn.nextBoolean())
+			{
+				ArrayList<String> speeches = new ArrayList<>();
+				for (int j = 0; j < i + 1; j++)
+				{
+					speeches.add("wowo " + j);
+				}
+				NPC npc = new NPC(null, new ArrayList<>(), "boby" + i, speeches);
+				this.tilesMap.get(i).addPersonnage(npc);
+				npc.setTile(this.tilesMap.get(i));
 			}
 		}
 		for (int i = 0; i < crossingsAmount; i++)
@@ -53,12 +66,13 @@ public class World
 				while (randomIndex2 == randomIndex1);
 
 				Tile tileTemp = this.tilesMap.get(randomIndex1);
-				tileTemp.setNearbyTile(randomIndex2, new Door(), randomDir);
+				tileTemp.setNearbyTile(randomIndex2, new Door(rn.nextBoolean()), randomDir);
 				Tile tileTempInverted = this.tilesMap.get(randomIndex2);
-				tileTempInverted.setNearbyTile(randomIndex1, new Door(), invertedRandomDir);
+				tileTempInverted.setNearbyTile(randomIndex1, new Door(rn.nextBoolean()), invertedRandomDir);
 			} catch (UnknownDirection unknownDirection)
 			{
-				unknownDirection.printStackTrace(); // TODO Find a better way
+				// This is never gonna happen, although we need to catch it.
+				System.out.format("World generation error: wrong Direction input \n");
 			}
 		}
 		this.createPlayer();
