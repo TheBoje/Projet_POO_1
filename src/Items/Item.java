@@ -99,4 +99,13 @@ public abstract class Item
 	{
 		return this.value;
 	}
+
+	@Override
+	public String toString()
+	{
+		String str = "Nom - " + this.name + "\n";
+		str += "\tvaleur - " + this.value + "\n";
+		return str;
+	}
+
 }

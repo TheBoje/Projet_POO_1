@@ -52,4 +52,11 @@ public class RangeWeapon extends Weapon
         System.out.println("You have " + this.ammunitions + " ammunition left");
     }
 
+    public String toString()
+    {
+        String str = super.toString();
+        str += "\tmunitions - " + this.ammunitions + "\n";
+        return str;
+    }
+
 }

@@ -43,6 +43,14 @@ public class Food extends Item
 		}
 	}
 
+	@Override
+	public String toString()
+	{
+		String str = super.toString();
+		str += "\tvaleur nutritionnelle - " + this.nutValue + "\n";
+		return str;
+	}
+
 	public boolean getHasBeenAte()
 	{
 		return this.hasBeenAte;
