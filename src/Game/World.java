@@ -4,6 +4,8 @@ import Crossings.Crossing;
 import Crossings.Door;
 import Items.Clothes;
 import Items.Food;
+import Items.Item;
+import Items.RangeWeapon;
 import Personnages.Personnage;
 import Personnages.Player;
 import Tiles.Direction;
@@ -30,6 +32,9 @@ public class World
 		for (int i = 0; i < tilesAmount; i++)
 		{
 			this.tilesMap.put(i, new Tile());
+			if (rn.nextInt(4) % 2 != 0){
+				this.tilesMap.get(i).addItem(Item.generateRandomItem(rn));
+			}
 		}
 		for (int i = 0; i < crossingsAmount; i++)
 		{
@@ -39,23 +44,22 @@ public class World
 			{
 				randomDir = Direction.intToDirection(rn.nextInt(3));
 				invertedRandomDir = Direction.invert(randomDir);
+				int randomIndex1 = rn.nextInt(tilesAmount);
+				int randomIndex2;
+				do
+				{
+					randomIndex2 = rn.nextInt(tilesAmount);
+				}
+				while (randomIndex2 == randomIndex1);
+
+				Tile tileTemp = this.tilesMap.get(randomIndex1);
+				tileTemp.setNearbyTile(randomIndex2, new Door(), randomDir);
+				Tile tileTempInverted = this.tilesMap.get(randomIndex2);
+				tileTempInverted.setNearbyTile(randomIndex1, new Door(), invertedRandomDir);
 			} catch (UnknownDirection unknownDirection)
 			{
 				unknownDirection.printStackTrace(); // TODO Find a better way
 			}
-
-			int randomIndex1 = rn.nextInt(tilesAmount);
-			int randomIndex2;
-			do
-			{
-				randomIndex2 = rn.nextInt(tilesAmount);
-			}
-			while (randomIndex2 == randomIndex1);
-
-			Tile tileTemp = this.tilesMap.get(randomIndex1);
-			tileTemp.setNearbyTile(randomIndex2, new Door(), randomDir);
-			Tile tileTempInverted = this.tilesMap.get(randomIndex2);
-			tileTempInverted.setNearbyTile(randomIndex1, new Door(), invertedRandomDir);
 		}
 		this.createPlayer();
 	}
@@ -67,6 +71,7 @@ public class World
 		Player player = new Player(this.tilesMap.get(0), new ArrayList<>(0), "Good Player", new ArrayList<>(0));
 		player.addItem(new Clothes("Manto", 10));
 		player.addItem(new Food("Doritos", 2));
+		player.addItem(new RangeWeapon("oiui", 8, 10, 10));
 		this.tilesMap.get(0).addPersonnage(player);
 	}
 
@@ -114,6 +119,11 @@ public class World
 			}
 		}
 		throw new Exception("Can't find player");
+	}
+
+	public Tile getTile(int index)
+	{
+		return this.tilesMap.get(index);
 	}
 
 	/***********************************SETTERS***********************************/

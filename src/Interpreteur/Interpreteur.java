@@ -1,8 +1,10 @@
 package Interpreteur;
 
-import Crossings.*;
-import Game.*;
-import Tiles.*;
+import Crossings.ClosedCrossing;
+import Game.GameManager;
+import Game.InputError;
+import Tiles.Direction;
+import Tiles.UnknownDirection;
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -56,8 +58,9 @@ public class Interpreteur
 				this.gameManager.printWorld();
 			}
 			case TAKE -> {
-				if (request.argCount() == 0)
+				if (request.argCount() < 1)
 				{
+					this.help(Order.TAKE);
 					throw new InsufficientArguments();
 				}
 				else
@@ -66,47 +69,79 @@ public class Interpreteur
 				}
 			}
 			case HELP -> {
+				this.help();
 			}
 			case QUIT -> {
+				this.gameManager.quit();
 			}
-			case SAVE -> {
-			}
-			case LOAD -> {
-			}
-			case INFO -> {
+			case LOAD, SAVE, INFO -> {
+				this.help(request.getOrder());
 			}
 			case TALK -> {
-			}
-			case OPEN -> {
-			}
-			case LIST -> {
-				if (request.argCount() == 0)
+				if (request.argCount() < 1)
 				{
+					this.help(Order.TALK);
 					throw new InsufficientArguments();
 				}
-				else {
+
+			}
+			case OPEN -> {
+				if (request.argCount() < 1)
+				{
+					this.help(Order.OPEN);
+					this.gameManager.getDirection();
+				}
+				else
+				{
+					// TODO This
+				}
+			}
+			case LIST -> {
+				if (request.argCount() < 1)
+				{
+					this.help(Order.LIST);
+				}
+				else
+				{
 					switch (request.getArg(0).toLowerCase())
 					{
-						case "tile","doors","door","crossing","dir", "direction", "directions" -> this.gameManager.getDirection();
+						case "tile", "doors", "door", "crossing", "crossings", "dir", "direction", "directions"-> this.gameManager.getDirection();
 						case "inv", "inventory" -> this.gameManager.getInventory();
-						case "talk", "characters","character","chars","char" -> this.gameManager.getPersonnagesOnTile();
-						case "search", "items","item" -> this.gameManager.getItemsOnTile();
+						case "talk", "characters", "character", "chars", "char" -> this.gameManager.getPersonnagesOnTile();
+						case "search", "items", "item" -> this.gameManager.getItemsOnTile();
 						case "uses", "use", "usages", "usage" -> this.gameManager.getUse();
+						case "player", "data" -> this.gameManager.printPlayer();
 						default -> throw new InputError();
 					}
 				}
 			}
 			case USE -> {
-
+				if (request.argCount() < 2)
+				{
+					this.help(Order.USE);
+					throw new InsufficientArguments();
+				}
+				else
+				{
+					this.gameManager.use(request.getArgs());
+				}
 			}
 			case GO -> {
-				Direction dir = Direction.stringToDirection(request.getArg(0));
-				try
+				if (request.argCount() < 1)
 				{
-					this.gameManager.go(dir);
-				} catch (ClosedCrossing e)
+					this.help(Order.GO);
+					this.gameManager.getDirection();
+				}
+				else
 				{
-					System.out.format("You can't go there, the door is closed. Try OPEN command\n");
+					Direction dir = Direction.stringToDirection(request.getArg(0));
+					try
+					{
+						this.gameManager.go(dir);
+					} catch (ClosedCrossing e)
+					{
+						System.out.format("You can't go there, the door is closed. Try OPEN command\n");
+					}
 				}
 			}
 		}
@@ -115,10 +150,17 @@ public class Interpreteur
 
 	public void help()
 	{
+		System.out.format("LIST OF COMMANDS:\n");
+		Order[] orders = Order.values();
+		for (Order o : orders)
+		{
+			help(o);
+		}
 	}
 
-	public void help(String arg)
+	public void help(Order order)
 	{
+		System.out.format("[%s] %s\n", order.getString(), order.getHelpMessage());
 	}
 
 	public void go() throws Exception

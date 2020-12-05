@@ -1,13 +1,15 @@
 package Tiles;
 
-import java.util.*;
-
 import Crossings.Crossing;
-import Items.*;
+import Items.Item;
 import Personnages.Personnage;
 import Personnages.Player;
 
-public class Tile {
+import java.util.ArrayList;
+import java.util.List;
+
+public class Tile
+{
 	/***********************************ATTRIBUTES***********************************/
 
 	private List<Personnage> personnages;
@@ -17,7 +19,8 @@ public class Tile {
 
 	/***********************************CONSTRUCTORS***********************************/
 
-	public Tile() {
+	public Tile()
+	{
 		this.personnages = new ArrayList<>();
 		this.items = new ArrayList<>();
 		this.nearbyTilesID = new int[4];
@@ -34,11 +37,13 @@ public class Tile {
 
 	/***********************************METHODS***********************************/
 
-	public List<Item> search() {
+	public List<Item> search()
+	{
 		return this.items;
 	}
 
-	public void take(Item item) {
+	public void take(Item item)
+	{
 		this.removeItem(item);
 	}
 
@@ -107,35 +112,53 @@ public class Tile {
 		this.personnages.remove(personnage);
 	}
 
+	public void addItem(Item item)
+	{
+		this.items.add(item);
+	}
+
 	/***********************************DISPLAY***********************************/
 
 	public void print()
 	{
-		System.out.format("\tTILE :\n");
+		System.out.format("========== TILE ==========\n");
 		for (int i = 0; i < 4; i++)
 		{
 			if (nearbyCrossing[i] != null)
 			{
 				try
 				{
-					System.out.format("\t\t[%s] %s - %s\n", Direction.intToDirection(i).toString(), nearbyCrossing[i].getClass().getSimpleName(), nearbyCrossing[i].isOpen() ? "open" : "close");
+					System.out.format("\t[%s] %s - %s\n", Direction.intToDirection(i).toString(), nearbyCrossing[i].getClass().getSimpleName(), nearbyCrossing[i].isOpen() ? "open" : "close");
 				} catch (UnknownDirection unknownDirection)
 				{
 					unknownDirection.printStackTrace(); // TODO Find a better way
 				}
 			}
 		}
-		for (Personnage personnage: this.personnages)
+		if (this.personnages.size() > 0)
 		{
-			if (personnage instanceof Player)
+			System.out.format("========== CHARACTERS ==========\n");
+			for (Personnage personnage : this.personnages)
 			{
-				((Player)personnage).printDebug();
-			}
-			else
-			{
-				personnage.print();
-			}
+				if (personnage instanceof Player)
+				{
+					((Player) personnage).printDebug();
+				}
+				else
+				{
+					personnage.print();
+				}
 
+			}
+		}
+		if (this.items.size() > 0)
+		{
+			System.out.format("========== ITEMS ==========\n");
+
+			for (Item item : this.items)
+			{
+				System.out.format("\t%s\n", item.getName());
+			}
 		}
 	}
 }

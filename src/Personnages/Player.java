@@ -211,6 +211,6 @@ public class Player extends Human
 				System.out.format("\t%s\n", item.getName());
 			}
 		}
-		System.out.format("Hunger : %d\nBodyHeat : %d\n", this.hunger, this.bodyHeat);
+		System.out.format("Hunger : %d\nBodyHeat : %d\nHP : %d\n", this.hunger, this.bodyHeat, this.getHp());
 	}
 }

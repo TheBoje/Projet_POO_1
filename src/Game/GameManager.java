@@ -7,6 +7,7 @@ import Items.Item;
 import Personnages.Personnage;
 import Personnages.Player;
 import Tiles.Direction;
+import Tiles.Tile;
 import Tiles.UnknownDirection;
 
 import java.util.List;
@@ -39,7 +40,18 @@ public class GameManager
 
 	public void go(Direction dir) throws ClosedCrossing
 	{
-
+		Tile actualTile = this.player.getTile();
+		Tile targetTile = this.world.getTile(actualTile.getNextTileID(dir));
+		if (!actualTile.getCrossing(dir).isOpen())
+		{
+			throw new ClosedCrossing();
+		}
+		else
+		{
+			actualTile.remotePersonnage(this.player);
+			targetTile.addPersonnage(this.player);
+			this.player.setTile(targetTile);
+		}
 	}
 
 	public void talk()
@@ -47,16 +59,27 @@ public class GameManager
 
 	}
 
-	public void use()
+	public void use(String[] args) throws InputError
 	{
-
+		int item_index = Integer.parseInt(args[0]);
+		int character_index = Integer.parseInt(args[1]);
+		if (character_index >= 0 && character_index < this.player.getTile().getPersonnages().size())
+		{
+			this.player.use(this.player.getItem(item_index), this.player.getTile().getPersonnage(character_index));
+		}
+		else
+		{
+			throw new InputError();
+		}
 	}
 
 	public void take(int index) throws InputError
 	{
 		if (index >= 0 && index < this.player.getItems().size())
 		{
-			this.player.take(this.player.getTile().getItem(index));
+			Item toTake = this.player.getTile().getItem(index);
+			this.player.take(toTake);
+			this.player.getTile().take(toTake);
 		}
 		else
 		{
@@ -65,18 +88,32 @@ public class GameManager
 
 	}
 
-	public void nextTurn()
+	public boolean nextTurn()
 	{
-		try
+		if (player.isAlive())
 		{
-			interpreteur.read();
-		} catch (Exception e)
+			try
+			{
+				interpreteur.read();
+			} catch (Exception e)
+			{
+				System.out.format("Error: %s\n", e.getClass().getSimpleName()); // TODO Exception handler?
+				this.nextTurn();
+			}
+			return true;
+		}
+		else
 		{
-			System.out.format("Error: %s\n", e.getClass().getSimpleName()); // TODO Exception handler?
-			this.nextTurn();
+			System.out.format("player died\n");
+			return false;
 		}
 	}
 
+	public void quit()
+	{
+		System.out.println("Closing app");
+		System.exit(1);
+	}
 	/***********************************GETTERS***********************************/
 	public void getDirection() throws UnknownDirection
 	{
@@ -99,7 +136,7 @@ public class GameManager
 
 		for (int i = 0; i < items.size(); i++)
 		{
-			System.out.format("\t\t[%d] %s\n", i, items.get(i).getName());
+			System.out.format("\t[%d] %s\n", i, items.get(i).getName());
 		}
 	}
 
@@ -116,7 +153,7 @@ public class GameManager
 				Personnage p = this.player.getTile().getPersonnage(i);
 				if (!(p instanceof Player))
 				{
-					System.out.format("\t\t[%d] %s\n", i, this.player.getTile().getPersonnage(i).getName());
+					System.out.format("\t[%d] %s\n", i, this.player.getTile().getPersonnage(i).getName());
 				}
 			}
 		}
@@ -133,15 +170,27 @@ public class GameManager
 		{
 			for (int i = 0; i < items.size(); i++)
 			{
-				System.out.format("\t\t[%d] %s\n", i, items.get(i).getName());
+				System.out.format("\t[%d] %s\n", i, items.get(i).getName());
 			}
 		}
 	}
 
 	public void getInventory()
 	{
-
+		List<Item> items = this.player.getItems();
+		if (items.size() == 0)
+		{
+			System.out.format("Your inventory is empty\n");
+		}
+		else
+		{
+			for (int i = 0; i < items.size(); i++)
+			{
+				System.out.format("\t[%d] %s\n", i, items.get(i).getName());
+			}
+		}
 	}
+
 
 	/***********************************SETTERS***********************************/
 	/***********************************DISPLAY***********************************/
@@ -150,5 +199,9 @@ public class GameManager
 		this.world.print();
 	}
 
+	public void printPlayer()
+	{
+		this.player.printDebug();
+	}
 
 }

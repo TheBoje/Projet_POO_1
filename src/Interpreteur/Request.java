@@ -18,7 +18,7 @@ public class Request
 
 		for (Order o : orders)
 		{
-			if (input.equals(o.getString()))
+			if (input.toLowerCase().equals(o.getString()))
 			{
 				result = o;
 				break;
@@ -57,6 +57,13 @@ public class Request
 
 	public int argCount()
 	{
-		return this.args.length;
+		if (this.args == null)
+		{
+			return 0;
+		}
+		else
+		{
+			return this.args.length;
+		}
 	}
 }
