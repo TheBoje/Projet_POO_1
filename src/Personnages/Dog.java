@@ -17,4 +17,5 @@ public class Dog extends Animal {
 		super(tile, items, name, speeches);
 	}
 
+
 }

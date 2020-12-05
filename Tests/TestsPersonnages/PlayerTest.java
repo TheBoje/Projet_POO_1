@@ -3,7 +3,10 @@ package TestsPersonnages;
 import Items.Clothes;
 import Items.Food;
 import Items.Item;
+import Personnages.Animal;
 import Personnages.Player;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -15,6 +18,14 @@ class PlayerTest extends HumanTest
 
 	private Player p1;
 	private Food food;
+	private Animal animal;
+
+
+	@BeforeEach
+	void init()
+	{
+
+	}
 
 	@Test
 	void trade() throws Exception
@@ -48,7 +59,20 @@ class PlayerTest extends HumanTest
 		}
 	}
 
+	@Test
+	void pet0()
+	{
+		p1 = new Player(null, new ArrayList<Item>(), null, null);
+		p1.pet(null);
+	}
 
+	@Test
+	void pet1()
+	{
+		p1 = new Player(null, new ArrayList<Item>(), null, null);
+		animal = new Animal(null, null, null, new ArrayList<String>());
+		p1.pet(animal);
+	}
 
 	@Test
 	void take()
@@ -57,15 +81,14 @@ class PlayerTest extends HumanTest
 	}
 
 	@Test
-	void eat()
-	{
+	void eat(){
 		food = new Food("Kebab", 6);
 		p1 = new Player(null, new ArrayList<Item>(), null, null);
 		int initHunger = p1.getHunger();
 		p1.starve();
 		assertEquals(p1.getHunger(), initHunger - 1);
 		p1.addItem(food);
-		p1.use(food);
+		p1.eat(food);
 		assertEquals(p1.getHunger(), initHunger);
 	}
 
