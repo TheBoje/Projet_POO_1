@@ -31,4 +31,12 @@ public class Clothes extends Item
             System.out.println("It's freezing outside, you'd better keep this " + this.getName() + " for you");
         }
     }
+
+    @Override
+    public String toString()
+    {
+        String str = super.toString();
+        str += "\tvaleur de la chaleur - " + this.warmness + "\n";
+        return str;
+    }
 }

@@ -25,4 +25,12 @@ public abstract class Weapon extends Item
         return this.damages;
     }
 
+    @Override
+    public String toString()
+    {
+        String str = super.toString();
+        str += "\tdégats - " + this.damages + "\n";
+        return str;
+    }
+
 }

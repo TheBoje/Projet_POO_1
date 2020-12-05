@@ -2,18 +2,23 @@ package Items;
 
 import Personnages.Personnage;
 
-public class RangeWeapons extends Weapon
+public class RangeWeapon extends Weapon
 {
+    public static final int DEFAULT_AMMOS = 0;
+    public static final int MAX_AMMOS = 30;
+
     private int ammunitions;
 
-    public RangeWeapons(String name, int dmg)
+    public RangeWeapon(String name, int dmg)
     {
         super(name, dmg);
+        this.ammunitions = DEFAULT_AMMOS;
     }
 
-    public RangeWeapons(String name, int dmg, int value)
+    public RangeWeapon(String name, int dmg, int value, int ammos)
     {
         super(name, dmg, value);
+        this.ammunitions = ammos;
     }
 
     public void use(Personnage personnage)
@@ -36,4 +41,22 @@ public class RangeWeapons extends Weapon
             System.out.println("You need a target to fire at"); // TODO exception ?
         }
     }
+
+    public int getAmmunitions()
+    {
+        return this.ammunitions;
+    }
+
+    public void howManyAmmosLeft()
+    {
+        System.out.println("You have " + this.ammunitions + " ammunition left");
+    }
+
+    public String toString()
+    {
+        String str = super.toString();
+        str += "\tmunitions - " + this.ammunitions + "\n";
+        return str;
+    }
+
 }
