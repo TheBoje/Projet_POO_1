@@ -49,27 +49,13 @@ class PlayerTest extends HumanTest
 	}
 
 	@Test
-	void pet()
-	{
-		p1 = new Player(null, new ArrayList<Item>(), null, null);
-		try
-		{
-			p1.pet(null);
-		} catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-	}
-
-	@Test
 	void take()
 	{
 
 	}
 
 	@Test
-	void eat()
-	{
+	void eat() throws Exception {
 		food = new Food("Kebab", 6);
 		p1 = new Player(null, new ArrayList<Item>(), null, null);
 		int initHunger = p1.getHunger();
