@@ -31,7 +31,7 @@ public class ItemTest
     private final String WEAPON_NAME_3 = "Grenade";
     private final int DAMAGES_3 = 9;
 
-
+    private final int HOW_MANY_STARVE = 5;
 
 
     private Clothes clothe;
@@ -113,6 +113,34 @@ public class ItemTest
         this.throwWeapon.use(npc);
         assertNotEquals(hp, npc.getHp());
         assertTrue(this.throwWeapon.getHasBeenLaunched());
+    }
+
+    // On vérifie que la nourriture rend de la faim et qu'elle se consomme
+    @Test
+    void Food1()
+    {
+        int hunger = this.player.getHunger();
+
+        for(int i = 0; i < HOW_MANY_STARVE; i++)
+        {
+            this.player.starve();
+        }
+
+        this.food.use(this.player);
+        assertNotEquals(hunger, this.player.getHunger());
+        assertTrue(this.food.getHasBeenAte());
+    }
+
+    @Test
+    void Food2()
+    {
+        Food f = new Food(FOOD_NAME_1, NUT_VALUE_1);
+
+        assertTrue(f.getHasBeenAte());
+        f.use(null);
+        assertTrue(f.getHasBeenAte());
+        f.use(this.npc);
+        assertTrue(f.getHasBeenAte());
     }
 
 }

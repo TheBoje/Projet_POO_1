@@ -8,11 +8,13 @@ public class Food extends Item
 {
 
 	private int nutValue;
+	private boolean hasBeenAte;
 
 	public Food(String name, int nVal)
 	{
 		super(name);
 		this.nutValue = nVal;
+		this.hasBeenAte = false;
 	}
 
 	public Food(String name, int value, int nVal)
@@ -25,15 +27,24 @@ public class Food extends Item
 
 	public void use(Personnage perso)
 	{
-		if (perso instanceof Player)
+		if(!this.hasBeenAte)
 		{
-			// TODO appelle la modification de la jauge de bouffe du personnage
-			((Player) perso).fillHunger(this.nutValue);
-			System.out.println("You ate " + this.getName());
+			if (perso instanceof Player)
+			{
+				((Player) perso).fillHunger(this.nutValue);
+				this.hasBeenAte = true;
+				System.out.println("You ate " + this.getName());
+			}
+			else
+			{
+				System.out.println("You think that keep the food for yourself is a better idea");
+			}
+			System.out.println("There is nothing left");
 		}
-		else
-		{
-			System.out.println("You think that keep the food for yourself is a better idea");
-		}
+	}
+
+	public boolean getHasBeenAte()
+	{
+		return this.hasBeenAte;
 	}
 }
