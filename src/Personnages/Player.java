@@ -34,8 +34,7 @@ public class Player extends Human
 
 	/***********************************METHODS***********************************/
 
-	public void use (Item item)
-	{
+	public void use (Item item) throws Exception {
 		if ( item instanceof Food)
 		{
 			this.eat((Food)item);
@@ -46,7 +45,7 @@ public class Player extends Human
 		}
 		if ( item instanceof Weapon)
 		{
-			this.wear((Clothes)item);
+			this.attack((Weapon) item, null);
 		}
 
 	}
@@ -63,7 +62,7 @@ public class Player extends Human
 		}
 	}
 
-	public void pet(@NotNull Animal animal)
+	public void pet( Animal animal) throws Exception
 	{
 		animal.pet();
 	}
@@ -78,6 +77,15 @@ public class Player extends Human
 
 		item.use(this);
 		this.removeItem(item);
+	}
+
+	public void attack ( Weapon weapon, Personnage target) throws Exception {
+		if ((weapon == null) || (target == null))
+		{
+			throw new Exception("Attack is meant to be used in the format \"attack <weapon> <target>\"");
+		}
+		else
+			weapon.use(target);
 	}
 
 	public void fillHunger(Integer nutValue)
@@ -117,11 +125,12 @@ public class Player extends Human
 
 	/***********************************SETTERS***********************************/
 
-	public void wear(Item item)
+	public void wear(Clothes item)
 	{
 		if (this.removeItem(item))
 		{
 			this.wearing.add(item);
+			item.use(this);
 		}
 	}
 
