@@ -1,62 +1,21 @@
 package Tiles;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import Game.InputError;
 
 public enum Direction
 {
-	N, E, S, W;
+	N("n", 0), E("e", 1), S("s",2), W("w", 3);
+	private final String stringValue;
+	private final int index;
 
-	public int toIndex()
+	Direction(String s, int index)
 	{
-		return toIndex(this);
-	}
-	public static int toIndex(Direction dir)
-	{
-		switch (dir)
-		{
-			case N -> {
-				return 0;
-			}
-			case E -> {
-				return 1;
-			}
-			case S -> {
-				return 2;
-			}
-			case W -> {
-				return 3;
-			}
-			default -> {
-				return -1;
-			}
-		}
+		this.stringValue = s;
+		this.index = index;
 	}
 
-	public static Direction intToDirection(int input)
-	{
-		switch (input)
-		{
-			case 0 -> {
-				return N;
-			}
-			case 1 -> {
-				return E;
-			}
-			case 2 -> {
-				return S;
-			}
-			case 3 -> {
-				return W;
-			}
-			default -> {
-				throw new IllegalArgumentException();
-			}
-		}
-	}
 
-	public static Direction invert(Direction input)
+	public static Direction invert(Direction input) throws UnknownDirection
 	{
 		switch (input)
 		{
@@ -73,53 +32,64 @@ public enum Direction
 				return E;
 			}
 			default -> {
-				throw new IllegalArgumentException();
+				throw new UnknownDirection();
 			}
 		}
 	}
 
-	@Override
-	public String toString()
+	public static Direction intToDirection(int index) throws UnknownDirection
 	{
-		switch (this)
+		Direction[] directions = Direction.values();
+		Direction result = null;
+		for(Direction i : directions)
 		{
-			case N -> {
-				return "N";
+			if (i.getIndex() == index)
+			{
+				result = i;
+				break;
 			}
-			case E -> {
-				return "E";
-			}
-			case S -> {
-				return "S";
-			}
-			case W -> {
-				return "W";
-			}
-			default -> {
-				throw new IllegalArgumentException();
-			}
+		}
+		if (result == null)
+		{
+			throw new UnknownDirection();
+		}
+		else
+		{
+			return result;
 		}
 	}
 
-	public static Direction stringToDir(String input)
+	public static Direction stringToDirection(String input) throws InputError
 	{
-		switch (input.toLowerCase())
+		Direction[] directions = Direction.values();
+		Direction result = null;
+
+		for (Direction dir : directions)
 		{
-			case "n" -> {
-				return N;
-			}
-			case "e" -> {
-				return E;
-			}
-			case "s" -> {
-				return S;
-			}
-			case "w" -> {
-				return W;
-			}
-			default -> {
-				throw new IllegalArgumentException();
+			if(dir.getStringValue().equals(input.toLowerCase()))
+			{
+				result = dir;
+				break;
 			}
 		}
+
+		if (result == null)
+		{
+			throw new InputError();
+		}
+		else
+		{
+			return result;
+		}
+	}
+
+	public int getIndex()
+	{
+		return this.index;
+	}
+
+	public String getStringValue()
+	{
+		return this.stringValue;
 	}
 }
