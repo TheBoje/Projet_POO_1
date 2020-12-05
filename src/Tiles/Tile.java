@@ -39,11 +39,10 @@ public class Tile {
 	}
 
 	public void take(Item item) {
-		// TODO - implement Tile.take
-		throw new UnsupportedOperationException();
+		this.removeItem(item);
 	}
 
-	public void removeItem(Item item)
+	private void removeItem(Item item)
 	{
 		this.items.remove(item);
 	}
@@ -67,12 +66,12 @@ public class Tile {
 
 	public Crossing getCrossing(Direction dir)
 	{
-		return this.nearbyCrossing[dir.toIndex()];
+		return this.nearbyCrossing[dir.getIndex()];
 	}
 
 	public int getNextTileID(Direction dir)
 	{
-		return this.nearbyTilesID[dir.toIndex()];
+		return this.nearbyTilesID[dir.getIndex()];
 	}
 
 	public Item getItem(int index)
@@ -88,7 +87,7 @@ public class Tile {
 	/***********************************SETTERS***********************************/
 	public void setNearbyTile(int tileID, Crossing crossing, Direction dir)
 	{
-		int index = dir.toIndex();
+		int index = dir.getIndex();
 		this.nearbyTilesID[index] = tileID;
 		this.nearbyCrossing[index] = crossing;
 	}
@@ -117,7 +116,13 @@ public class Tile {
 		{
 			if (nearbyCrossing[i] != null)
 			{
-				System.out.format("\t\t[%s] %s - %s\n", Direction.intToDirection(i).toString(), nearbyCrossing[i].getClass().getSimpleName(), nearbyCrossing[i].isOpen() ? "open" : "close");
+				try
+				{
+					System.out.format("\t\t[%s] %s - %s\n", Direction.intToDirection(i).toString(), nearbyCrossing[i].getClass().getSimpleName(), nearbyCrossing[i].isOpen() ? "open" : "close");
+				} catch (UnknownDirection unknownDirection)
+				{
+					unknownDirection.printStackTrace(); // TODO Find a better way
+				}
 			}
 		}
 		for (Personnage personnage: this.personnages)

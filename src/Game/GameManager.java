@@ -1,8 +1,13 @@
+package Game;
+
+import Crossings.ClosedCrossing;
 import Crossings.Crossing;
+import Interpreteur.Interpreteur;
 import Items.Item;
 import Personnages.Personnage;
 import Personnages.Player;
 import Tiles.Direction;
+import Tiles.UnknownDirection;
 
 import java.util.List;
 
@@ -32,34 +37,32 @@ public class GameManager
 
 	/***********************************METHODS***********************************/
 
-	public void go(String direction) throws Exception
+	public void go(Direction dir) throws ClosedCrossing
 	{
-		this.world.movePlayer(this.player, Direction.stringToDir(direction));
+
 	}
 
-	public void talk(String to)
+	public void talk()
 	{
-		System.out.format("The player is asked to talk to [%s]\n", to);
-		// TODO - implement GameManager.talk
-		//throw new UnsupportedOperationException();
+
 	}
 
-	public void use(String arg) // TODO fix index out of bounds
+	public void use()
 	{
-		Item item = this.player.getItem(Integer.parseInt(arg));
-		//this.player.use(item);
+
 	}
 
-	public void use(String arg1, String arg2)
+	public void take(int index) throws InputError
 	{
-		// TODO me
-	}
+		if (index >= 0 && index < this.player.getItems().size())
+		{
+			this.player.take(this.player.getTile().getItem(index));
+		}
+		else
+		{
+			throw new InputError();
+		}
 
-	public void take(String index) // TODO fix index out of bounds
-	{
-		Item temp = this.player.getTile().getItem(Integer.parseInt(index));
-		this.player.getTile().take(temp);
-		this.player.take(temp);
 	}
 
 	public void nextTurn()
@@ -69,13 +72,13 @@ public class GameManager
 			interpreteur.read();
 		} catch (Exception e)
 		{
-			System.out.format("Error: %s\n", e.getMessage());
+			System.out.format("Error: %s\n", e.getClass().getSimpleName()); // TODO Exception handler?
 			this.nextTurn();
 		}
 	}
 
 	/***********************************GETTERS***********************************/
-	public void getDirection()
+	public void getDirection() throws UnknownDirection
 	{
 		Crossing[] playerCrossings = this.player.getTile().getCrossings();
 		for (int i = 0; i < playerCrossings.length; i++)
@@ -90,7 +93,7 @@ public class GameManager
 		}
 	}
 
-	public void getUse()
+	public void getUse() // FIXME NEEDS TO GET item.usage() (string)
 	{
 		List<Item> items = player.getItems();
 
@@ -100,27 +103,11 @@ public class GameManager
 		}
 	}
 
-	public void getItemsOnTile()
-	{
-		List<Item> items = this.player.getTile().getItems();
-		if (items.size() == 0)
-		{
-			System.out.format("\t\tTile is empty\n");
-		}
-		else
-		{
-			for (int i = 0; i < items.size(); i++)
-			{
-				System.out.format("\t\t[%d] %s\n", i, items.get(i).getName());
-			}
-		}
-	}
-
-	public void getTalk()
+	public void getPersonnagesOnTile()
 	{
 		if (this.player.getTile().getPersonnages().size() == 1)
 		{
-			System.out.format("\tNo character to talk to\n");
+			System.out.format("\tNo character on this tile\n");
 		}
 		else
 		{
@@ -133,6 +120,27 @@ public class GameManager
 				}
 			}
 		}
+	}
+
+	public void getItemsOnTile()
+	{
+		List<Item> items = this.player.getTile().getItems();
+		if (items.size() == 0)
+		{
+			System.out.format("\tNo item on this tile\n");
+		}
+		else
+		{
+			for (int i = 0; i < items.size(); i++)
+			{
+				System.out.format("\t\t[%d] %s\n", i, items.get(i).getName());
+			}
+		}
+	}
+
+	public void getInventory()
+	{
+
 	}
 
 	/***********************************SETTERS***********************************/

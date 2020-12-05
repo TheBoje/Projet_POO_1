@@ -1,3 +1,5 @@
+package Game;
+
 import Crossings.Crossing;
 import Crossings.Door;
 import Items.Clothes;
@@ -6,6 +8,7 @@ import Personnages.Personnage;
 import Personnages.Player;
 import Tiles.Direction;
 import Tiles.Tile;
+import Tiles.UnknownDirection;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,8 +33,17 @@ public class World
 		}
 		for (int i = 0; i < crossingsAmount; i++)
 		{
-			Direction randomDir = Direction.intToDirection(rn.nextInt(3));
-			Direction invertedRandomDir = Direction.invert(randomDir);
+			Direction randomDir = null;
+			Direction invertedRandomDir = null;
+			try
+			{
+				randomDir = Direction.intToDirection(rn.nextInt(3));
+				invertedRandomDir = Direction.invert(randomDir);
+			} catch (UnknownDirection unknownDirection)
+			{
+				unknownDirection.printStackTrace(); // TODO Find a better way
+			}
+
 			int randomIndex1 = rn.nextInt(tilesAmount);
 			int randomIndex2;
 			do
@@ -59,7 +71,7 @@ public class World
 	}
 
 
-	public void movePlayer(Player player, Direction direction) throws Exception
+	public void movePlayer(Player player, Direction direction) throws InputError
 	{
 		Tile playerTile = player.getTile();
 		if (playerTile.getCrossing(direction) != null)
@@ -82,11 +94,12 @@ public class World
 		}
 		else
 		{
-			throw new Exception("Asked direction doesnt exists");
+			throw new InputError();
 		}
 	}
 
 	/***********************************GETTERS***********************************/
+
 	public Player getPlayer() throws Exception
 	{
 		for (Map.Entry<Integer, Tile> entry : this.tilesMap.entrySet())
@@ -102,6 +115,7 @@ public class World
 		}
 		throw new Exception("Can't find player");
 	}
+
 	/***********************************SETTERS***********************************/
 	/***********************************DISPLAY***********************************/
 
