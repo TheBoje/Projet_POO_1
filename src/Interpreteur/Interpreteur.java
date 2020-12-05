@@ -114,7 +114,7 @@ public class Interpreteur
 						case "inv", "inventory" -> this.gameManager.getInventory();
 						case "talk", "characters", "character", "chars", "char" -> this.gameManager.getPersonnagesOnTile();
 						case "search", "items", "item" -> this.gameManager.getItemsOnTile();
-						case "uses", "use", "usages", "usage" -> this.gameManager.getUse();
+						case "uses", "use", "usages", "usage" -> this.gameManager.getUsage();
 						case "player", "data" -> this.gameManager.printPlayer();
 						default -> throw new InputError();
 					}

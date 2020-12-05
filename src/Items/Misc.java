@@ -13,4 +13,10 @@ public class Misc extends Item
     {
         System.out.println("It must be usefull somewhere ...");
     }
+
+    @Override
+    public String getUsage()
+    {
+        return "ouais";// TODO This
+    }
 }

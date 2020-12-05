@@ -39,4 +39,10 @@ public class Clothes extends Item
         str += "\tvaleur de la chaleur - " + this.warmness + "\n";
         return str;
     }
+
+    @Override
+    public String getUsage()
+    {
+        return "ouais";// TODO This
+    }
 }

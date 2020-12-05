@@ -42,4 +42,10 @@ public class ThrowWeapon extends Weapon
     {
         return this.hasBeenLaunched;
     }
+
+    @Override
+    public String getUsage()
+    {
+        return "ouais";// TODO This
+    }
 }

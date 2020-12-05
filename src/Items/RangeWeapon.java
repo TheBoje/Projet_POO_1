@@ -59,4 +59,9 @@ public class RangeWeapon extends Weapon
         return str;
     }
 
+    @Override
+    public String getUsage()
+    {
+        return "ouais";// TODO This
+    }
 }

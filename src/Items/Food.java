@@ -55,4 +55,10 @@ public class Food extends Item
 	{
 		return this.hasBeenAte;
 	}
+
+	@Override
+	public String getUsage()
+	{
+		return "ouais";// TODO This
+	}
 }

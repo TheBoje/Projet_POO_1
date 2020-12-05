@@ -68,7 +68,7 @@ public class GameManager
 		}
 	}
 
-	public void use(String[] args) throws InputError
+	public void use(String[] args) throws InputError // FIXME
 	{
 		int item_index = Integer.parseInt(args[0]);
 		int character_index = Integer.parseInt(args[1]);
@@ -128,6 +128,7 @@ public class GameManager
 		System.out.println("Closing app");
 		System.exit(1);
 	}
+
 	/***********************************GETTERS***********************************/
 	public void getDirection() throws UnknownDirection
 	{
@@ -144,18 +145,17 @@ public class GameManager
 		}
 	}
 
-	public void getUse() // FIXME NEEDS TO GET item.usage() (string)
+	public void getUsage()
 	{
 		List<Item> items = player.getItems();
 
 		for (int i = 0; i < items.size(); i++)
 		{
-			System.out.format("\t[%d] %s\n", i, items.get(i).getName()); // TODO Use the other one
-			//System.out.format("\t[%d] %s\n", i, items.get(i).getUsage());
+			System.out.format("\t[%d] %s\n", i, items.get(i).getUsage());
 		}
 	}
 
-	public void getPersonnagesOnTile()
+	public void getPersonnagesOnTile() // FIXME add player
 	{
 		if (this.player.getTile().getPersonnages().size() == 1)
 		{

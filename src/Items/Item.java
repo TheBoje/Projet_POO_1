@@ -2,20 +2,16 @@ package Items;
 
 import Personnages.Personnage;
 
-import java.awt.*;
-import java.lang.reflect.Constructor;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 public abstract class Item
 {
 	public static final int MAX_VALUE = 10;
 	public static final int MAX_CAR_VALUE = 5;
-
+	// TODO Traduire en anglais
 	public static final String[] ClothesNames = {
 			"Chaussette",
-			"Caleçon",
+			"Caleçon de Vincent",
 			"Pantalon",
 			"T-shirt",
 			"Sweat",
@@ -37,7 +33,7 @@ public abstract class Item
 
 	public static final String[] MeleeWeaponNames = {
 			"Couteau",
-			"Batte de baseball",
+			"Bate de baseball",
 			"Hache"
 	};
 
@@ -60,21 +56,7 @@ public abstract class Item
 	// V1
 	public static Item generateRandomItem(Random random)
 	{
-		Item item;
-
-		int itemType = random.nextInt(ItemsNames.length);
-
-		switch (itemType)
-		{
-			case 0 -> item = new Clothes(ClothesNames[random.nextInt(ClothesNames.length)], random.nextInt(MAX_VALUE), random.nextInt(MAX_CAR_VALUE));
-			case 1 -> item = new Food(FoodNames[random.nextInt(FoodNames.length)], random.nextInt(MAX_VALUE), random.nextInt(MAX_CAR_VALUE));
-			case 2 -> item = new RangeWeapon(RangeWeaponNames[random.nextInt(RangeWeaponNames.length)], random.nextInt(MAX_CAR_VALUE), random.nextInt(MAX_VALUE), random.nextInt(RangeWeapon.MAX_AMMOS));
-			case 3 -> item = new MeleeWeapon(MeleeWeaponNames[random.nextInt(MeleeWeaponNames.length)], random.nextInt(MAX_CAR_VALUE), random.nextInt(MAX_VALUE));
-			case 4 -> item = new ThrowWeapon(ThrowWeaponNames[random.nextInt(ThrowWeaponNames.length)], random.nextInt(MAX_CAR_VALUE), random.nextInt(MAX_VALUE));
-			default -> item = new Misc(MiscNames[random.nextInt(MiscNames.length)], random.nextInt(MAX_VALUE));
-		}
-
-		return item;
+		return generateRandomItem(random, random.nextInt(ItemsNames.length));
 	}
 
 	public static Item generateRandomItem(Random random, int chosenItem)
@@ -127,4 +109,5 @@ public abstract class Item
 		return str;
 	}
 
+	public abstract String getUsage();
 }

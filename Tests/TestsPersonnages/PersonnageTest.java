@@ -4,9 +4,7 @@ import Items.Food;
 import Items.Item;
 import Personnages.Player;
 import Tiles.Tile;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-
 
 import java.util.ArrayList;
 import java.util.List;
@@ -161,5 +159,4 @@ class PersonnageTest
 		p1.setTile(null);
 		assertNull(p1.getTile());
 	}
-
 }
