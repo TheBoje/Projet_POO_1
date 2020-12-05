@@ -48,6 +48,8 @@ class PlayerTest extends HumanTest
 		}
 	}
 
+
+
 	@Test
 	void take()
 	{
@@ -55,7 +57,8 @@ class PlayerTest extends HumanTest
 	}
 
 	@Test
-	void eat() throws Exception {
+	void eat()
+	{
 		food = new Food("Kebab", 6);
 		p1 = new Player(null, new ArrayList<Item>(), null, null);
 		int initHunger = p1.getHunger();

@@ -3,6 +3,7 @@ package TestsItems;
 import Items.*;
 import Personnages.NPC;
 import Personnages.Player;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -45,6 +46,7 @@ public class ItemTest
     private Player player;
     private NPC npc;
 
+    @BeforeEach
     void itemTestInit()
     {
         this.clothe = new Clothes(CLOTHE_NAME_1, WARMNESS_1);
@@ -125,9 +127,9 @@ public class ItemTest
         {
             this.player.starve();
         }
-
-        this.food.use(this.player);
         assertNotEquals(hunger, this.player.getHunger());
+        this.food.use(this.player);
+        assertEquals(hunger, this.player.getHunger());
         assertTrue(this.food.getHasBeenAte());
     }
 
