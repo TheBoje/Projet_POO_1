@@ -51,7 +51,7 @@ public class ItemTest
         this.food = new Food(FOOD_NAME_1, NUT_VALUE_1);
 
 
-        this.rangeWeapon1 = new RangeWeapon(WEAPON_NAME_1, DAMAGES_1, AMMOS_1);
+        this.rangeWeapon1 = new RangeWeapon(WEAPON_NAME_1, DAMAGES_1, 10,AMMOS_1);
         this.rangeWeapon2 = new RangeWeapon(WEAPON_NAME_1_1, DAMAGES_1_1);
         this.meleeWeapon = new MeleeWeapon(WEAPON_NAME_2, DAMAGES_2);
         this.throwWeapon = new ThrowWeapon(WEAPON_NAME_3, DAMAGES_3);

@@ -5,6 +5,7 @@ import Personnages.Personnage;
 public class RangeWeapon extends Weapon
 {
     public static final int DEFAULT_AMMOS = 0;
+    public static final int MAX_AMMOS = 30;
 
     private int ammunitions;
 
@@ -14,9 +15,10 @@ public class RangeWeapon extends Weapon
         this.ammunitions = DEFAULT_AMMOS;
     }
 
-    public RangeWeapon(String name, int dmg, int value)
+    public RangeWeapon(String name, int dmg, int value, int ammos)
     {
         super(name, dmg, value);
+        this.ammunitions = ammos;
     }
 
     public void use(Personnage personnage)
