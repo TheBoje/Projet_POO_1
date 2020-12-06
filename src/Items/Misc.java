@@ -17,6 +17,6 @@ public class Misc extends Item
     @Override
     public String getUsage()
     {
-        return "ouais";// TODO This
+        return "It must be usefull somewhere";
     }
 }

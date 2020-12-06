@@ -30,7 +30,7 @@ public class MeleeWeapon extends Weapon
     @Override
     public String getUsage()
     {
-        return "ouais";// TODO This
+        return "Use this item to attack a character in your area";
     }
 
 }

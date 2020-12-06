@@ -46,6 +46,6 @@ public class ThrowWeapon extends Weapon
     @Override
     public String getUsage()
     {
-        return "ouais";// TODO This
+        return "Use this to throw it on a character (you can't keep it once throwed)";
     }
 }
