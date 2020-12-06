@@ -59,6 +59,6 @@ public class Food extends Item
 	@Override
 	public String getUsage()
 	{
-		return "ouais";// TODO This
+		return "Use this to eat and staying alive";
 	}
 }

@@ -62,6 +62,6 @@ public class RangeWeapon extends Weapon
     @Override
     public String getUsage()
     {
-        return "ouais";// TODO This
+        return "Use this on your enemy (pay attention to your ammunition)";
     }
 }

@@ -8,7 +8,7 @@ public abstract class Item
 {
 	public static final int MAX_VALUE = 10;
 	public static final int MAX_CAR_VALUE = 5;
-	// TODO Traduire en anglais
+
 	public static final String[] ClothesNames = {
 			"Socks",
 			"Vincent's underwear",
