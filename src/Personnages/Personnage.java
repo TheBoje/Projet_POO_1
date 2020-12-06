@@ -46,25 +46,19 @@ public abstract class Personnage
     }
 
 
-    /**
-     * @param target Cible recevant les dégats
-     * @param amount Montant des dégats infligés à la cible
-     */
-    public void attack(Personnage target, Integer amount) throws Exception
-    {
-        if(target != null)
-            target.takeDamage(amount);
-        else
-            throw new Exception("Character.attack : target is null");
+
+    public void attack(Weapon weapon, Personnage target) {
+        if (weapon == null) {
+            Weapon bareHand = new MeleeWeapon("bareHands", 1);
+            bareHand.use(target);
+        } else {
+            weapon.use(target);
+        }
     }
 
-    /**
-     * @param amount
-     */
     public void takeDamage(int amount)
     {
         this.hp -= amount;
-
         if(this.hp < 0)
             this.hp = 0;
     }
