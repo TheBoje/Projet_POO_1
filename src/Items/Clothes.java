@@ -43,6 +43,6 @@ public class Clothes extends Item
     @Override
     public String getUsage()
     {
-        return "ouais";// TODO This
+        return "Use this item to wear it";
     }
 }

@@ -10,42 +10,41 @@ public abstract class Item
 	public static final int MAX_CAR_VALUE = 5;
 	// TODO Traduire en anglais
 	public static final String[] ClothesNames = {
-			"Chaussette",
-			"Caleçon de Vincent",
-			"Pantalon",
+			"Socks",
+			"Vincent's underwear",
+			"Trousers",
 			"T-shirt",
 			"Sweat",
-			"Manteau"
+			"Coat"
 	};
 
 	public static final String[] FoodNames = {
 			"Kebab",
-			"Pain",
+			"Bread",
 			"Steak"
 	};
 
 	public static final String[] RangeWeaponNames = {
-			"Pistolet",
-			"Fusil",
-			"Mitraillette",
-			"Arc"
+			"Gun",
+			"Rifle",
+			"Submachine gun",
+			"Bow"
 	};
 
 	public static final String[] MeleeWeaponNames = {
-			"Couteau",
-			"Bate de baseball",
-			"Hache"
+			"Knife",
+			"Baseball bat",
+			"Axe"
 	};
 
 	public static final String[] ThrowWeaponNames = {
 			"Grenade",
-			"Cailloux"
+			"Stone"
 	};
 
 	public static final String[] MiscNames = {
-			"Planche",
-			"Bouteille",
-			"Cailloux"
+			"Plank",
+			"Bottle"
 	};
 
 	public static final String[][] ItemsNames = {ClothesNames, FoodNames, RangeWeaponNames, MeleeWeaponNames, ThrowWeaponNames, MiscNames};
