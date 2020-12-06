@@ -64,7 +64,7 @@ public class ItemTest
 
     // Test si les armes à distance perdent des munitions quand on les utilise sur une personne existante
     @Test
-    void RangeWeapon1()
+    void RangeWeapon1() throws InvalidTarget
     {
         npc = new NPC(null, new ArrayList<>(), "Benoit", new ArrayList<>());
 
@@ -86,7 +86,7 @@ public class ItemTest
 
     // Test du comportement des armes à distance quand on les utilise sur une personne inexistante
     @Test
-    void RangeWeapon2()
+    void RangeWeapon2() throws InvalidTarget
     {
         int ammos = this.rangeWeapon1.getAmmunitions();
         this.rangeWeapon1.use(null);
@@ -97,7 +97,7 @@ public class ItemTest
     }
 
     @Test
-    void MeleeWeapon()
+    void MeleeWeapon() throws InvalidTarget
     {
         npc = new NPC(null, new ArrayList<>(), "Benoit", new ArrayList<>());
 

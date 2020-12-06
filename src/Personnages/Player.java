@@ -29,7 +29,8 @@ public class Player extends Human {
 
     /***********************************METHODS***********************************/
 
-    public void use(Item item, Personnage target) {
+    public void use(Item item, Personnage target) throws InvalidTarget
+    {
         if (item instanceof Food) {
             this.eat((Food) item);
         }
@@ -62,7 +63,8 @@ public class Player extends Human {
             }
     }
 
-    public void pet(Personnage animal) {
+    public void pet(Personnage animal) throws NoSpeechAvailable
+    {
         if (animal instanceof Animal)
             ((Animal) animal).pet();
         else

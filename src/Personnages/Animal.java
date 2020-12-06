@@ -26,7 +26,7 @@ public class Animal extends Personnage
     }
 
     // Ecrit une ligne de dialogue choisi aléatoirement dans la liste "speeches"
-    public void pet()
+    public void pet() throws NoSpeechAvailable
     {
         System.out.println("- " + this.getRandomSpeech());
     }

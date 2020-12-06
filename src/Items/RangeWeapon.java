@@ -21,7 +21,7 @@ public class RangeWeapon extends Weapon
         this.ammunitions = ammos;
     }
 
-    public void use(Personnage personnage)
+    public void use(Personnage personnage) throws InvalidTarget
     {
         if(personnage != null)
         {
@@ -38,7 +38,7 @@ public class RangeWeapon extends Weapon
         }
         else
         {
-            System.out.println("You need a target to fire at"); // TODO exception ?
+            throw new InvalidTarget();
         }
     }
 

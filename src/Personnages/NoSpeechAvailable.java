@@ -1,6 +1,6 @@
-package Crossings;
+package Personnages;
 
-public class ClosedCrossing extends Exception
+public class NoSpeechAvailable extends Exception
 {
 	@Override
 	public String getMessage()

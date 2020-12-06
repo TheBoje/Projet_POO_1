@@ -129,10 +129,7 @@ public class Tile
 				try
 				{
 					System.out.format("\t[%s] %s - %s\n", Direction.intToDirection(i).toString(), nearbyCrossing[i].getClass().getSimpleName(), nearbyCrossing[i].isOpen() ? "open" : "close");
-				} catch (UnknownDirection unknownDirection)
-				{
-					unknownDirection.printStackTrace(); // TODO Find a better way
-				}
+				} catch (UnknownDirection ignore){}
 			}
 		}
 		if (this.personnages.size() > 0)

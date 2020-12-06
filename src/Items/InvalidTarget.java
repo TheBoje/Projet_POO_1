@@ -1,6 +1,6 @@
-package Crossings;
+package Items;
 
-public class ClosedCrossing extends Exception
+public class InvalidTarget extends Exception
 {
 	@Override
 	public String getMessage()

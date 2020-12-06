@@ -47,7 +47,8 @@ public abstract class Personnage
 
 
 
-    public void attack(Weapon weapon, Personnage target) {
+    public void attack(Weapon weapon, Personnage target) throws InvalidTarget
+    {
         if (weapon == null) {
             Weapon bareHand = new MeleeWeapon("bareHands", 1);
             bareHand.use(target);
@@ -73,11 +74,11 @@ public abstract class Personnage
         return items.remove(toRemove);
     }
 
-    public String getRandomSpeech()
+    public String getRandomSpeech() throws NoSpeechAvailable
     {
         if (this.speeches == null || this.speeches.size() == 0)
         {
-            return null; // TODO Retourner une exception ?
+            throw new NoSpeechAvailable();
         }
         else
         {

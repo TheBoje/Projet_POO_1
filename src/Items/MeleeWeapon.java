@@ -1,5 +1,6 @@
 package Items;
 
+import Game.InputError;
 import Personnages.Personnage;
 
 public class MeleeWeapon extends Weapon
@@ -14,7 +15,7 @@ public class MeleeWeapon extends Weapon
         super(name, dmg, value);
     }
 
-    public void use(Personnage personnage)
+    public void use(Personnage personnage) throws InvalidTarget
     {
         if(personnage != null)
         {
@@ -22,7 +23,7 @@ public class MeleeWeapon extends Weapon
         }
         else
         {
-            System.out.println("You need a target to stab"); // TODO exception ?
+            throw new InvalidTarget();
         }
     }
 

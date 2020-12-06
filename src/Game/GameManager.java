@@ -4,7 +4,9 @@ import Crossings.CantOpenCrossing;
 import Crossings.ClosedCrossing;
 import Crossings.Crossing;
 import Interpreteur.Interpreteur;
+import Items.InvalidTarget;
 import Items.Item;
+import Personnages.NoSpeechAvailable;
 import Personnages.Personnage;
 import Personnages.Player;
 import Tiles.Direction;
@@ -55,7 +57,7 @@ public class GameManager
 		}
 	}
 
-	public void talk(int index) throws InputError
+	public void talk(int index) throws InputError, NoSpeechAvailable
 	{
 		if (index >= 0 || index > this.player.getTile().getPersonnages().size())
 		{
@@ -68,7 +70,7 @@ public class GameManager
 		}
 	}
 
-	public void use(String[] args) throws InputError // FIXME
+	public void use(String[] args) throws InputError, InvalidTarget // FIXME
 	{
 		int item_index = Integer.parseInt(args[0]);
 		int character_index = Integer.parseInt(args[1]);
@@ -106,7 +108,8 @@ public class GameManager
 				interpreteur.read();
 			} catch (Exception e)
 			{
-				System.out.format("Error: %s\n", e.getClass().getSimpleName()); // TODO Exception handler?
+				System.out.format("Error: %s\n", e.getClass().getSimpleName());
+				System.out.format("%s\n", e.getMessage());
 				this.nextTurn();
 			}
 			return true;

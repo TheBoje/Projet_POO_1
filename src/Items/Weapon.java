@@ -18,7 +18,7 @@ public abstract class Weapon extends Item
         this.damages = dam;
     }
 
-    public abstract void use(Personnage personnage);
+    public abstract void use(Personnage personnage) throws InvalidTarget;
 
     public int getDamages()
     {

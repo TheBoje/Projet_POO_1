@@ -3,6 +3,7 @@ package TestsPersonnages;
 import Items.*;
 import Personnages.Animal;
 import Personnages.NPC;
+import Personnages.NoSpeechAvailable;
 import Personnages.Player;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -79,7 +80,7 @@ class PlayerTest extends HumanTest
 
 	//Testing pet an animal, null an a Player
 	@Test
-	void pet()
+	void pet() throws NoSpeechAvailable
 	{
 		animal1 = new Animal(null, null, "ADogIGuess", speeches1);
 		p1 = new Player(null, inventory1, name, speeches2);
@@ -100,7 +101,8 @@ class PlayerTest extends HumanTest
 	}
 
 	@Test
-	void eat(){
+	void eat() throws InvalidTarget
+	{
 		p1 = new Player(null, inventory1, name, speeches1);
 		Integer initHunger = p1.getHunger();
 		p1.starve();

@@ -2,6 +2,7 @@ package TestsPersonnages;
 
 import Items.*;
 import Personnages.NPC;
+import Personnages.NoSpeechAvailable;
 import Personnages.Player;
 import Tiles.Tile;
 import org.junit.jupiter.api.BeforeEach;
@@ -38,7 +39,8 @@ class PersonnageTest {
 
     //Testing Personnage constructor on Subclasses and null parameters
     @Test
-    void Player() {
+    void Player() throws NoSpeechAvailable
+    {
         p1 = new Player(null, null, null, null);
         assertNull(p1.getTile());
         assertNull(p1.getItems());
@@ -79,7 +81,8 @@ class PersonnageTest {
 
     //Testing a character attacking another one
     @Test
-    void attack() {
+    void attack() throws InvalidTarget
+    {
         p1 = new Player(null, inventory, name, speeches);
         p2 = new Player(null, inventory, name, speeches);
         int p2HP = p2.getHp();
@@ -93,7 +96,8 @@ class PersonnageTest {
 
     //Testing if a character can kill another one
     @Test
-    void attackKill() {
+    void attackKill() throws InvalidTarget
+    {
         p1 = new Player(null, inventory, name, speeches);
         p2 = new Player(null, inventory, name, speeches);
         while (p2.isAlive()) {
@@ -104,7 +108,8 @@ class PersonnageTest {
 
     //Testing the behavior of the method attack with null parameters
     @Test
-    void attackNull() {
+    void attackNull() throws InvalidTarget
+    {
         p1 = new Player(null, inventory, name, speeches);
         p2 = new Player(null, inventory, name, speeches);
         Integer p1HP = p1.getHp();
@@ -146,7 +151,8 @@ class PersonnageTest {
 
     //Testing if a String is obtained
     @Test
-    void getRandomSpeech() {
+    void getRandomSpeech() throws NoSpeechAvailable
+    {
         p1 = new Player(null, inventory, name, speeches);
         assertNotEquals(null, p1.getRandomSpeech());
     }
