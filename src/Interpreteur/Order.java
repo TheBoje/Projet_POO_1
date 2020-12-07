@@ -26,6 +26,7 @@ public enum Order
 
 	private final String stringValue;
 	private final String helpMessage;
+
 	Order(String s, String helpMessage)
 	{
 		this.stringValue = s;

@@ -12,10 +12,10 @@ public class Tile
 {
 	/***********************************ATTRIBUTES***********************************/
 
-	private List<Personnage> personnages;
-	private int nearbyTilesID[];
-	private Crossing nearbyCrossing[];
-	private List<Item> items;
+	private final List<Personnage> personnages;
+	private final int[] nearbyTilesID;
+	private final Crossing[] nearbyCrossing;
+	private final List<Item> items;
 
 	/***********************************CONSTRUCTORS***********************************/
 
@@ -27,7 +27,7 @@ public class Tile
 		this.nearbyCrossing = new Crossing[4];
 	}
 
-	public Tile(List<Personnage> personnages, List<Item> items, int tilesID[], Crossing crossings[])
+	public Tile(List<Personnage> personnages, List<Item> items, int[] tilesID, Crossing[] crossings)
 	{
 		this.personnages = personnages;
 		this.items = items;

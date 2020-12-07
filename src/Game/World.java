@@ -6,7 +6,6 @@ import Items.Clothes;
 import Items.Food;
 import Items.Item;
 import Items.RangeWeapon;
-import Personnages.NPC;
 import Personnages.Personnage;
 import Personnages.Player;
 import Tiles.Direction;
@@ -23,7 +22,7 @@ public class World
 {
 	/***********************************ATTRIBUTES***********************************/
 
-	private Map<Integer, Tile> tilesMap;
+	private final Map<Integer, Tile> tilesMap;
 
 	/***********************************CONSTRUCTOR***********************************/
 

@@ -73,7 +73,8 @@ public class Interpreteur
 				if (request.argCount() < 1)
 				{
 					this.gameManager.help();
-				}else
+				}
+				else
 				{
 					this.gameManager.help(request.convertStringToOrder(request.getArg(0)));
 				}
@@ -113,7 +114,7 @@ public class Interpreteur
 				{
 					switch (request.getArg(0).toLowerCase())
 					{
-						case "tile", "doors", "door", "crossing", "crossings", "dir", "direction", "directions"-> this.gameManager.getDirection();
+						case "tile", "doors", "door", "crossing", "crossings", "dir", "direction", "directions" -> this.gameManager.getDirection();
 						case "inv", "inventory" -> this.gameManager.getInventory();
 						case "talk", "characters", "character", "chars", "char" -> this.gameManager.getPersonnagesOnTile();
 						case "search", "items", "item" -> this.gameManager.getItemsOnTile();

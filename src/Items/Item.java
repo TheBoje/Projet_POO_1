@@ -56,8 +56,19 @@ public abstract class Item
 
 	public static final String[][] ItemsNames = {ClothesNames, FoodNames, RangeWeaponNames, MeleeWeaponNames, ThrowWeaponNames, MiscNames};
 
-	private String name;
+	private final String name;
 	private int value;
+
+	public Item(String name)
+	{
+		this.name = name;
+	}
+
+	public Item(String name, int value)
+	{
+		this.name = name;
+		this.value = value;
+	}
 
 	// V1
 	public static Item generateRandomItem(Random random)
@@ -82,22 +93,9 @@ public abstract class Item
 		return item;
 	}
 
-
-
-	public Item(String name)
-	{
-		this.name = name;
-	}
-
-	public Item(String name, int value)
-	{
-		this.name = name;
-		this.value = value;
-	}
-
 	public abstract void use(Personnage perso) throws Exception;
 
-    public String getName()
+	public String getName()
 	{
 		return this.name;
 	}

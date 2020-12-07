@@ -1,6 +1,7 @@
 package Crossings;
 
 import Items.Item;
+
 import java.util.List;
 
 public class Door extends Crossing
@@ -10,15 +11,15 @@ public class Door extends Crossing
 		super(isOpen);
 	}
 
+	public Door()
+	{
+		super(true);
+	}
+
 	@Override
 	public void tryOpen(List<Item> items)
 	{
 		this.open();
-	}
-
-	public Door()
-	{
-		super(true);
 	}
 
 	public void open()
