@@ -51,14 +51,14 @@ public class RequestTests
 	@Test
 	public void testGetArgNull()
 	{
-		Throwable exception = assertThrows(IllegalArgumentException.class, () -> r.getArg(-1));
-		assertEquals(exception.getClass(), IllegalArgumentException.class);
-		exception = assertThrows(IllegalArgumentException.class, () -> r.getArg(998));
-		assertEquals(exception.getClass(), IllegalArgumentException.class);
-		exception = assertThrows(IllegalArgumentException.class, () -> r.getIntArg(-1));
-		assertEquals(exception.getClass(), IllegalArgumentException.class);
-		exception = assertThrows(IllegalArgumentException.class, () -> r.getIntArg(998));
-		assertEquals(exception.getClass(), IllegalArgumentException.class);
+		Throwable exception = assertThrows(NullPointerException.class, () -> r.getArg(-1));
+		assertEquals(exception.getClass(), NullPointerException.class);
+		exception = assertThrows(NullPointerException.class, () -> r.getArg(998));
+		assertEquals(exception.getClass(), NullPointerException.class);
+		exception = assertThrows(NullPointerException.class, () -> r.getIntArg(-1));
+		assertEquals(exception.getClass(), NullPointerException.class);
+		exception = assertThrows(NullPointerException.class, () -> r.getIntArg(998));
+		assertEquals(exception.getClass(), NullPointerException.class);
 	}
 
 	@Test
