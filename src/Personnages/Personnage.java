@@ -52,19 +52,16 @@ public abstract class Personnage
 
         switch (chosenPersonnage)
         {
-            case 0 :
+            case 0 -> {
                 int chosenAnimal = random.nextInt(AnimalNames.length);
                 personnage = new Animal(tile, inventory, AnimalNames[random.nextInt(AnimalNames.length)], Arrays.asList(Animal.AnimalSpeeches[chosenAnimal]));
-                break;
-
-            case 1 :
+            }
+            case 1 -> {
                 int chosenNPC = random.nextInt(NPCsNames.length);
                 personnage = new NPC(tile, inventory, NPCsNames[random.nextInt(NPCsNames.length)], Arrays.asList(NPC.NPCspeeches[chosenNPC]));
-                break;
-
-            default:
-                personnage = null;
-                break;
+                personnage.addItem(Item.generateRandomItem(random, Item.CLOTHE_INDEX)); // Un pnj doit au moins avoir un vêtement
+            }
+            default -> personnage = null;
         }
 
         return personnage;
