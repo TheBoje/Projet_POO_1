@@ -15,7 +15,7 @@ class HumanTest extends PersonnageTest
 	List<String> sps = new ArrayList<String>();
 
 	@BeforeEach
-	void init ()
+	void initHuman ()
 	{
 		sps.add("blyat");
 		p1 = new Player(null, new ArrayList<Item>(), null, sps);

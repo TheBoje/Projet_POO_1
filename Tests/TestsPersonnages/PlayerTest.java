@@ -31,7 +31,7 @@ class PlayerTest extends HumanTest
 	private Animal animal1;
 
 	@BeforeEach
-	void init()
+	void initPlayer()
 	{
 		speeches1.add("Bonjour");
 		speeches1.add("Gros moche");
@@ -100,6 +100,7 @@ class PlayerTest extends HumanTest
 		assertTrue(p1.getItems().contains(p1Item));
 	}
 
+	//Testing if we can eat
 	@Test
 	void eat() throws InvalidTarget
 	{
@@ -111,6 +112,7 @@ class PlayerTest extends HumanTest
 		assertFalse(p1.getItems().contains(food));
 	}
 
+	//Testing if a character can wear smth
 	@Test
 	void wear()
 	{
@@ -124,6 +126,7 @@ class PlayerTest extends HumanTest
 		assertEquals(heatInit, p1.getBodyHeat());
 	}
 
+	//Reverse it
 	@Test
 	void takeOff()
 	{
