@@ -5,6 +5,6 @@ public class InsufficientArguments extends Exception
 	@Override
 	public String getMessage()
 	{
-		return "";//TODO Me
+		return "You didn't provide enough arguments to your request. Checkout \"help <order>\" for more information.\n";
 	}
 }

@@ -5,6 +5,6 @@ public class InvalidTarget extends Exception
 	@Override
 	public String getMessage()
 	{
-		return "Ivalid target, use a weapon on someone";//TODO Me
+		return "You are not targeting anyone. Use \"list character\" to display all possible targets.\n";
 	}
 }

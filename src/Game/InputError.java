@@ -5,6 +5,6 @@ public class InputError extends Exception
 	@Override
 	public String getMessage()
 	{
-		return "";//TODO Me
+		return "Your input isn't correct. Checkout \"help <order>\" for more information.\n";
 	}
 }

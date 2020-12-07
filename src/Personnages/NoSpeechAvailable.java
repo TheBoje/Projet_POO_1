@@ -5,6 +5,6 @@ public class NoSpeechAvailable extends Exception
 	@Override
 	public String getMessage()
 	{
-		return "";//TODO Me
+		return "This character doesn't have any speech available.\n";
 	}
 }

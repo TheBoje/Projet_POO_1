@@ -4,6 +4,7 @@ import Crossings.CantOpenCrossing;
 import Crossings.ClosedCrossing;
 import Crossings.Crossing;
 import Interpreteur.Interpreteur;
+import Interpreteur.Order;
 import Items.InvalidTarget;
 import Items.Item;
 import Personnages.NoSpeechAvailable;
@@ -59,7 +60,7 @@ public class GameManager
 
 	public void talk(int index) throws InputError, NoSpeechAvailable
 	{
-		if (index >= 0 || index > this.player.getTile().getPersonnages().size())
+		if (index >= 0 && index < this.player.getTile().getPersonnages().size())
 		{
 			String talk_res = this.player.getTile().getPersonnage(index).getRandomSpeech();
 			System.out.format("[%s]: %s\n", this.player.getTile().getPersonnage(index).getName(), talk_res);
@@ -130,6 +131,21 @@ public class GameManager
 	{
 		System.out.println("Closing app");
 		System.exit(1);
+	}
+
+	public void help()
+	{
+		System.out.format("LIST OF COMMANDS:\n");
+		Order[] orders = Order.values();
+		for (Order o : orders)
+		{
+			help(o);
+		}
+	}
+
+	public void help(Order order)
+	{
+		System.out.format("[%s] %s\n", order.getString(), order.getHelpMessage());
 	}
 
 	/***********************************GETTERS***********************************/

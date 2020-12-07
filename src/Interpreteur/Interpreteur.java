@@ -53,17 +53,15 @@ public class Interpreteur
 		this.exec(request);
 	}
 
-	public void exec(Request request) throws InputError, UnknownDirection, InsufficientArguments, CantOpenCrossing, NoSpeechAvailable, InvalidTarget
+	public void exec(Request request) throws InputError, UnknownDirection, InsufficientArguments, CantOpenCrossing, NoSpeechAvailable, InvalidTarget, UnknownOrder
 	{
 		switch (request.getOrder())
 		{
-			case DEBUG -> {
-				this.gameManager.printWorld();
-			}
+			case DEBUG -> this.gameManager.printWorld();
 			case TAKE -> {
 				if (request.argCount() < 1)
 				{
-					this.help(Order.TAKE);
+					this.gameManager.help(Order.TAKE);
 					throw new InsufficientArguments();
 				}
 				else
@@ -72,18 +70,21 @@ public class Interpreteur
 				}
 			}
 			case HELP -> {
-				this.help();
+				if (request.argCount() < 1)
+				{
+					this.gameManager.help();
+				}else
+				{
+					this.gameManager.help(request.convertStringToOrder(request.getArg(0)));
+				}
 			}
-			case QUIT -> {
-				this.gameManager.quit();
-			}
-			case LOAD, SAVE, INFO -> {
-				this.help(request.getOrder());
-			}
+
+			case QUIT -> this.gameManager.quit();
+			case LOAD, SAVE, INFO -> this.gameManager.help(request.getOrder());
 			case TALK -> {
 				if (request.argCount() < 1)
 				{
-					this.help(Order.TALK);
+					this.gameManager.help(Order.TALK);
 					throw new InsufficientArguments();
 				}
 				else
@@ -95,7 +96,7 @@ public class Interpreteur
 			case OPEN -> {
 				if (request.argCount() < 1)
 				{
-					this.help(Order.OPEN);
+					this.gameManager.help(Order.OPEN);
 					this.gameManager.getDirection();
 				}
 				else
@@ -106,7 +107,7 @@ public class Interpreteur
 			case LIST -> {
 				if (request.argCount() < 1)
 				{
-					this.help(Order.LIST);
+					this.gameManager.help(Order.LIST);
 				}
 				else
 				{
@@ -125,7 +126,7 @@ public class Interpreteur
 			case USE -> {
 				if (request.argCount() < 2)
 				{
-					this.help(Order.USE);
+					this.gameManager.help(Order.USE);
 					throw new InsufficientArguments();
 				}
 				else
@@ -136,7 +137,7 @@ public class Interpreteur
 			case GO -> {
 				if (request.argCount() < 1)
 				{
-					this.help(Order.GO);
+					this.gameManager.help(Order.GO);
 					this.gameManager.getDirection();
 				}
 				else
@@ -152,20 +153,5 @@ public class Interpreteur
 				}
 			}
 		}
-	}
-
-	public void help()
-	{
-		System.out.format("LIST OF COMMANDS:\n");
-		Order[] orders = Order.values();
-		for (Order o : orders)
-		{
-			help(o);
-		}
-	}
-
-	public void help(Order order)
-	{
-		System.out.format("[%s] %s\n", order.getString(), order.getHelpMessage());
 	}
 }
