@@ -11,6 +11,7 @@ import Personnages.Personnage;
 import Personnages.Player;
 import Tiles.Direction;
 import Tiles.Tile;
+import Tiles.TileError;
 import Tiles.UnknownDirection;
 
 import java.util.ArrayList;
@@ -61,7 +62,7 @@ public class World
 				tileTemp.setNearbyTile(randomIndex2, new Door(rn.nextBoolean()), randomDir);
 				Tile tileTempInverted = this.tilesMap.get(randomIndex2);
 				tileTempInverted.setNearbyTile(randomIndex1, new Door(rn.nextBoolean()), invertedRandomDir);
-			} catch (UnknownDirection unknownDirection)
+			} catch (UnknownDirection | TileError unknownDirection)
 			{
 				// This is never gonna happen, although we need to catch it.
 				System.out.format("World generation error: wrong Direction input \n");
@@ -82,7 +83,7 @@ public class World
 	}
 
 
-	public void movePlayer(Player player, Direction direction) throws InputError
+	public void movePlayer(Player player, Direction direction) throws InputError, UnknownDirection
 	{
 		Tile playerTile = player.getTile();
 		if (playerTile.getCrossing(direction) != null)

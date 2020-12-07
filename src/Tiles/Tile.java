@@ -69,19 +69,40 @@ public class Tile
 		return this.nearbyCrossing;
 	}
 
-	public Crossing getCrossing(Direction dir)
+	public Crossing getCrossing(Direction dir) throws UnknownDirection
 	{
-		return this.nearbyCrossing[dir.getIndex()];
+		if (dir != null)
+		{
+			return this.nearbyCrossing[dir.getIndex()];
+		}
+		else
+		{
+			throw new UnknownDirection();
+		}
 	}
 
-	public int getNextTileID(Direction dir)
+	public int getNextTileID(Direction dir) throws UnknownDirection
 	{
-		return this.nearbyTilesID[dir.getIndex()];
+		if (dir != null)
+		{
+			return this.nearbyTilesID[dir.getIndex()];
+		}
+		else
+		{
+			throw new UnknownDirection();
+		}
 	}
 
 	public Item getItem(int index)
 	{
-		return this.items.get(index);
+		if (index >= 0 && index < this.items.size())
+		{
+			return this.items.get(index);
+		}
+		else
+		{
+			throw new IndexOutOfBoundsException();
+		}
 	}
 
 	public List<Item> getItems()
@@ -90,31 +111,66 @@ public class Tile
 	}
 
 	/***********************************SETTERS***********************************/
-	public void setNearbyTile(int tileID, Crossing crossing, Direction dir)
+	public void setNearbyTile(int tileID, Crossing crossing, Direction dir) throws TileError
 	{
-		int index = dir.getIndex();
-		this.nearbyTilesID[index] = tileID;
-		this.nearbyCrossing[index] = crossing;
+		if (tileID >= 0)
+		{
+			int index = dir.getIndex();
+			this.nearbyTilesID[index] = tileID;
+			this.nearbyCrossing[index] = crossing;
+		}
+		else
+		{
+			throw new TileError();
+		}
 	}
 
 	public void addPersonnage(Personnage personnage)
 	{
-		this.personnages.add(personnage);
+		if (personnage != null)
+		{
+			this.personnages.add(personnage);
+		}
+		else
+		{
+			throw new NullPointerException();
+		}
 	}
 
 	public void addPersonnages(List<Personnage> personnages)
 	{
-		this.personnages.addAll(personnages);
+		if (personnages.contains(null))
+		{
+			throw new NullPointerException();
+		}
+		else
+		{
+			this.personnages.addAll(personnages);
+		}
 	}
 
 	public void remotePersonnage(Personnage personnage)
 	{
-		this.personnages.remove(personnage);
+		if (personnage != null)
+		{
+			this.personnages.remove(personnage);
+		}
+		else
+		{
+			throw new NullPointerException();
+		}
 	}
 
 	public void addItem(Item item)
 	{
-		this.items.add(item);
+		if (item != null)
+		{
+			this.items.add(item);
+		}
+		else
+		{
+			throw new NullPointerException();
+		}
 	}
 
 	/***********************************DISPLAY***********************************/
@@ -129,7 +185,9 @@ public class Tile
 				try
 				{
 					System.out.format("\t[%s] %s - %s\n", Direction.intToDirection(i).toString(), nearbyCrossing[i].getClass().getSimpleName(), nearbyCrossing[i].isOpen() ? "open" : "close");
-				} catch (UnknownDirection ignore){}
+				} catch (UnknownDirection ignore)
+				{
+				}
 			}
 		}
 		if (this.personnages.size() > 0)

@@ -42,7 +42,7 @@ public class GameManager
 
 	/***********************************METHODS***********************************/
 
-	public void go(Direction dir) throws ClosedCrossing
+	public void go(Direction dir) throws ClosedCrossing, UnknownDirection
 	{
 		Tile actualTile = this.player.getTile();
 		Tile targetTile = this.world.getTile(actualTile.getNextTileID(dir));
@@ -122,7 +122,7 @@ public class GameManager
 		}
 	}
 
-	public void open(Direction dir) throws CantOpenCrossing
+	public void open(Direction dir) throws CantOpenCrossing, UnknownDirection
 	{
 		this.player.getTile().getCrossing(dir).tryOpen(this.player.getItems());
 	}
