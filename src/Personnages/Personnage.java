@@ -111,8 +111,11 @@ public abstract class Personnage
     public void takeDamage(int amount)
     {
         this.hp -= amount;
-        if(this.hp < 0)
+        if(this.hp <= 0)
+        {
             this.hp = 0;
+            this.dropInventory();
+        }
     }
 
 
@@ -138,7 +141,28 @@ public abstract class Personnage
             int r = random.nextInt(this.speeches.size());
             return this.speeches.get(r);
         }
+    }
 
+    public void dropInventory()
+    {
+        // Vide le premier élément de l'inventaire n fois où n est le nombre d'éléments initial
+        for(int i = 0; i < this.items.size(); i++)
+        {
+            this.dropItem(0);
+        }
+    }
+
+    public void dropItem(int index) throws IndexOutOfBoundsException
+    {
+        if(index >= 0 && index < this.items.size())
+        {
+            this.tile.addItem(this.items.get(index));
+            this.items.remove(index);
+        }
+        else
+        {
+            throw new IndexOutOfBoundsException();
+        }
     }
 
     /***********************************GETTERS***********************************/
