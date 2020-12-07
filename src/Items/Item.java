@@ -9,6 +9,13 @@ public abstract class Item
 	public static final int MAX_VALUE = 10;
 	public static final int MAX_CAR_VALUE = 5;
 
+	public static final int CLOTHE_INDEX = 0;
+	public static final int FOOD_INDEX = 1;
+	public static final int RANGE_WEAPON_INDEX = 2;
+	public static final int MELEE_WEAPON_INDEX = 3;
+	public static final int THROW_WEAPON_INDEX = 4;
+	public static final int MISC_INDEX = 5;
+
 	public static final String[] ClothesNames = {
 			"Socks",
 			"Vincent's underwear",

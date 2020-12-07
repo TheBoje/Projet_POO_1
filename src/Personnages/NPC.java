@@ -10,6 +10,13 @@ public class NPC extends Human {
 
 	private int speechCount;
 
+	// TODO remplire les speechs
+	public static final String[] ScientistSpeeches = {};
+	public static final String[] InuitSpeeches = {};
+	public static final String[] TreasuSeekerSpeeches = {};
+
+	public static final String[][] NPCspeeches = {ScientistSpeeches, InuitSpeeches, TreasuSeekerSpeeches};
+
 	public NPC(Tile tile, List<Item> items, String name, int health, List<String> speeches)
 	{
 		super(tile, items, name, health, speeches);
