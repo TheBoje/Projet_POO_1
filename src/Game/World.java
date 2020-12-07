@@ -30,6 +30,7 @@ public class World
 	{
 		Random rn = new Random();
 		this.tilesMap = new HashMap<>();
+		// World generation section
 		for (int i = 0; i < tilesAmount; i++)
 		{
 			this.tilesMap.put(i, new Tile());
