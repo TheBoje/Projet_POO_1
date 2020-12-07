@@ -37,17 +37,8 @@ public class World
 			{
 				this.tilesMap.get(i).addItem(Item.generateRandomItem(rn));
 			}
-			if (rn.nextBoolean())
-			{
-				ArrayList<String> speeches = new ArrayList<>();
-				for (int j = 0; j < i + 1; j++)
-				{
-					speeches.add("wowo " + j);
-				}
-				NPC npc = new NPC(null, new ArrayList<>(), "boby" + i, speeches);
-				this.tilesMap.get(i).addPersonnage(npc);
-				npc.setTile(this.tilesMap.get(i));
-			}
+			Personnage p = Personnage.generateRandomPersonnage(rn, this.tilesMap.get(i));
+			this.getTile(i).addPersonnage(p);
 		}
 		for (int i = 0; i < crossingsAmount; i++)
 		{

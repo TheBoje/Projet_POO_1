@@ -71,7 +71,7 @@ public class GameManager
 		}
 	}
 
-	public void use(String[] args) throws InputError, InvalidTarget // FIXME
+	public void use(String[] args) throws InputError, InvalidTarget
 	{
 		int item_index = Integer.parseInt(args[0]);
 		int character_index = Integer.parseInt(args[1]);
@@ -174,21 +174,18 @@ public class GameManager
 		}
 	}
 
-	public void getPersonnagesOnTile() // FIXME add player
+	public void getPersonnagesOnTile()
 	{
-		if (this.player.getTile().getPersonnages().size() == 1)
+		for (int i = 0; i < this.player.getTile().getPersonnages().size(); i++)
 		{
-			System.out.format("\tNo character on this tile\n");
-		}
-		else
-		{
-			for (int i = 0; i < this.player.getTile().getPersonnages().size(); i++)
+			Personnage p = this.player.getTile().getPersonnage(i);
+			if (!(p instanceof Player))
 			{
-				Personnage p = this.player.getTile().getPersonnage(i);
-				if (!(p instanceof Player))
-				{
-					System.out.format("\t[%d] %s\n", i, this.player.getTile().getPersonnage(i).getName());
-				}
+				System.out.format("\t[%d] %s\n", i, this.player.getTile().getPersonnage(i).getName());
+			}
+			else
+			{
+				System.out.format("\t[%d] %s (you)\n", i, this.player.getTile().getPersonnage(i).getName());
 			}
 		}
 	}

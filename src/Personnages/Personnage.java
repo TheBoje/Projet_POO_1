@@ -115,6 +115,8 @@ public abstract class Personnage
         {
             this.hp = 0;
             this.dropInventory();
+            this.printDeath();
+            this.tile.remotePersonnage(this);
         }
     }
 
@@ -201,4 +203,10 @@ public abstract class Personnage
     {
         this.items = new ArrayList<Item>();
     }
+
+    public void printDeath()
+    {
+        System.out.format("[%s] died\n", this.getName());
+    }
+
 }
