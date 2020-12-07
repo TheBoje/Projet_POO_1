@@ -1,5 +1,5 @@
 package TestsGame;
 
-public class TestsWorld
+public class WorldTests
 {
 }

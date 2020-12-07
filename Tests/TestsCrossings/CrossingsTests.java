@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class TestsCrossings
+public class CrossingsTests
 {
 	Crossing door1;
 	Crossing door2;
@@ -32,7 +32,7 @@ public class TestsCrossings
 	public void test_open() throws CantOpenCrossing
 	{
 		assertTrue(door1.isOpen());
-		assertFalse(door1.isOpen());
+		assertFalse(door2.isOpen());
 		door1.tryOpen(new ArrayList<>());
 		assertTrue(door1.isOpen());
 		door2.tryOpen(new ArrayList<>());

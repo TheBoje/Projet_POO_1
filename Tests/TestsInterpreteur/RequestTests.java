@@ -1,5 +1,5 @@
 package TestsInterpreteur;
 
-public class TestsInterpreteur
+public class RequestTests
 {
 }

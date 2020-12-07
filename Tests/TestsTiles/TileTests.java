@@ -1,5 +1,5 @@
 package TestsTiles;
 
-public class TestsTile
+public class TileTests
 {
 }
