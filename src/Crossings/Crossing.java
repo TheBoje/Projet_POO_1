@@ -13,6 +13,10 @@ public abstract class Crossing
 		this.isOpen = isOpen;
 	}
 
+	protected Crossing()
+	{
+		this.isOpen = true;
+	}
 	public abstract void tryOpen(List<Item> items) throws CantOpenCrossing;
 
 	public boolean isOpen()
