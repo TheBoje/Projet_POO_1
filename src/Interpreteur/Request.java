@@ -8,17 +8,24 @@ public class Request
 	public Request(String order, String[] args) throws UnknownOrder
 	{
 		this.order = convertStringToOrder(order);
-		this.args = args;
+		if (args != null)
+		{
+			this.args = args;
+		}
+		else
+		{
+			throw new IllegalArgumentException();
+		}
 	}
 
 	public Order convertStringToOrder(String input) throws UnknownOrder
 	{
 		Order[] orders = Order.values();
 		Order result = null;
-
+		input = input.toLowerCase();
 		for (Order o : orders)
 		{
-			if (input.toLowerCase().equals(o.getString()))
+			if (input.equals(o.getString()))
 			{
 				result = o;
 				break;
@@ -47,12 +54,26 @@ public class Request
 
 	public String getArg(int index)
 	{
-		return this.args[index];
+		if (index >= 0 && index < this.argCount())
+		{
+			return this.args[index];
+		}
+		else
+		{
+			throw new IllegalArgumentException();
+		}
 	}
 
 	public int getIntArg(int index)
 	{
-		return Integer.parseInt(this.args[index]);
+		if (index >= 0 && index < this.argCount())
+		{
+			return Integer.parseInt(this.args[index]);
+		}
+		else
+		{
+			throw new IllegalArgumentException();
+		}
 	}
 
 	public int argCount()

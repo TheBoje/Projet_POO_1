@@ -133,7 +133,7 @@ public class Tile
 		}
 		else
 		{
-			throw new NullPointerException();
+			throw new IllegalArgumentException();
 		}
 	}
 
@@ -141,7 +141,7 @@ public class Tile
 	{
 		if (personnages.contains(null))
 		{
-			throw new NullPointerException();
+			throw new IllegalArgumentException();
 		}
 		else
 		{
@@ -157,7 +157,7 @@ public class Tile
 		}
 		else
 		{
-			throw new NullPointerException();
+			throw new IllegalArgumentException();
 		}
 	}
 
@@ -169,7 +169,7 @@ public class Tile
 		}
 		else
 		{
-			throw new NullPointerException();
+			throw new IllegalArgumentException();
 		}
 	}
 
