@@ -7,7 +7,7 @@ import Personnages.Player;
 public class Food extends Item
 {
 
-	private int nutValue;
+	private final int nutValue;
 	private boolean hasBeenAte;
 
 	public Food(String name, int nVal)
@@ -24,10 +24,9 @@ public class Food extends Item
 	}
 
 
-
 	public void use(Personnage perso)
 	{
-		if(!this.hasBeenAte)
+		if (!this.hasBeenAte)
 		{
 			if (perso instanceof Player)
 			{
@@ -37,7 +36,7 @@ public class Food extends Item
 			}
 			else
 			{
-				System.out.println("You think that keep the food for yourself is a better idea");
+				System.out.println("You better keep the food for yourself");
 			}
 			System.out.println("There is nothing left");
 		}

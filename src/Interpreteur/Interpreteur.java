@@ -5,6 +5,7 @@ import Crossings.ClosedCrossing;
 import Game.GameManager;
 import Game.InputError;
 import Items.InvalidTarget;
+import Personnages.GameWonException;
 import Personnages.NoSpeechAvailable;
 import Tiles.Direction;
 import Tiles.UnknownDirection;
@@ -34,7 +35,7 @@ public class Interpreteur
 	/***********************************METHODS***********************************/
 
 
-	public void read() throws UnknownOrder, CantOpenCrossing, InputError, UnknownDirection, InsufficientArguments, NoSpeechAvailable, InvalidTarget
+	public void read() throws Exception
 	{
 		System.out.format("> ");
 		String input = this.scanner.nextLine();
@@ -53,7 +54,7 @@ public class Interpreteur
 		this.exec(request);
 	}
 
-	public void exec(Request request) throws InputError, UnknownDirection, InsufficientArguments, CantOpenCrossing, NoSpeechAvailable, InvalidTarget, UnknownOrder
+	public void exec(Request request) throws Exception
 	{
 		switch (request.getOrder())
 		{
@@ -73,14 +74,15 @@ public class Interpreteur
 				if (request.argCount() < 1)
 				{
 					this.gameManager.help();
-				}else
+				}
+				else
 				{
 					this.gameManager.help(request.convertStringToOrder(request.getArg(0)));
 				}
 			}
 
 			case QUIT -> this.gameManager.quit();
-			case LOAD, SAVE, INFO -> this.gameManager.help(request.getOrder());
+			case LOAD, SAVE, INFO, TRADE -> this.gameManager.help(request.getOrder());
 			case TALK -> {
 				if (request.argCount() < 1)
 				{
@@ -113,7 +115,7 @@ public class Interpreteur
 				{
 					switch (request.getArg(0).toLowerCase())
 					{
-						case "tile", "doors", "door", "crossing", "crossings", "dir", "direction", "directions"-> this.gameManager.getDirection();
+						case "tile", "doors", "door", "crossing", "crossings", "dir", "direction", "directions" -> this.gameManager.getDirection();
 						case "inv", "inventory" -> this.gameManager.getInventory();
 						case "talk", "characters", "character", "chars", "char" -> this.gameManager.getPersonnagesOnTile();
 						case "search", "items", "item" -> this.gameManager.getItemsOnTile();

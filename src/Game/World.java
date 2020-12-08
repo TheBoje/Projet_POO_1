@@ -2,15 +2,12 @@ package Game;
 
 import Crossings.Crossing;
 import Crossings.Door;
-import Items.Clothes;
-import Items.Food;
-import Items.Item;
-import Items.RangeWeapon;
-import Personnages.NPC;
+import Items.*;
 import Personnages.Personnage;
 import Personnages.Player;
 import Tiles.Direction;
 import Tiles.Tile;
+import Tiles.TileError;
 import Tiles.UnknownDirection;
 
 import java.util.ArrayList;
@@ -22,24 +19,15 @@ public class World
 {
 	/***********************************ATTRIBUTES***********************************/
 
-	private Map<Integer, Tile> tilesMap;
+	private final Map<Integer, Tile> tilesMap;
 
 	/***********************************CONSTRUCTOR***********************************/
 
 	public World(int tilesAmount, int crossingsAmount)
 	{
 		Random rn = new Random();
-		this.tilesMap = new HashMap<>();
-		for (int i = 0; i < tilesAmount; i++)
-		{
-			this.tilesMap.put(i, new Tile());
-			if (rn.nextBoolean())
-			{
-				this.tilesMap.get(i).addItem(Item.generateRandomItem(rn));
-			}
-			Personnage p = Personnage.generateRandomPersonnage(rn, this.tilesMap.get(i));
-			this.getTile(i).addPersonnage(p);
-		}
+		this.tilesMap = Tile.generateTiles(tilesAmount, rn);
+
 		for (int i = 0; i < crossingsAmount; i++)
 		{
 			Direction randomDir = null;
@@ -60,7 +48,7 @@ public class World
 				tileTemp.setNearbyTile(randomIndex2, new Door(rn.nextBoolean()), randomDir);
 				Tile tileTempInverted = this.tilesMap.get(randomIndex2);
 				tileTempInverted.setNearbyTile(randomIndex1, new Door(rn.nextBoolean()), invertedRandomDir);
-			} catch (UnknownDirection unknownDirection)
+			} catch (UnknownDirection | TileError e)
 			{
 				// This is never gonna happen, although we need to catch it.
 				System.out.format("World generation error: wrong Direction input \n");
@@ -73,39 +61,13 @@ public class World
 
 	public void createPlayer()
 	{
-		Player player = new Player(this.tilesMap.get(0), new ArrayList<>(0), "Good Player", new ArrayList<>(0));
-		player.addItem(new Clothes("Manto", 10));
-		player.addItem(new Food("Doritos", 2));
-		player.addItem(new RangeWeapon("oiui", 8, 10, 10));
+		Random rn = new Random();
+		Player player = new Player(this.tilesMap.get(0), new ArrayList<>(0), "Player", new ArrayList<>(0));
+		player.addItem(Item.generateRandomItem(rn));
+		player.addItem(Item.generateRandomItem(rn));
+		player.addItem(Item.generateRandomItem(rn));
+		player.addItem(new MeleeWeapon("Poggeeerino", 20));
 		this.tilesMap.get(0).addPersonnage(player);
-	}
-
-
-	public void movePlayer(Player player, Direction direction) throws InputError
-	{
-		Tile playerTile = player.getTile();
-		if (playerTile.getCrossing(direction) != null)
-		{
-			Crossing playerTileCrossing = playerTile.getCrossing(direction);
-
-			if (playerTileCrossing.isOpen())
-			{
-				int newTileID = playerTile.getNextTileID(direction);
-				Tile nextTile = this.tilesMap.get(newTileID);
-
-				player.setTile(nextTile);
-				playerTile.remotePersonnage(player);
-				nextTile.addPersonnage(player);
-			}
-			else
-			{
-				System.out.println("Crossing is closed");
-			}
-		}
-		else
-		{
-			throw new InputError();
-		}
 	}
 
 	/***********************************GETTERS***********************************/

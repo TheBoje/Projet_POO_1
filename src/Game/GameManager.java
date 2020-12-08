@@ -7,6 +7,7 @@ import Interpreteur.Interpreteur;
 import Interpreteur.Order;
 import Items.InvalidTarget;
 import Items.Item;
+import Personnages.GameWonException;
 import Personnages.NoSpeechAvailable;
 import Personnages.Personnage;
 import Personnages.Player;
@@ -42,7 +43,20 @@ public class GameManager
 
 	/***********************************METHODS***********************************/
 
-	public void go(Direction dir) throws ClosedCrossing
+	public void initGame()
+	{
+		// TODO Print rules, win conditions, and other useful stuff
+	}
+
+	public void endGame()
+	{
+		System.out.println("ouaaazeazeaz");
+		// TODO Print congratulation stuff
+		// maybe wait for player to type "quit" as order
+	}
+
+
+	public void go(Direction dir) throws ClosedCrossing, UnknownDirection
 	{
 		Tile actualTile = this.player.getTile();
 		Tile targetTile = this.world.getTile(actualTile.getNextTileID(dir));
@@ -58,11 +72,11 @@ public class GameManager
 		}
 	}
 
-	public void talk(int index) throws InputError, NoSpeechAvailable
+	public void talk(int index) throws InputError, NoSpeechAvailable, GameWonException
 	{
 		if (index >= 0 && index < this.player.getTile().getPersonnages().size())
 		{
-			String talk_res = this.player.getTile().getPersonnage(index).getRandomSpeech();
+			String talk_res = this.player.getTile().getPersonnage(index).talk();
 			System.out.format("[%s]: %s\n", this.player.getTile().getPersonnage(index).getName(), talk_res);
 		}
 		else
@@ -109,9 +123,20 @@ public class GameManager
 				interpreteur.read();
 			} catch (Exception e)
 			{
-				System.out.format("Error: %s\n", e.getClass().getSimpleName());
-				System.out.format("%s\n", e.getMessage());
-				this.nextTurn();
+				if (e instanceof GameWonException)
+				{
+					this.endGame();
+					this.quit();
+				}
+				else
+				{
+					System.out.format("Error: %s\n", e.getClass().getSimpleName());
+					if (e.getMessage() != null)
+					{
+						System.out.format("%s\n", e.getMessage());
+					}
+					this.nextTurn();
+				}
 			}
 			return true;
 		}
@@ -122,7 +147,7 @@ public class GameManager
 		}
 	}
 
-	public void open(Direction dir) throws CantOpenCrossing
+	public void open(Direction dir) throws CantOpenCrossing, UnknownDirection
 	{
 		this.player.getTile().getCrossing(dir).tryOpen(this.player.getItems());
 	}
@@ -222,6 +247,10 @@ public class GameManager
 		}
 	}
 
+	public World getWorld()
+	{
+		return this.world;
+	}
 
 	/***********************************SETTERS***********************************/
 	/***********************************DISPLAY***********************************/

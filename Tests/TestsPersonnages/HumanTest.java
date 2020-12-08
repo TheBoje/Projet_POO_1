@@ -1,6 +1,8 @@
 package TestsPersonnages;
 
 import Items.Item;
+import Personnages.GameWonException;
+import Personnages.NoSpeechAvailable;
 import Personnages.Player;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,8 +24,8 @@ class HumanTest extends PersonnageTest
 	}
 
 	@Test
-	void talk()
+	void talk() throws NoSpeechAvailable, GameWonException
 	{
-		p1.talk();
+		System.out.println(p1.talk());
 	}
 }

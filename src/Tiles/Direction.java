@@ -4,7 +4,7 @@ import Game.InputError;
 
 public enum Direction
 {
-	N("n", 0), E("e", 1), S("s",2), W("w", 3);
+	N("n", 0), E("e", 1), S("s", 2), W("w", 3);
 	private final String stringValue;
 	private final int index;
 
@@ -41,7 +41,7 @@ public enum Direction
 	{
 		Direction[] directions = Direction.values();
 		Direction result = null;
-		for(Direction i : directions)
+		for (Direction i : directions)
 		{
 			if (i.getIndex() == index)
 			{
@@ -66,7 +66,7 @@ public enum Direction
 
 		for (Direction dir : directions)
 		{
-			if(dir.getStringValue().equals(input.toLowerCase()))
+			if (dir.getStringValue().equals(input.toLowerCase()))
 			{
 				result = dir;
 				break;
