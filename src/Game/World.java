@@ -28,7 +28,7 @@ public class World
 		Random rn = new Random();
 		this.tilesMap = Tile.generateTiles(tilesAmount, rn);
 
-		for (int i = 0; i < crossingsAmount; i++)
+		/*for (int i = 0; i < crossingsAmount; i++)
 		{
 			Direction randomDir = null;
 			Direction invertedRandomDir = null;
@@ -53,9 +53,10 @@ public class World
 				// This is never gonna happen, although we need to catch it.
 				System.out.format("World generation error: wrong Direction input \n");
 			}
-		}
+		}*/
 		this.createPlayer();
 	}
+
 
 	/***********************************METHODS***********************************/
 

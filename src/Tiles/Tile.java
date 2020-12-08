@@ -11,6 +11,7 @@ public class Tile
 {
 	public static final int MAX_ITEM_ON_TILE = 3;
 	public static final int MAX_PERSONNAGE_ON_TILE = 2;
+	public static final int CROSSING_CHANCE = 25;
 
 	/***********************************ATTRIBUTES***********************************/
 
@@ -21,29 +22,53 @@ public class Tile
 
 	/***********************************CONSTRUCTORS***********************************/
 
+	public static void generateMap(int tilesAmount, int currentTile, Random rn, HashMap<Integer, Tile> map) throws UnknownDirection
+	{
+		if(map.size() < tilesAmount)
+		{
+			for(int i = 0; i < 4; i++)
+			{
+				if(rn.nextInt(100) <= CROSSING_CHANCE && map.get(currentTile).getCrossings()[i] == null)
+				{
+					// On créer la tile suivante et on calcul son index dans la map
+					Tile nextTile = new Tile();
+					int idNextTile = map.size();
+
+					// On lui ajoute des items
+					for(int j = 0; j < rn.nextInt(MAX_ITEM_ON_TILE); j++)
+						if (rn.nextBoolean())
+							nextTile.addItem(Item.generateRandomItem(rn));
+
+					// On lui ajoute des personnages
+					for(int j = 0; j < rn.nextInt(MAX_PERSONNAGE_ON_TILE); j++)
+						if (rn.nextBoolean())
+							nextTile.addPersonnage(Personnage.generateRandomPersonnage(rn, nextTile));
+
+					// On ajoute la tile dans la map et on lie la prochaine tile avec la tile courante
+					map.put(idNextTile, nextTile);
+					Crossing.linkTiles(currentTile, idNextTile, map, Direction.intToDirection(i), rn);
+
+					// On appelle récursivement la méthode sur la tile suivante
+					generateMap(tilesAmount, idNextTile, rn, map);
+				}
+			}
+		}
+	}
+
 	public static HashMap<Integer, Tile> generateTiles(int tilesAmount, Random rn)
 	{
 		HashMap<Integer, Tile>  tilesMap = new HashMap<>();
-		// World generation section
-		for (int i = 0; i < tilesAmount; i++)
-		{
-			tilesMap.put(i, new Tile());
-			for(int j = 0; j < rn.nextInt(MAX_ITEM_ON_TILE); j++)
-			{
-				if (rn.nextBoolean())
-				{
-					tilesMap.get(i).addItem(Item.generateRandomItem(rn));
-				}
-			}
 
-			for(int j = 0; j < rn.nextInt(MAX_PERSONNAGE_ON_TILE); j++)
-			{
-				if (rn.nextBoolean())
-				{
-					Personnage p = Personnage.generateRandomPersonnage(rn, tilesMap.get(i));
-					tilesMap.get(i).addPersonnage(p);
-				}
-			}
+		Tile firstTile = new Tile();
+		tilesMap.put(0, firstTile);
+
+		try
+		{
+			generateMap(tilesAmount, 0, rn, tilesMap);
+		}
+		catch (UnknownDirection unknownDirection)
+		{
+			unknownDirection.printStackTrace();
 		}
 
 		return tilesMap;
