@@ -4,6 +4,7 @@ import Items.Item;
 import Tiles.Direction;
 import Tiles.Tile;
 import Tiles.TileError;
+import Tiles.UnknownDirection;
 
 import java.util.HashMap;
 import java.util.List;
@@ -27,8 +28,9 @@ public abstract class Crossing
 		try
 		{
 			tiles.get(from).setNearbyTile(to, crossing, dir); // int tileID, Crossing crossing, Direction dir
+			tiles.get(to).setNearbyTile(from, crossing, Direction.invert(dir));
 		}
-		catch (TileError tileError)
+		catch (TileError | UnknownDirection tileError)
 		{
 			tileError.printStackTrace();
 		}
