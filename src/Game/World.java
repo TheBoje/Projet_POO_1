@@ -75,38 +75,10 @@ public class World
 	public void createPlayer()
 	{
 		Player player = new Player(this.tilesMap.get(0), new ArrayList<>(0), "Good Player", new ArrayList<>(0));
-		player.addItem(new Clothes("Manto", 10));
+		player.addItem(new Clothes("Manteau", 10));
 		player.addItem(new Food("Doritos", 2));
-		player.addItem(new RangeWeapon("oiui", 8, 10, 10));
+		player.addItem(new RangeWeapon("Weird weapon", 8, 10, 10));
 		this.tilesMap.get(0).addPersonnage(player);
-	}
-
-
-	public void movePlayer(Player player, Direction direction) throws InputError, UnknownDirection
-	{
-		Tile playerTile = player.getTile();
-		if (playerTile.getCrossing(direction) != null)
-		{
-			Crossing playerTileCrossing = playerTile.getCrossing(direction);
-
-			if (playerTileCrossing.isOpen())
-			{
-				int newTileID = playerTile.getNextTileID(direction);
-				Tile nextTile = this.tilesMap.get(newTileID);
-
-				player.setTile(nextTile);
-				playerTile.remotePersonnage(player);
-				nextTile.addPersonnage(player);
-			}
-			else
-			{
-				System.out.println("Crossing is closed");
-			}
-		}
-		else
-		{
-			throw new InputError();
-		}
 	}
 
 	/***********************************GETTERS***********************************/

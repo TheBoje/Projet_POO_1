@@ -1,6 +1,14 @@
 package TestsGame;
 
+import Game.World;
+import org.junit.jupiter.api.BeforeEach;
+
 public class WorldTests
 {
-	// TODO these tests
+	World world;
+	@BeforeEach
+	public void init()
+	{
+		world = new World(10, 20);
+	}
 }
