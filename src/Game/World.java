@@ -3,6 +3,7 @@ package Game;
 import Crossings.Crossing;
 import Crossings.Door;
 import Items.*;
+import Personnages.NPC;
 import Personnages.Personnage;
 import Personnages.Player;
 import Tiles.Direction;
@@ -10,51 +11,52 @@ import Tiles.Tile;
 import Tiles.TileError;
 import Tiles.UnknownDirection;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 public class World
 {
 	/***********************************ATTRIBUTES***********************************/
 
-	private final Map<Integer, Tile> tilesMap;
+	private final HashMap<Integer, Tile> tilesMap;
 
 	/***********************************CONSTRUCTOR***********************************/
 
-	public World(int tilesAmount, int crossingsAmount)
+	public World(int tilesAmount)
 	{
 		Random rn = new Random();
 		this.tilesMap = Tile.generateTiles(tilesAmount, rn);
 
-		/*for (int i = 0; i < crossingsAmount; i++)
-		{
-			Direction randomDir = null;
-			Direction invertedRandomDir = null;
-			try
-			{
-				randomDir = Direction.intToDirection(rn.nextInt(3));
-				invertedRandomDir = Direction.invert(randomDir);
-				int randomIndex1 = rn.nextInt(tilesAmount);
-				int randomIndex2;
-				do
-				{
-					randomIndex2 = rn.nextInt(tilesAmount);
-				}
-				while (randomIndex2 == randomIndex1);
-
-				Tile tileTemp = this.tilesMap.get(randomIndex1);
-				tileTemp.setNearbyTile(randomIndex2, new Door(rn.nextBoolean()), randomDir);
-				Tile tileTempInverted = this.tilesMap.get(randomIndex2);
-				tileTempInverted.setNearbyTile(randomIndex1, new Door(rn.nextBoolean()), invertedRandomDir);
-			} catch (UnknownDirection | TileError e)
-			{
-				// This is never gonna happen, although we need to catch it.
-				System.out.format("World generation error: wrong Direction input \n");
-			}
-		}*/
 		this.createPlayer();
+
+		Tile endTile = new Tile();
+		Personnage endingNPC = new NPC(endTile, new ArrayList<>(), "Chief scientist", new ArrayList<>());
+		endTile.addPersonnage(endingNPC);
+		int idTile = this.tilesMap.size();
+		this.tilesMap.put(idTile, endTile);
+
+		boolean isSet = false;
+
+		for(int i = this.tilesMap.size() - 2; i >= 0; i--)
+		{
+			for(int j = 0; j < Direction.values().length; j++)
+			{
+				if(this.tilesMap.get(i).getCrossings()[j] == null && !isSet)
+				{
+					try
+					{
+						Crossing.linkTiles(i, idTile, this.tilesMap, Direction.intToDirection(j), rn);
+						isSet = true;
+					}
+					catch (UnknownDirection unknownDirection)
+					{
+						unknownDirection.printStackTrace();
+					}
+				}
+			}
+
+			if(isSet)
+				break;
+		}
 	}
 
 

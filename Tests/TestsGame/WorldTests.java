@@ -9,6 +9,6 @@ public class WorldTests
 	@BeforeEach
 	public void init()
 	{
-		world = new World(10, 20);
+		world = new World(10);
 	}
 }

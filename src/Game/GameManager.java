@@ -30,7 +30,7 @@ public class GameManager
 
 	public GameManager()
 	{
-		this.world = new World(5, 8);
+		this.world = new World(5);
 		this.interpreteur = new Interpreteur(this);
 		try
 		{
