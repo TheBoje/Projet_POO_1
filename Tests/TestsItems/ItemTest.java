@@ -93,7 +93,7 @@ public class ItemTest
         assertEquals(ammos, this.rangeWeapon1.getAmmunitions());
 
         this.rangeWeapon2.use(null);
-        assertEquals(RangeWeapon.DEFAULT_AMMOS, this.rangeWeapon1.getAmmunitions());
+        assertEquals(RangeWeapon.DEFAULT_AMMOS, this.rangeWeapon2.getAmmunitions());
     }
 
     @Test
@@ -139,11 +139,41 @@ public class ItemTest
     {
         Food f = new Food(FOOD_NAME_1, NUT_VALUE_1);
 
-        assertTrue(f.getHasBeenAte());
+        assertFalse(f.getHasBeenAte());
         f.use(null);
-        assertTrue(f.getHasBeenAte());
+        assertFalse(f.getHasBeenAte());
         f.use(this.npc);
-        assertTrue(f.getHasBeenAte());
+        assertFalse(f.getHasBeenAte());
+    }
+
+    @Test
+    void GenerateRandomItemTest()
+    {
+        Random random = new Random();
+
+        Item item = Item.generateRandomItem(random);
+
+        assertNotNull(item);
+        assertNotNull(item.getName());
+        assertNotNull(item.getUsage());
+
+        item = Item.generateRandomItem(random, Item.CLOTHE_INDEX);
+        assertTrue(item instanceof Clothes);
+
+        item = Item.generateRandomItem(random, Item.FOOD_INDEX);
+        assertTrue(item instanceof Food);
+
+        item = Item.generateRandomItem(random, Item.RANGE_WEAPON_INDEX);
+        assertTrue(item instanceof RangeWeapon);
+
+        item = Item.generateRandomItem(random, Item.MELEE_WEAPON_INDEX);
+        assertTrue(item instanceof MeleeWeapon);
+
+        item = Item.generateRandomItem(random, Item.THROW_WEAPON_INDEX);
+        assertTrue(item instanceof ThrowWeapon);
+
+        item = Item.generateRandomItem(random, Item.MISC_INDEX);
+        assertTrue(item instanceof Misc);
     }
 
 }
