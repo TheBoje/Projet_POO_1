@@ -39,6 +39,9 @@ public class Player extends Human {
         }
         if (item instanceof Weapon) {
             this.attack((Weapon) item, target);
+            if (item instanceof ThrowWeapon){
+                this.removeItem(item);
+            }
         }
 
     }
