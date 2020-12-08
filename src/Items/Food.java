@@ -36,7 +36,7 @@ public class Food extends Item
 			}
 			else
 			{
-				System.out.println("You think that keep the food for yourself is a better idea");
+				System.out.println("You better keep the food for yourself");
 			}
 			System.out.println("There is nothing left");
 		}

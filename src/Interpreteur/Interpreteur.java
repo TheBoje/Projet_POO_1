@@ -81,7 +81,7 @@ public class Interpreteur
 			}
 
 			case QUIT -> this.gameManager.quit();
-			case LOAD, SAVE, INFO -> this.gameManager.help(request.getOrder());
+			case LOAD, SAVE, INFO, TRADE -> this.gameManager.help(request.getOrder());
 			case TALK -> {
 				if (request.argCount() < 1)
 				{
