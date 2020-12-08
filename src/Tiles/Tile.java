@@ -5,11 +5,13 @@ import Items.Item;
 import Personnages.Personnage;
 import Personnages.Player;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Tile
 {
+	public static final int MAX_ITEM_ON_TILE = 3;
+	public static final int MAX_PERSONNAGE_ON_TILE = 2;
+
 	/***********************************ATTRIBUTES***********************************/
 
 	private final List<Personnage> personnages;
@@ -18,6 +20,34 @@ public class Tile
 	private final List<Item> items;
 
 	/***********************************CONSTRUCTORS***********************************/
+
+	public static HashMap<Integer, Tile> generateTiles(int tilesAmount, Random rn)
+	{
+		HashMap<Integer, Tile>  tilesMap = new HashMap<>();
+		// World generation section
+		for (int i = 0; i < tilesAmount; i++)
+		{
+			tilesMap.put(i, new Tile());
+			for(int j = 0; j < rn.nextInt(MAX_ITEM_ON_TILE); j++)
+			{
+				if (rn.nextBoolean())
+				{
+					tilesMap.get(i).addItem(Item.generateRandomItem(rn));
+				}
+			}
+
+			for(int j = 0; j < rn.nextInt(MAX_PERSONNAGE_ON_TILE); j++)
+			{
+				if (rn.nextBoolean())
+				{
+					Personnage p = Personnage.generateRandomPersonnage(rn, tilesMap.get(i));
+					tilesMap.get(i).addPersonnage(p);
+				}
+			}
+		}
+
+		return tilesMap;
+	}
 
 	public Tile()
 	{
