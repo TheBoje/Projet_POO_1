@@ -25,7 +25,7 @@ public class ItemTest
     private final int AMMOS_1 = 30;
 
     private final String WEAPON_NAME_1_1 = "Karg98";
-    private final int DAMAGES_1_1 = 7;
+    private final int DAMAGES_1_1 = 2;
 
     private final String WEAPON_NAME_2 = "Coutal";
     private final int DAMAGES_2 = 3;
@@ -55,6 +55,7 @@ public class ItemTest
 
 
         this.rangeWeapon1 = new RangeWeapon(WEAPON_NAME_1, DAMAGES_1, 10,AMMOS_1);
+        System.out.println(this.rangeWeapon1.getDamages());
         this.rangeWeapon2 = new RangeWeapon(WEAPON_NAME_1_1, DAMAGES_1_1);
         this.meleeWeapon = new MeleeWeapon(WEAPON_NAME_2, DAMAGES_2);
         this.throwWeapon = new ThrowWeapon(WEAPON_NAME_3, DAMAGES_3);
@@ -71,7 +72,9 @@ public class ItemTest
         // On vérifie que on à bien une balle en moins et que le npc à perdu des points de vie
         int ammos = this.rangeWeapon1.getAmmunitions();
         int health = npc.getHp();
+
         this.rangeWeapon1.use(npc);
+        System.out.println(npc.getHp());
         ammos--;
         assertEquals(ammos, this.rangeWeapon1.getAmmunitions());
         assertNotEquals(health, npc.getHp());
@@ -89,10 +92,24 @@ public class ItemTest
     void RangeWeapon2() throws InvalidTarget
     {
         int ammos = this.rangeWeapon1.getAmmunitions();
-        this.rangeWeapon1.use(null);
+        try
+        {
+            this.rangeWeapon1.use(null);
+        }
+        catch (InvalidTarget invalidTarget)
+        {
+            System.out.println(invalidTarget.getMessage());
+        }
         assertEquals(ammos, this.rangeWeapon1.getAmmunitions());
 
-        this.rangeWeapon2.use(null);
+        try
+        {
+            this.rangeWeapon2.use(null);
+        }
+        catch (InvalidTarget invalidTarget)
+        {
+            System.out.println(invalidTarget.getMessage());
+        }
         assertEquals(RangeWeapon.DEFAULT_AMMOS, this.rangeWeapon2.getAmmunitions());
     }
 

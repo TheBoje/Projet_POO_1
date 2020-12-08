@@ -12,7 +12,7 @@ public abstract class Weapon extends Item
 		this.damages = dam;
 	}
 
-	public Weapon(String name, int value, int dam)
+	public Weapon(String name, int dam, int value)
 	{
 		super(name, value);
 		this.damages = dam;
