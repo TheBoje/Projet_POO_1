@@ -6,71 +6,67 @@ import Tiles.Tile;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Player extends Human
-{
-	private static final int MAX_HUNGER = 10;
-	private static final int MAX_HEAT = 10;
-	private final List<Item> wearing;
-	/***********************************ATTRIBUTES***********************************/
+public class Player extends Human {
+    private static final int MAX_HUNGER = 10;
+    private static final int MAX_HEAT = 10;
+    /***********************************ATTRIBUTES***********************************/
 
-	private int hunger;
-	private int bodyHeat;
+    private int hunger;
+    private int bodyHeat;
+    private List<Item> wearing;
 
-	/***********************************CONSTRUCTOR***********************************/
+    /***********************************CONSTRUCTOR***********************************/
 
-	public Player(Tile tile, List<Item> items, String name, List<String> sp)
-	{
-		super(tile, items, name, sp);
-		this.bodyHeat = MAX_HEAT;
-		this.hunger = MAX_HUNGER;
-		this.wearing = new ArrayList<>();
-		Item clothes = new Clothes("clothes", 5);
-		this.wearing.add(clothes);
-	}
+    public Player(Tile tile, List<Item> items, String name, List<String> sp) {
+        super(tile, items, name, sp);
+        this.bodyHeat = MAX_HEAT;
+        this.hunger = MAX_HUNGER;
+        this.wearing = new ArrayList<>();
+        Item clothes = new Clothes("clothes", 5);
+        this.wearing.add(clothes);
+    }
 
-	/***********************************METHODS***********************************/
+    /***********************************METHODS***********************************/
 
-	public void use(Item item, Personnage target) throws InvalidTarget
-	{
-		if (item instanceof Food)
-		{
-			this.eat((Food) item);
-		}
-		if (item instanceof Clothes)
-		{
-			this.wear((Clothes) item);
-		}
-		if (item instanceof Weapon)
-		{
-			this.attack((Weapon) item, target);
-		}
+    public void use(Item item, Personnage target) throws InvalidTarget
+    {
+        if (item instanceof Food) {
+            this.eat((Food) item);
+        }
+        if (item instanceof Clothes) {
+            this.wear((Clothes) item);
+        }
+        if (item instanceof Weapon) {
+            this.attack((Weapon) item, target);
+            if (item instanceof ThrowWeapon){
+                this.removeItem(item);
+            }
+        }
 
-	}
+    }
 
-	public void trade(Personnage character, Item give, Item receive)
-	{
-		if (character == null || give == null || receive == null)
-		{
-			System.out.println("Your trade request misses something...");
-		}
-		else
-		{
-			if (this.getItems().contains(give) && character.getItems().contains(receive))
-			{
-				this.addItem(receive);
-				character.addItem(give);
-				character.removeItem(receive);
-				this.removeItem(give);
-			}
-			else
-			{
-				System.out.println("This trade is impossible");
-			}
-		}
-	}
+    public void trade(Personnage character, Item give, Item receive) {
+        if (character == null || give == null || receive == null)
+        {
+            System.out.println("Your trade request misses something...");
+        }
+        else
+            {
+                if (this.getItems().contains(give) && character.getItems().contains(receive))
+                {
+                    this.addItem(receive);
+                    character.addItem(give);
+                    character.removeItem(receive);
+                    this.removeItem(give);
+                }
+                else {
+                    System.out.println("This trade is impossible");
+                }
+            }
+    }
 
-	public void pet(Personnage animal) throws NoSpeechAvailable
-	{
+    public void pet(Personnage animal) throws NoSpeechAvailable
+    {
         if (animal instanceof Animal)
         {
             ((Animal) animal).pet();

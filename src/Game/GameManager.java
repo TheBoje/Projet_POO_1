@@ -7,6 +7,7 @@ import Interpreteur.Interpreteur;
 import Interpreteur.Order;
 import Items.InvalidTarget;
 import Items.Item;
+import Personnages.GameWonException;
 import Personnages.NoSpeechAvailable;
 import Personnages.Personnage;
 import Personnages.Player;
@@ -49,6 +50,7 @@ public class GameManager
 
 	public void endGame()
 	{
+		System.out.println("ouaaazeazeaz");
 		// TODO Print congratulation stuff
 		// maybe wait for player to type "quit" as order
 	}
@@ -70,11 +72,11 @@ public class GameManager
 		}
 	}
 
-	public void talk(int index) throws InputError, NoSpeechAvailable
+	public void talk(int index) throws InputError, NoSpeechAvailable, GameWonException
 	{
 		if (index >= 0 && index < this.player.getTile().getPersonnages().size())
 		{
-			String talk_res = this.player.getTile().getPersonnage(index).getRandomSpeech();
+			String talk_res = this.player.getTile().getPersonnage(index).talk();
 			System.out.format("[%s]: %s\n", this.player.getTile().getPersonnage(index).getName(), talk_res);
 		}
 		else
@@ -121,12 +123,20 @@ public class GameManager
 				interpreteur.read();
 			} catch (Exception e)
 			{
-				System.out.format("Error: %s\n", e.getClass().getSimpleName());
-				if (e.getMessage() != null)
+				if (e instanceof GameWonException)
 				{
-					System.out.format("%s\n", e.getMessage());
+					this.endGame();
+					this.quit();
 				}
-				this.nextTurn();
+				else
+				{
+					System.out.format("Error: %s\n", e.getClass().getSimpleName());
+					if (e.getMessage() != null)
+					{
+						System.out.format("%s\n", e.getMessage());
+					}
+					this.nextTurn();
+				}
 			}
 			return true;
 		}
@@ -161,6 +171,26 @@ public class GameManager
 	public void help(Order order)
 	{
 		System.out.format("[%s] %s\n", order.getString(), order.getHelpMessage());
+	}
+
+	public void look() throws UnknownDirection
+	{
+		Tile tile = this.player.getTile();
+		Crossing[] crossings = tile.getCrossings();
+		int count = 0;
+		for (Crossing c : crossings)
+		{
+			if (c != null)
+			{
+				count++;
+			}
+		}
+		System.out.format("This tile contains;\n[%d] crossings:\n", count);
+		this.getDirection();
+		System.out.format("[%d] characters:\n", tile.getPersonnages().size());
+		this.getPersonnagesOnTile();
+		System.out.format("[%d] items:\n", tile.getItems().size());
+		this.getItemsOnTile();
 	}
 
 	/***********************************GETTERS***********************************/
@@ -253,5 +283,4 @@ public class GameManager
 	{
 		this.player.printDebug();
 	}
-
 }

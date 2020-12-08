@@ -2,10 +2,7 @@ package Game;
 
 import Crossings.Crossing;
 import Crossings.Door;
-import Items.Clothes;
-import Items.Food;
-import Items.Item;
-import Items.RangeWeapon;
+import Items.*;
 import Personnages.Personnage;
 import Personnages.Player;
 import Tiles.Direction;
@@ -69,6 +66,7 @@ public class World
 		player.addItem(Item.generateRandomItem(rn));
 		player.addItem(Item.generateRandomItem(rn));
 		player.addItem(Item.generateRandomItem(rn));
+		player.addItem(new MeleeWeapon("Poggeeerino", 20));
 		this.tilesMap.get(0).addPersonnage(player);
 	}
 

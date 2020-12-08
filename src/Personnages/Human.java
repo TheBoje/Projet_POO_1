@@ -18,9 +18,9 @@ public abstract class Human extends Personnage
 		super(tile, items, name, speeches);
 	}
 
-	public String talk()
+	public String talk() throws NoSpeechAvailable, GameWonException
 	{
-		return null;
+		return this.getRandomSpeech();
 	}
 
 }
