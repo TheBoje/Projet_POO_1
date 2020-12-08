@@ -29,18 +29,8 @@ public class World
 	public World(int tilesAmount, int crossingsAmount)
 	{
 		Random rn = new Random();
-		this.tilesMap = new HashMap<>();
-		// World generation section
-		for (int i = 0; i < tilesAmount; i++)
-		{
-			this.tilesMap.put(i, new Tile());
-			if (rn.nextBoolean())
-			{
-				this.tilesMap.get(i).addItem(Item.generateRandomItem(rn));
-			}
-			Personnage p = Personnage.generateRandomPersonnage(rn, this.tilesMap.get(i));
-			this.getTile(i).addPersonnage(p);
-		}
+		this.tilesMap = Tile.generateTiles(tilesAmount, rn);
+
 		for (int i = 0; i < crossingsAmount; i++)
 		{
 			Direction randomDir = null;
