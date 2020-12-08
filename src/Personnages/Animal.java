@@ -42,6 +42,12 @@ public class Animal extends Personnage
 		System.out.println(this.isAlive() ? "Vivant" : "Mort");
 	}
 
+	@Override
+	public String talk() throws NoSpeechAvailable
+	{
+		return this.getRandomSpeech();
+	}
+
 	// Ecrit une ligne de dialogue choisi aléatoirement dans la liste "speeches"
 	public void pet() throws NoSpeechAvailable
 	{

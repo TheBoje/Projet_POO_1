@@ -77,7 +77,7 @@ public abstract class Personnage
 			}
 			case 1 -> {
 				int chosenNPC = random.nextInt(NPCsNames.length);
-				personnage = new NPC(tile, inventory, NPCsNames[random.nextInt(NPCsNames.length)], Arrays.asList(NPC.NPCspeeches[chosenNPC]));
+				personnage = new NPC(tile, inventory, NPCsNames[chosenNPC], Arrays.asList(NPC.NPCspeeches[chosenNPC]));
 				personnage.addItem(Item.generateRandomItem(random, Item.CLOTHE_INDEX)); // Un pnj doit au moins avoir un vêtement
 			}
 			default -> personnage = null;
@@ -90,6 +90,8 @@ public abstract class Personnage
 
 
 	public abstract void print();
+
+	public abstract String talk() throws NoSpeechAvailable, GameWonException;
 
 	public boolean isAlive()
 	{

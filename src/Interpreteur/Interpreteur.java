@@ -5,6 +5,7 @@ import Crossings.ClosedCrossing;
 import Game.GameManager;
 import Game.InputError;
 import Items.InvalidTarget;
+import Personnages.GameWonException;
 import Personnages.NoSpeechAvailable;
 import Tiles.Direction;
 import Tiles.UnknownDirection;
@@ -34,7 +35,7 @@ public class Interpreteur
 	/***********************************METHODS***********************************/
 
 
-	public void read() throws UnknownOrder, CantOpenCrossing, InputError, UnknownDirection, InsufficientArguments, NoSpeechAvailable, InvalidTarget
+	public void read() throws Exception
 	{
 		System.out.format("> ");
 		String input = this.scanner.nextLine();
@@ -53,7 +54,7 @@ public class Interpreteur
 		this.exec(request);
 	}
 
-	public void exec(Request request) throws InputError, UnknownDirection, InsufficientArguments, CantOpenCrossing, NoSpeechAvailable, InvalidTarget, UnknownOrder
+	public void exec(Request request) throws Exception
 	{
 		switch (request.getOrder())
 		{

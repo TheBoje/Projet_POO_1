@@ -10,11 +10,10 @@ public class NPC extends Human
 {
 
 	// TODO remplire les speechs
-	public static final String[] ScientistSpeeches = {};
-	public static final String[] InuitSpeeches = {};
-	public static final String[] TreasuSeekerSpeeches = {};
+	public static final String[] ScientistSpeeches = {"Hello ! I'm a cool scientist", "Did you know your garbage ends up in Seal's stomach ?"};
+	public static final String[] InuitSpeeches = {"[Inuktitut] Hello ! I'm a cool Inuit", "[Inuktitut] I'm a fisherman, and I'm fishing fish", "[Inuktitut] Oh ! Who are you ?"};
+	public static final String[] TreasuSeekerSpeeches = {"Hello ! I'm a Treasure Seeker", "I am looking for treasures, can you help me out ?", "Did you find any treasure there ? I've been looking for AGES!"};
 	public static final String[][] NPCspeeches = {ScientistSpeeches, InuitSpeeches, TreasuSeekerSpeeches};
-	private int speechCount;
 
 	public NPC(Tile tile, List<Item> items, String name, int health, List<String> speeches)
 	{
@@ -39,8 +38,12 @@ public class NPC extends Human
 	}
 
 	@Override
-	public String talk()
+	public String talk() throws NoSpeechAvailable, GameWonException
 	{
-		return null;
+		if (this.getName().equals("Chief Scientist"))
+		{
+			throw new GameWonException();
+		}
+		return this.getRandomSpeech();
 	}
 }
