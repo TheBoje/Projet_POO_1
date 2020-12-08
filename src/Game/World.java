@@ -61,7 +61,7 @@ public class World
 				tileTemp.setNearbyTile(randomIndex2, new Door(rn.nextBoolean()), randomDir);
 				Tile tileTempInverted = this.tilesMap.get(randomIndex2);
 				tileTempInverted.setNearbyTile(randomIndex1, new Door(rn.nextBoolean()), invertedRandomDir);
-			} catch (UnknownDirection | TileError unknownDirection)
+			} catch (UnknownDirection | TileError e)
 			{
 				// This is never gonna happen, although we need to catch it.
 				System.out.format("World generation error: wrong Direction input \n");
@@ -74,10 +74,11 @@ public class World
 
 	public void createPlayer()
 	{
-		Player player = new Player(this.tilesMap.get(0), new ArrayList<>(0), "Good Player", new ArrayList<>(0));
-		player.addItem(new Clothes("Manteau", 10));
-		player.addItem(new Food("Doritos", 2));
-		player.addItem(new RangeWeapon("Weird weapon", 8, 10, 10));
+		Random rn = new Random();
+		Player player = new Player(this.tilesMap.get(0), new ArrayList<>(0), "Player", new ArrayList<>(0));
+		player.addItem(Item.generateRandomItem(rn));
+		player.addItem(Item.generateRandomItem(rn));
+		player.addItem(Item.generateRandomItem(rn));
 		this.tilesMap.get(0).addPersonnage(player);
 	}
 

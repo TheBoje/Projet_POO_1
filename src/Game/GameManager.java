@@ -42,6 +42,18 @@ public class GameManager
 
 	/***********************************METHODS***********************************/
 
+	public void initGame()
+	{
+		// TODO Print rules, win conditions, and other useful stuff
+	}
+
+	public void endGame()
+	{
+		// TODO Print congratulation stuff
+		// maybe wait for player to type "quit" as order
+	}
+
+
 	public void go(Direction dir) throws ClosedCrossing, UnknownDirection
 	{
 		Tile actualTile = this.player.getTile();
