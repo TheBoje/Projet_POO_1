@@ -154,6 +154,9 @@ public class Interpreteur
 					}
 				}
 			}
+			case LOOK -> {
+				this.gameManager.look();
+			}
 		}
 	}
 }

@@ -173,6 +173,26 @@ public class GameManager
 		System.out.format("[%s] %s\n", order.getString(), order.getHelpMessage());
 	}
 
+	public void look() throws UnknownDirection
+	{
+		Tile tile = this.player.getTile();
+		Crossing[] crossings = tile.getCrossings();
+		int count = 0;
+		for (Crossing c : crossings)
+		{
+			if (c != null)
+			{
+				count++;
+			}
+		}
+		System.out.format("This tile contains;\n[%d] crossings:\n", count);
+		this.getDirection();
+		System.out.format("[%d] characters:\n", tile.getPersonnages().size());
+		this.getPersonnagesOnTile();
+		System.out.format("[%d] items:\n", tile.getItems().size());
+		this.getItemsOnTile();
+	}
+
 	/***********************************GETTERS***********************************/
 	public void getDirection() throws UnknownDirection
 	{
@@ -263,5 +283,4 @@ public class GameManager
 	{
 		this.player.printDebug();
 	}
-
 }

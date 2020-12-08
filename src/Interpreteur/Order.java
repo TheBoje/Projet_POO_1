@@ -22,8 +22,9 @@ public enum Order
 				"items" for all the items on the tile
 				"usage" <item_index> to get the usage of the selected item"""),
 	USE("use", "use <item_index> <character_index> (ex: use 1 0)\n\tuse the selected item onto the selected character"),
-	GO("go", "go <dir_char> (ex: go N)\n\tgo to the selected direction "),
-	TRADE("trade", "Not implemented yet"); // TODO Win action
+	GO("go", "go <dir_char> (ex: go N)\n\tgo to the selected direction"),
+	TRADE("trade", "Not implemented yet"),
+	LOOK("look", "\"look\" to get a description of the tile you are on");
 
 	private final String stringValue;
 	private final String helpMessage;
