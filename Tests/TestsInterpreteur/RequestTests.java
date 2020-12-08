@@ -3,8 +3,7 @@ package TestsInterpreteur;
 import Interpreteur.*;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class RequestTests
 {
@@ -13,7 +12,7 @@ public class RequestTests
 	Request r;
 
 	@Test
-	public void testRequestConstructor()
+	public void testRequestConstructor() throws UnknownOrder
 	{
 		order = "go";
 		args[0] = "N";
@@ -21,8 +20,9 @@ public class RequestTests
 		assertEquals(exception.getClass(), NullPointerException.class);
 		exception = assertThrows(NullPointerException.class, () -> new Request(null, args));
 		assertEquals(exception.getClass(), NullPointerException.class);
-		exception = assertThrows(IllegalArgumentException.class, () -> new Request("go", null));
-		assertEquals(exception.getClass(), IllegalArgumentException.class);
+		r = new Request("go", null);
+		assertEquals(r.getArgs().length, 0);
+		assertEquals(r.getOrder(), Order.GO);
 	}
 
 	@Test

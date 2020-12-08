@@ -14,7 +14,7 @@ public class Request
 		}
 		else
 		{
-			throw new IllegalArgumentException();
+			this.args = new String[0];
 		}
 	}
 

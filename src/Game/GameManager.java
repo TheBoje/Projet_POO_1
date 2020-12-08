@@ -122,7 +122,10 @@ public class GameManager
 			} catch (Exception e)
 			{
 				System.out.format("Error: %s\n", e.getClass().getSimpleName());
-				System.out.format("%s\n", e.getMessage());
+				if (e.getMessage() != null)
+				{
+					System.out.format("%s\n", e.getMessage());
+				}
 				this.nextTurn();
 			}
 			return true;
