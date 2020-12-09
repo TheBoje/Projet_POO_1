@@ -47,11 +47,12 @@ public class GameManager
 
 	public void initGame()
 	{
-		System.out.println("""
-				Welcome to Banquise!
-				This game is inspired by the well known Colossal Cave adventure
-				The goal is to find and talk to the Chief scientist to win the game
-				Use the console to write orders. Checkout "help" to see all commands""");
+		System.out.println("###################### Floe game 2.0 ###################\n");
+		System.out.println("You were in a touristic flight over the arctic ice floe. But as if the karma wanted to punish you for " +
+				"\nbeing part of such a polluting trip, your plane crashed and you're the only survivor...");
+		System.out.println("You've learned your lesson though and now you have to make your way out of here before starving or \nfreezing to death. Your best " +
+				"shot here seems to be : finding someone and explain them what happened to you. \n" +
+				"Type your actions and press enter to confirm it, try typing \"help\" and see everything you can do and how.");
 	}
 
 	public void endGame()
