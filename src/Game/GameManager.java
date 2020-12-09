@@ -47,7 +47,11 @@ public class GameManager
 
 	public void initGame()
 	{
-		// TODO Print rules, win conditions, and other useful stuff
+		System.out.println("""
+				Welcome to Banquise!
+				This game is inspired by the well known Colossal Cave adventure
+				The goal is to find and talk to the Chief scientist to win the game
+				Use the console to write orders. Checkout "help" to see all commands""");
 	}
 
 	public void endGame()
