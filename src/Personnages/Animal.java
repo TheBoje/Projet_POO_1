@@ -9,7 +9,7 @@ public class Animal extends Personnage
 {
 
     /*
-    "Penguin",
+    		"Penguin",
             "White bear",
             "Killer whale",
             "White wolf",
