@@ -2,6 +2,12 @@ package Interpreteur;
 
 public enum Order
 {
+	// Représente l'ordre de l'input du player.
+	// Pour ajouter un ordre, il faut ajouter un element ici,
+	// en spécifiant les champs <stringInput> (message que doit rentrer  le player pour
+	// que l'ordre soit recu, et <helpMessage> (message envoyé au player pour
+	// décrire l'ordre).
+
 	DEBUG("debug", "display debug world data"),
 	TAKE("take", "take <item_index> (ex: take 8)\n\ttake item from the ground of the tile and put it in your inventory"),
 	HELP("help", "display all order's help message"),
@@ -29,9 +35,9 @@ public enum Order
 	private final String stringValue;
 	private final String helpMessage;
 
-	Order(String s, String helpMessage)
+	Order(String stringInput, String helpMessage)
 	{
-		this.stringValue = s;
+		this.stringValue = stringInput;
 		this.helpMessage = helpMessage;
 	}
 

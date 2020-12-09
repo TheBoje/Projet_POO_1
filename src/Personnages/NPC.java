@@ -8,8 +8,6 @@ import java.util.List;
 
 public class NPC extends Human
 {
-
-	// TODO remplire les speechs
 	public static final String[] ScientistSpeeches = {"Hello ! I'm a cool scientist", "Did you know your garbage ends up in Seal's stomach ?"};
 	public static final String[] InuitSpeeches = {"[Inuktitut] Hello ! I'm a cool Inuit", "[Inuktitut] I'm a fisherman, and I'm fishing fish", "[Inuktitut] Oh ! Who are you ?"};
 	public static final String[] TreasuSeekerSpeeches = {"Hello ! I'm a Treasure Seeker", "I am looking for treasures, can you help me out ?", "Did you find any treasure there ? I've been looking for AGES!"};
@@ -40,10 +38,13 @@ public class NPC extends Human
 	@Override
 	public String talk() throws NoSpeechAvailable, GameWonException
 	{
-		if (this.getName().equals("Chief Scientist"))
+		if (this.getName().equals("Chief scientist"))
 		{
 			throw new GameWonException();
 		}
-		return this.getRandomSpeech();
+		else
+		{
+			return this.getRandomSpeech();
+		}
 	}
 }

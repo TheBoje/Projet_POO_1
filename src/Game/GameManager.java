@@ -30,7 +30,7 @@ public class GameManager
 
 	public GameManager()
 	{
-		this.world = new World(5);
+		this.world = new World(3);
 		this.interpreteur = new Interpreteur(this);
 		try
 		{
@@ -50,28 +50,38 @@ public class GameManager
 
 	public void endGame()
 	{
-		System.out.println("ouaaazeazeaz");
-		// TODO Print congratulation stuff
-		// maybe wait for player to type "quit" as order
+		System.out.println("You won!\nThe Chief scientist saved you!\nThanks for playing our game");
 	}
 
-
+	// Lancé par l'interpréteur, déplace le player dans la direction <dir>.
+	// Retourne ClosedCrossing si le crossing est fermé, et UnknownDirection
+	// si l'input n'est pas valide
 	public void go(Direction dir) throws ClosedCrossing, UnknownDirection
 	{
 		Tile actualTile = this.player.getTile();
 		Tile targetTile = this.world.getTile(actualTile.getNextTileID(dir));
-		if (!actualTile.getCrossing(dir).isOpen())
+		if (actualTile.getCrossing(dir) != null)
 		{
-			throw new ClosedCrossing();
+			if (!actualTile.getCrossing(dir).isOpen())
+			{
+				throw new ClosedCrossing();
+			}
+			else
+			{
+				actualTile.remotePersonnage(this.player);
+				targetTile.addPersonnage(this.player);
+				this.player.setTile(targetTile);
+			}
 		}
 		else
 		{
-			actualTile.remotePersonnage(this.player);
-			targetTile.addPersonnage(this.player);
-			this.player.setTile(targetTile);
+			throw new UnknownDirection();
 		}
 	}
 
+	// Lancé par l'interpréteur. Demande un speech au personnage ciblé.
+	// Le personnage ciblé est représenté par son index dans la liste
+	// des personnages de la tile.
 	public void talk(int index) throws InputError, NoSpeechAvailable, GameWonException
 	{
 		if (index >= 0 && index < this.player.getTile().getPersonnages().size())
@@ -85,6 +95,10 @@ public class GameManager
 		}
 	}
 
+	// Lancé par l'interpréteur. Lance l'utilisation de l'objet sélectionné.
+	// Le premier argument est l'index de l'objet dans l'inventairesélectionné,
+	// et le deuxieme argument est l'index du personnage cible.
+	// Note: il faut que l'objet existe dans l'inventaire.
 	public void use(String[] args) throws InputError, InvalidTarget
 	{
 		int item_index = Integer.parseInt(args[0]);
@@ -99,6 +113,8 @@ public class GameManager
 		}
 	}
 
+	// Lancé par l'interpréteur. Permet de prendre l'objet d'index précisé
+	// sur la tile pour le placer dans l'inventaire du player.
 	public void take(int index) throws InputError
 	{
 		if (index >= 0 && index < this.player.getItems().size())
@@ -114,6 +130,10 @@ public class GameManager
 
 	}
 
+	// Gestion des tours du player. A chaque tour, le player entre
+	// une commande dans la console. Il n'y a pas de limite de tours
+	// et le dernier tour est pour l'instant defini par l'action de
+	// discuter avec le chef scientifique (ou mourir).
 	public boolean nextTurn()
 	{
 		if (player.isAlive())
@@ -147,17 +167,30 @@ public class GameManager
 		}
 	}
 
+	// Lancé par l'interpréteur. Permet de lancé l'ouverture d'un crossing
+	// qui est fermé. La direction d'input représente la direction cible pour
+	// l'ouverture du crossing
 	public void open(Direction dir) throws CantOpenCrossing, UnknownDirection
 	{
-		this.player.getTile().getCrossing(dir).tryOpen(this.player.getItems());
+		Tile tile = this.player.getTile();
+		if (tile != null)
+		{
+			tile.getCrossing(dir).tryOpen(this.player.getItems());
+		}
+		else
+		{
+			throw new CantOpenCrossing();
+		}
 	}
 
+	// Ferme l'application
 	public void quit()
 	{
 		System.out.println("Closing app");
 		System.exit(1);
 	}
 
+	// Lance le message d'aide de tous les ordres (voir order.java)
 	public void help()
 	{
 		System.out.format("LIST OF COMMANDS:\n");
@@ -168,11 +201,15 @@ public class GameManager
 		}
 	}
 
+	// Lance le message d'aide de l'ordre précisé
 	public void help(Order order)
 	{
 		System.out.format("[%s] %s\n", order.getString(), order.getHelpMessage());
 	}
 
+	// Lancé par l'interpréteur. Affiche tous les crossings
+	// disponibles, tous les personnages présents sur la
+	// tile et tous les objets sur la tile.
 	public void look() throws UnknownDirection
 	{
 		Tile tile = this.player.getTile();
@@ -194,6 +231,7 @@ public class GameManager
 	}
 
 	/***********************************GETTERS***********************************/
+	// Liste toutes les directions de la tile
 	public void getDirection() throws UnknownDirection
 	{
 		Crossing[] playerCrossings = this.player.getTile().getCrossings();
@@ -209,16 +247,18 @@ public class GameManager
 		}
 	}
 
+	// Liste les usages de tous les objets dans l'inventaire du player
 	public void getUsage()
 	{
 		List<Item> items = player.getItems();
 
 		for (int i = 0; i < items.size(); i++)
 		{
-			System.out.format("\t[%d] %s\n", i, items.get(i).getUsage());
+			System.out.format("\t[%d] %s - %s\n", i, items.get(i).getName() ,items.get(i).getUsage());
 		}
 	}
 
+	// Liste tous les personnages présents sur la tile du player
 	public void getPersonnagesOnTile()
 	{
 		for (int i = 0; i < this.player.getTile().getPersonnages().size(); i++)
@@ -235,6 +275,7 @@ public class GameManager
 		}
 	}
 
+	// Liste tous les items présents sur la tile du player
 	public void getItemsOnTile()
 	{
 		List<Item> items = this.player.getTile().getItems();
@@ -251,6 +292,7 @@ public class GameManager
 		}
 	}
 
+	// Liste tous les items présents dans l'inventaire du player
 	public void getInventory()
 	{
 		List<Item> items = this.player.getItems();

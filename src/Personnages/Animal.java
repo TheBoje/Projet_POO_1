@@ -16,12 +16,11 @@ public class Animal extends Personnage
             "Seal"
     */
 
-	// TODO remplire les speechs
-	public static final String[] PenguinSpeeches = {};
-	public static final String[] WhiteBearSpeeches = {};
-	public static final String[] KillerWhaleSpeeches = {};
-	public static final String[] WhiteWolfSpeeches = {};
-	public static final String[] SealSpeeches = {};
+	public static final String[] PenguinSpeeches = {"[Undistinguising Penguin noises]"};
+	public static final String[] WhiteBearSpeeches = {"[growl]", "[grrrrr]"};
+	public static final String[] KillerWhaleSpeeches = {"[Weird killer whale noises]"};
+	public static final String[] WhiteWolfSpeeches = {"OOooowhooo!"};
+	public static final String[] SealSpeeches = {"[Cute seal noises]"};
 
 	public static final String[][] AnimalSpeeches = {PenguinSpeeches, WhiteBearSpeeches, KillerWhaleSpeeches, WhiteWolfSpeeches, SealSpeeches};
 

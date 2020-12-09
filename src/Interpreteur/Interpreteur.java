@@ -34,7 +34,9 @@ public class Interpreteur
 
 	/***********************************METHODS***********************************/
 
-
+	// Lecture de la console pour récupérer l'input du player.
+	// Cet input est alors converti en un ordre (avec arguments)
+	// qui est alors traité via la méthode exec.
 	public void read() throws Exception
 	{
 		System.out.format("> ");
@@ -54,6 +56,11 @@ public class Interpreteur
 		this.exec(request);
 	}
 
+	// Traitement de l'ordre du player. En fonction de l'ordre,
+	// on appelle la fonction correspondante dans le gameManager.
+	// Pour ajouter un ordre, il faut simplement ajouter le cas
+	// dans le switch ci-dessous et écrire la fonction qu'il lance
+	// dans gameManager.
 	public void exec(Request request) throws Exception
 	{
 		switch (request.getOrder())

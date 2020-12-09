@@ -61,7 +61,7 @@ public class World
 
 
 	/***********************************METHODS***********************************/
-
+	// Crée le player sur la première case de la carte
 	public void createPlayer()
 	{
 		Random rn = new Random();
@@ -69,12 +69,12 @@ public class World
 		player.addItem(Item.generateRandomItem(rn));
 		player.addItem(Item.generateRandomItem(rn));
 		player.addItem(Item.generateRandomItem(rn));
-		player.addItem(new MeleeWeapon("Poggeeerino", 20));
 		this.tilesMap.get(0).addPersonnage(player);
 	}
 
 	/***********************************GETTERS***********************************/
 
+	// Recherche du player dans la carte, retourne une exception si le player n'existe pas
 	public Player getPlayer() throws Exception
 	{
 		for (Map.Entry<Integer, Tile> entry : this.tilesMap.entrySet())
@@ -99,6 +99,7 @@ public class World
 	/***********************************SETTERS***********************************/
 	/***********************************DISPLAY***********************************/
 
+	// Affiche le detail de chaque case du monde, surtout utilisé pour le debug
 	public void print()
 	{
 		System.out.format("WORLD : \n");
