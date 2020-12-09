@@ -16,6 +16,7 @@ import Tiles.Tile;
 import Tiles.UnknownDirection;
 
 import java.util.List;
+import java.util.Random;
 
 public class GameManager
 {
@@ -30,7 +31,8 @@ public class GameManager
 
 	public GameManager()
 	{
-		this.world = new World(3);
+		Random rn = new Random();
+		this.world = new World(rn.nextInt(20) + 5); // On génère entre 5 et 25 tiles
 		this.interpreteur = new Interpreteur(this);
 		try
 		{
