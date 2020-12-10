@@ -28,6 +28,11 @@ public class World
 
 		this.createPlayer();
 
+		this.addEndingTile(rn);
+	}
+
+	public void addEndingTile(Random rn)
+	{
 		Tile endTile = new Tile();
 		Personnage endingNPC = new NPC(endTile, new ArrayList<>(), "Chief scientist", new ArrayList<>());
 		endTile.addPersonnage(endingNPC);
@@ -58,7 +63,6 @@ public class World
 				break;
 		}
 	}
-
 
 	/***********************************METHODS***********************************/
 	// Crée le player sur la première case de la carte
