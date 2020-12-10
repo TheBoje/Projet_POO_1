@@ -112,6 +112,24 @@ class PlayerTest extends HumanTest
 		assertFalse(p1.getItems().contains(food));
 	}
 
+	@Test
+	void healTestFail()
+	{
+		p1 = new Player(null, inventory1, name, speeches1);
+		int initHP = p1.getHp();
+		p1.heal(-5);
+		assertEquals(initHP, p1.getHp());
+	}
+
+	@Test
+	void damageFail()
+	{
+		p1 = new Player(null, inventory1, name, speeches1);
+		int initHP = p1.getHp();
+		p1.takeDamage(-5);
+		assertEquals(initHP, p1.getHp());
+	}
+
 	//Testing if a character can wear smth
 	@Test
 	void wear()

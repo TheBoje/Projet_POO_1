@@ -135,7 +135,7 @@ public class ItemTest
         assertTrue(this.throwWeapon.getHasBeenLaunched());
     }
 
-    // On vérifie que la nourriture rend de la faim et qu'elle se consomme
+    // On vérifie que la nourriture rend de la faim et de la vie et qu'elle se consomme
     @Test
     void Food1()
     {
@@ -145,10 +145,15 @@ public class ItemTest
         {
             this.player.starve();
         }
+        int hps = this.player.getHp();
+        this.player.takeDamage(5);
+
         assertNotEquals(hunger, this.player.getHunger());
         this.food.use(this.player);
         assertEquals(hunger, this.player.getHunger());
         assertTrue(this.food.getHasBeenAte());
+
+        assertNotEquals(this.player.getHp(), hps);
     }
 
     @Test
