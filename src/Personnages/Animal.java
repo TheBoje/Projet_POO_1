@@ -1,20 +1,15 @@
 package Personnages;
 
+import Items.InvalidTarget;
 import Items.Item;
 import Tiles.Tile;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Animal extends Personnage
 {
-
-    /*
-    		"Penguin",
-            "White bear",
-            "Killer whale",
-            "White wolf",
-            "Seal"
-    */
 
 	public static final String[] PenguinSpeeches = {"[Undistinguising Penguin noises]"};
 	public static final String[] WhiteBearSpeeches = {"[growl]", "[grrrrr]"};
@@ -51,6 +46,21 @@ public class Animal extends Personnage
 	public void pet() throws NoSpeechAvailable
 	{
 		System.out.println("- " + this.getRandomSpeech());
+	}
+
+	public void protectTerritory(Random rn)
+	{
+		List<Personnage> targets = new ArrayList<>(this.getTile().getPersonnages());
+		targets.remove(this);
+
+		try
+		{
+			this.attack(null, targets.get(rn.nextInt(targets.size())));
+		}
+		catch (InvalidTarget invalidTarget)
+		{
+			invalidTarget.printStackTrace();
+		}
 	}
 
 }

@@ -7,10 +7,7 @@ import Interpreteur.Interpreteur;
 import Interpreteur.Order;
 import Items.InvalidTarget;
 import Items.Item;
-import Personnages.GameWonException;
-import Personnages.NoSpeechAvailable;
-import Personnages.Personnage;
-import Personnages.Player;
+import Personnages.*;
 import Tiles.Direction;
 import Tiles.Tile;
 import Tiles.UnknownDirection;
@@ -26,13 +23,14 @@ public class GameManager
 	private final World world;
 	private final Interpreteur interpreteur;
 	private Player player;
+	private Random rn;
 
 	/***********************************CONSTRUCTOR***********************************/
 
 	public GameManager()
 	{
-		Random rn = new Random();
-		this.world = new World(rn.nextInt(20) + 5); // On génère entre 5 et 25 tiles
+		this.rn = new Random();
+		this.world = new World(this.rn.nextInt(20) + 5); // On génère entre 5 et 25 tiles
 		this.interpreteur = new Interpreteur(this);
 		try
 		{
@@ -149,6 +147,14 @@ public class GameManager
 		{
 			try
 			{
+				for(Personnage perso : this.player.getTile().getPersonnages())
+				{
+					if(perso instanceof Animal)
+					{
+						((Animal) perso).protectTerritory(this.rn);
+					}
+				}
+
 				interpreteur.read();
 			} catch (Exception e)
 			{
