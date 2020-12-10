@@ -114,17 +114,33 @@ public abstract class Personnage
 
 	public void takeDamage(int amount)
 	{
-		this.hp -= amount;
-		System.out.println("Ouch ! " + this.name + " takes " + amount + " damages !");
-		if (this.hp <= 0)
+		if(amount >= 0)
 		{
-			this.hp = 0;
-			this.dropInventory();
-			this.printDeath();
-			this.tile.remotePersonnage(this);
+			this.hp -= amount;
+			System.out.println("Ouch ! " + this.name + " takes " + amount + " damages !");
+			if (this.hp <= 0)
+			{
+				this.hp = 0;
+				this.dropInventory();
+				this.printDeath();
+				this.tile.remotePersonnage(this);
+			}
 		}
 	}
 
+	public void heal(int amount)
+	{
+
+		if(amount >= 0)
+		{
+			this.hp += amount;
+			System.out.println("You regenerated " + amount + " hp !");
+			if (this.hp > DEFAULT_HP)
+			{
+				this.hp = DEFAULT_HP;
+			}
+		}
+	}
 
 	public boolean addItem(Item object)
 	{

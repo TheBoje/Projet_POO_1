@@ -31,6 +31,7 @@ public class Food extends Item
 			if (perso instanceof Player)
 			{
 				((Player) perso).fillHunger(this.nutValue);
+				perso.heal(this.nutValue / 2);
 				this.hasBeenAte = true;
 				System.out.println("You ate " + this.getName());
 			}
