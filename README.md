@@ -20,7 +20,7 @@ cd out # Placez vous dans le dossier "out"
 java Game.Main 
 ```
 - Via raccourci :
-Ouvrer le fichier `RUN_WINDOWS.bat` qui se trouve dans la racine.
+Ouvrez le fichier `RUN_WINDOWS.bat` qui se trouve dans la racine.
 ### Linux
 Pour lancer notre jeu sous Linux, il existe plusieurs méthodes pour lancer notre jeu.
 - Via ligne de commande :
