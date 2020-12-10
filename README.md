@@ -55,6 +55,7 @@ use <item_index> <target_character_index>
 go <crossing_direction>
 trade 
 look
+player
 ```
 On note que certains ordres ne sont pas encore implémentés.
 

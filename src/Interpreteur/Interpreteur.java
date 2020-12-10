@@ -1,14 +1,9 @@
 package Interpreteur;
 
-import Crossings.CantOpenCrossing;
 import Crossings.ClosedCrossing;
 import Game.GameManager;
 import Game.InputError;
-import Items.InvalidTarget;
-import Personnages.GameWonException;
-import Personnages.NoSpeechAvailable;
 import Tiles.Direction;
-import Tiles.UnknownDirection;
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -163,6 +158,9 @@ public class Interpreteur
 			}
 			case LOOK -> {
 				this.gameManager.look();
+			}
+			case PLAYER -> {
+				this.gameManager.printPlayer();
 			}
 		}
 	}

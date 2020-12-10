@@ -343,6 +343,6 @@ public class GameManager
 
 	public void printPlayer()
 	{
-		this.player.printDebug();
+		this.player.print();
 	}
 }
