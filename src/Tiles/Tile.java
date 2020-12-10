@@ -11,7 +11,7 @@ public class Tile
 {
 	public static final int MAX_ITEM_ON_TILE = 3;
 	public static final int MAX_PERSONNAGE_ON_TILE = 2;
-	public static final int CROSSING_CHANCE = 25;
+	public static final int CROSSING_CHANCE = 50;
 
 	/***********************************ATTRIBUTES***********************************/
 
@@ -35,12 +35,12 @@ public class Tile
 					int idNextTile = map.size();
 
 					// On lui ajoute des items
-					for(int j = 0; j < rn.nextInt(MAX_ITEM_ON_TILE); j++)
+					for(int j = 0; j <= rn.nextInt(MAX_ITEM_ON_TILE); j++)
 						if (rn.nextBoolean())
 							nextTile.addItem(Item.generateRandomItem(rn));
 
 					// On lui ajoute des personnages
-					for(int j = 0; j < rn.nextInt(MAX_PERSONNAGE_ON_TILE); j++)
+					for(int j = 0; j <= rn.nextInt(MAX_PERSONNAGE_ON_TILE); j++)
 						if (rn.nextBoolean())
 							nextTile.addPersonnage(Personnage.generateRandomPersonnage(rn, nextTile));
 

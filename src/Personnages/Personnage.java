@@ -115,6 +115,7 @@ public abstract class Personnage
 	public void takeDamage(int amount)
 	{
 		this.hp -= amount;
+		System.out.println("Ouch ! " + this.name + " takes " + amount + " damages !");
 		if (this.hp <= 0)
 		{
 			this.hp = 0;
