@@ -1,14 +1,12 @@
 package Game;
 
 import Crossings.Crossing;
-import Crossings.Door;
 import Items.*;
 import Personnages.NPC;
 import Personnages.Personnage;
 import Personnages.Player;
 import Tiles.Direction;
 import Tiles.Tile;
-import Tiles.TileError;
 import Tiles.UnknownDirection;
 
 import java.util.*;

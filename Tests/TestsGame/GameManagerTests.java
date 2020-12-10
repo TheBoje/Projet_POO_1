@@ -1,9 +1,8 @@
 package TestsGame;
 
 import Crossings.CantOpenCrossing;
-import Crossings.ClosedCrossing;
 import Crossings.Crossing;
-import Crossings.Door;
+import Crossings.Pathway;
 import Game.GameManager;
 import Game.InputError;
 import Items.Item;
@@ -16,7 +15,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -35,7 +33,7 @@ public class GameManagerTests
 	{
 		Tile tile = gm.getWorld().getTile(0);
 		Player player = gm.getWorld().getPlayer();
-		Crossing crossing = new Door();
+		Crossing crossing = new Pathway();
 		int dir = -1;
 		for (int i = 0; i < 4; i++)
 		{
@@ -78,7 +76,7 @@ public class GameManagerTests
 	public void testOpen() throws TileError, UnknownDirection, CantOpenCrossing
 	{
 		Tile tile = gm.getWorld().getTile(0);
-		Crossing crossing = new Door(false);
+		Crossing crossing = new Pathway(false);
 		tile.setNearbyTile(1, crossing, Direction.N);
 		gm.open(Direction.N);
 		assertTrue(tile.getCrossing(Direction.N).isOpen());

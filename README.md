@@ -31,8 +31,8 @@ Pour obtenir la liste des liaisons, on peut utiliser la commande `look` ou `list
 > look
 This tile contains;
 [2] crossings:
-	[N] Door - close
-	[S] Door - open
+	[N] Pathway - close
+	[S] Pathway - open
 [1] characters:
 	[0] Player (you)
 [0] items:
