@@ -12,12 +12,25 @@ javac -d ./out src/**/*.java
 ```
 
 ## Installation
-
-Pour lancer notre jeu, il faut utiliser la commande :
-
-```bash
-java out.Game.Main
+### Windows
+Pour lancer notre jeu sous Windows, il existe plusieurs méthodes pour lancer notre jeu. 
+- Via ligne de commande :
+```shell
+cd out # Placez vous dans le dossier "out"
+java Game.Main 
 ```
+- Via raccourci :
+Ouvrer le fichier `RUN_WINDOWS.bat` qui se trouve dans la racine.
+### Linux
+Pour lancer notre jeu sous Linux, il existe plusieurs méthodes pour lancer notre jeu.
+- Via ligne de commande :
+```shell
+cd out # Placez vous dans le dossier "out"
+java Game.Main 
+```
+- En exécutant le raccourci :
+  Ouvrez le fichier `RUN_LINUX.sh` qui se trouve dans la racine via `bash RUN_LINUX.sh`
+
 
 ## Utilisation
 L'utilisation de notre jeu se fait uniquement via la console de commande. Pour se faire, il existe plusieurs commandes pour réaliser des actions. La liste des commandes est résumée dans la commande help. L'utilisation est la suivante :
