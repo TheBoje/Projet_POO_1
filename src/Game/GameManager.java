@@ -147,11 +147,16 @@ public class GameManager
 		{
 			try
 			{
-				for(Personnage perso : this.player.getTile().getPersonnages())
+				List<Personnage> persos = this.player.getTile().getPersonnages();
+				for(Personnage perso : persos)
 				{
 					if(perso instanceof Animal)
 					{
 						((Animal) perso).protectTerritory(this.rn);
+					}
+					else if(perso instanceof NPC)
+					{
+						((NPC) perso).react(persos.get(this.rn.nextInt(persos.size())));
 					}
 				}
 
