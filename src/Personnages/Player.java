@@ -115,12 +115,26 @@ public class Player extends Human {
 
 	public void starve()
 	{
-		this.hunger -= 1;
+		if (this.hunger == 0)
+		{
+			this.takeDamage(1);
+		}
+		else
+		{
+			this.hunger -= 1;
+		}
 	}
 
 	public void chill()
 	{
-		this.bodyHeat -= 1;
+		if (this.bodyHeat == 0)
+		{
+			this.takeDamage(1);
+		}
+		else
+		{
+			this.bodyHeat -= 1;
+		}
 	}
 
 	/***********************************GETTERS***********************************/
