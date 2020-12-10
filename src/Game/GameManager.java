@@ -78,6 +78,8 @@ public class GameManager
 				actualTile.remotePersonnage(this.player);
 				targetTile.addPersonnage(this.player);
 				this.player.setTile(targetTile);
+				this.player.starve();
+				this.player.chill();
 			}
 		}
 		else
