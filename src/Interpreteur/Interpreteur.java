@@ -29,6 +29,11 @@ public class Interpreteur
 
 	/***********************************METHODS***********************************/
 
+	public void closeScanner()
+	{
+		this.scanner.close();
+	}
+
 	// Lecture de la console pour récupérer l'input du player.
 	// Cet input est alors converti en un ordre (avec arguments)
 	// qui est alors traité via la méthode exec.
