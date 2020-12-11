@@ -12,5 +12,4 @@ public class Main
 			continueGame = gameManager.nextTurn();
 		}
 	}
-	// TODO README.MD
 }
