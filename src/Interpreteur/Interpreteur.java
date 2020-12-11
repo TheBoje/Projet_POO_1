@@ -1,14 +1,9 @@
 package Interpreteur;
 
-import Crossings.CantOpenCrossing;
 import Crossings.ClosedCrossing;
 import Game.GameManager;
 import Game.InputError;
-import Items.InvalidTarget;
-import Personnages.GameWonException;
-import Personnages.NoSpeechAvailable;
 import Tiles.Direction;
-import Tiles.UnknownDirection;
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -33,6 +28,11 @@ public class Interpreteur
 
 
 	/***********************************METHODS***********************************/
+
+	public void closeScanner()
+	{
+		this.scanner.close();
+	}
 
 	// Lecture de la console pour récupérer l'input du player.
 	// Cet input est alors converti en un ordre (avec arguments)
@@ -122,7 +122,7 @@ public class Interpreteur
 				{
 					switch (request.getArg(0).toLowerCase())
 					{
-						case "tile", "doors", "door", "crossing", "crossings", "dir", "direction", "directions" -> this.gameManager.getDirection();
+						case "tile", "doors", "door", "crossing", "crossings", "dir", "direction", "directions", "pass" -> this.gameManager.getDirection();
 						case "inv", "inventory" -> this.gameManager.getInventory();
 						case "talk", "characters", "character", "chars", "char" -> this.gameManager.getPersonnagesOnTile();
 						case "search", "items", "item" -> this.gameManager.getItemsOnTile();
@@ -157,12 +157,15 @@ public class Interpreteur
 						this.gameManager.go(dir);
 					} catch (ClosedCrossing e)
 					{
-						System.out.format("You can't go there, the door is closed. Try OPEN command\n");
+						System.out.format("You can't go there, the passway is closed. Try OPEN command\n");
 					}
 				}
 			}
 			case LOOK -> {
 				this.gameManager.look();
+			}
+			case PLAYER -> {
+				this.gameManager.printPlayer();
 			}
 		}
 	}

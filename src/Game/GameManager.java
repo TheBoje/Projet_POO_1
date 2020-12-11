@@ -207,6 +207,7 @@ public class GameManager
 	public void quit()
 	{
 		System.out.println("Closing app");
+		this.interpreteur.closeScanner();
 		System.exit(1);
 	}
 
@@ -343,6 +344,6 @@ public class GameManager
 
 	public void printPlayer()
 	{
-		this.player.printDebug();
+		this.player.print();
 	}
 }

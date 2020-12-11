@@ -21,7 +21,7 @@ public abstract class Crossing
 
 		switch (random.nextInt(NB_TYPE_CROSSINGS))
 		{
-			case 0 -> crossing = new Door(random.nextBoolean());
+			case 0 -> crossing = new Pathway(random.nextBoolean());
 			default -> crossing = null;
 		}
 

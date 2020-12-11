@@ -4,14 +4,14 @@ import Items.Item;
 
 import java.util.List;
 
-public class Door extends Crossing
+public class Pathway extends Crossing
 {
-	public Door(boolean isOpen)
+	public Pathway(boolean isOpen)
 	{
 		super(isOpen);
 	}
 
-	public Door()
+	public Pathway()
 	{
 		super(true);
 	}

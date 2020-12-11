@@ -1,6 +1,6 @@
 package TestsTiles;
 
-import Crossings.Door;
+import Crossings.Pathway;
 import Items.Item;
 import Personnages.Personnage;
 import Tiles.Direction;
@@ -39,7 +39,7 @@ public class TileTests
 		}
 
 		Direction randomDir = Direction.intToDirection(rn.nextInt(3));
-		tile.setNearbyTile(1, new Door(true), randomDir);
+		tile.setNearbyTile(1, new Pathway(true), randomDir);
 	}
 
 	@Test
@@ -72,9 +72,9 @@ public class TileTests
 	@Test
 	public void testGetCrossing() throws TileError, UnknownDirection
 	{
-		Door door = new Door(true);
-		tile.setNearbyTile(2, door, Direction.S);
-		assertEquals(door, tile.getCrossing(Direction.S));
+		Pathway pathway = new Pathway(true);
+		tile.setNearbyTile(2, pathway, Direction.S);
+		assertEquals(pathway, tile.getCrossing(Direction.S));
 	}
 
 	@Test
@@ -103,8 +103,8 @@ public class TileTests
 	@Test
 	public void testSetNearbyTile()
 	{
-		Door door = null;
-		Throwable exception = assertThrows(TileError.class, () -> tile.setNearbyTile(-1, door, Direction.S));
+		Pathway pathway = null;
+		Throwable exception = assertThrows(TileError.class, () -> tile.setNearbyTile(-1, pathway, Direction.S));
 		assertEquals(exception.getClass(), TileError.class);
 	}
 

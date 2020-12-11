@@ -206,17 +206,17 @@ public class Player extends Human {
 		{
 			System.out.println("You're about to die from coldness");
 		}
-		System.out.println("Inventory :");
+		System.out.println("\nInventory :");
 		for (Item current : getItems())
 		{
-			System.out.format("- %s ", current.getName());
+			System.out.format("- %s\n", current.getName());
 		}
-		System.out.println("Wearing :");
+		System.out.println("\nWearing :");
 		for (Item current : this.wearing)
 		{
-			System.out.format("- %s", current.getName());
+			System.out.format("- %s\n", current.getName());
 		}
-		System.out.println("################################################################");
+		System.out.println("\n################################################################");
 	}
 
 	public void printDebug()
@@ -232,7 +232,7 @@ public class Player extends Human {
 		}
 		if (this.wearing.size() > 0)
 		{
-			System.out.println("Wearing :");
+			System.out.println("\nWearing :");
 			for (Item item : this.wearing)
 			{
 				System.out.format("\t%s\n", item.getName());

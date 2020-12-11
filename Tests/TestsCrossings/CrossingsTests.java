@@ -17,8 +17,8 @@ public class CrossingsTests
 	@BeforeEach
 	void init()
 	{
-		door1 = new Door(true);
-		door2 = new Door(false);
+		door1 = new Pathway(true);
+		door2 = new Pathway(false);
 	}
 
 	@Test
