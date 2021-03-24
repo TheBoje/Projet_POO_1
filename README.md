@@ -17,7 +17,7 @@ Pour lancer notre jeu sous Windows, il existe plusieurs méthodes pour lancer no
 - Via ligne de commande :
 ```shell
 cd out # Placez vous dans le dossier "out"
-java Game.Main 
+java modele.Game.Main 
 ```
 - Via raccourci :
 Ouvrez le fichier `RUN_WINDOWS.bat` qui se trouve dans la racine.
@@ -26,7 +26,7 @@ Pour lancer notre jeu sous Linux, il existe plusieurs méthodes pour lancer notr
 - Via ligne de commande :
 ```shell
 cd out # Placez vous dans le dossier "out"
-java Game.Main 
+java modele.Game.Main 
 ```
 - En exécutant le raccourci :
   Ouvrez le fichier `RUN_LINUX.sh` qui se trouve dans la racine via `bash RUN_LINUX.sh`

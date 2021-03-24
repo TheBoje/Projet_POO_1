@@ -1,9 +1,8 @@
 package TestsItems;
 
-import Items.*;
-import Personnages.NPC;
-import Personnages.Player;
-import org.junit.jupiter.api.BeforeAll;
+import modele.Items.*;
+import modele.Personnages.NPC;
+import modele.Personnages.Player;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

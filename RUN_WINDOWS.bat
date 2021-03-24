@@ -1,2 +1,2 @@
 cd out
-java Game.Main
+java modele.Game.Main

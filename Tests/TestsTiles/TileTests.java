@@ -1,12 +1,12 @@
 package TestsTiles;
 
-import Crossings.Pathway;
-import Items.Item;
-import Personnages.Personnage;
-import Tiles.Direction;
-import Tiles.Tile;
-import Tiles.TileError;
-import Tiles.UnknownDirection;
+import modele.Crossings.Pathway;
+import modele.Items.Item;
+import modele.Personnages.Personnage;
+import modele.Tiles.Direction;
+import modele.Tiles.Tile;
+import modele.Tiles.TileError;
+import modele.Tiles.UnknownDirection;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

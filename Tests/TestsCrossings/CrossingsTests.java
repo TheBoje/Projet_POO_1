@@ -1,6 +1,6 @@
 package TestsCrossings;
 
-import Crossings.*;
+import modele.Crossings.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

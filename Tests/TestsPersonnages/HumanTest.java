@@ -1,9 +1,9 @@
 package TestsPersonnages;
 
-import Items.Item;
-import Personnages.GameWonException;
-import Personnages.NoSpeechAvailable;
-import Personnages.Player;
+import modele.Items.Item;
+import modele.Personnages.GameWonException;
+import modele.Personnages.NoSpeechAvailable;
+import modele.Personnages.Player;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

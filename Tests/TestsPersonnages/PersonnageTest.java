@@ -1,10 +1,10 @@
 package TestsPersonnages;
 
-import Items.*;
-import Personnages.NPC;
-import Personnages.NoSpeechAvailable;
-import Personnages.Player;
-import Tiles.Tile;
+import modele.Items.*;
+import modele.Personnages.NPC;
+import modele.Personnages.NoSpeechAvailable;
+import modele.Personnages.Player;
+import modele.Tiles.Tile;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

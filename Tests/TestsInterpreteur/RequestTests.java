@@ -1,6 +1,6 @@
 package TestsInterpreteur;
 
-import Interpreteur.*;
+import modele.Interpreteur.*;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

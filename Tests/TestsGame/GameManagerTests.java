@@ -1,16 +1,16 @@
 package TestsGame;
 
-import Crossings.CantOpenCrossing;
-import Crossings.Crossing;
-import Crossings.Pathway;
-import Game.GameManager;
-import Game.InputError;
-import Items.Item;
-import Personnages.Player;
-import Tiles.Direction;
-import Tiles.Tile;
-import Tiles.TileError;
-import Tiles.UnknownDirection;
+import modele.Crossings.CantOpenCrossing;
+import modele.Crossings.Crossing;
+import modele.Crossings.Pathway;
+import modele.Game.GameManager;
+import modele.Game.InputError;
+import modele.Items.Item;
+import modele.Personnages.Player;
+import modele.Tiles.Direction;
+import modele.Tiles.Tile;
+import modele.Tiles.TileError;
+import modele.Tiles.UnknownDirection;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

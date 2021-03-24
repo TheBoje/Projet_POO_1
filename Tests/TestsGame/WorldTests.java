@@ -1,6 +1,6 @@
 package TestsGame;
 
-import Game.World;
+import modele.Game.World;
 import org.junit.jupiter.api.BeforeEach;
 
 public class WorldTests
