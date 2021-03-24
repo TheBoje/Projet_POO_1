@@ -1,4 +1,4 @@
-package Personnages;
+package modele.Personnages;
 
 public class NoSpeechAvailable extends Exception
 {
