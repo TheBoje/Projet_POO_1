@@ -19,73 +19,72 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.TextFlow?>
 
-
-<Pane id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="426.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<Pane id="root" fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="426.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <BorderPane id="board" layoutY="50.0" prefHeight="300.0" prefWidth="300.0" style="-fx-border-color: RED;">
+      <BorderPane id="board" fx:id="gameBoard" layoutY="50.0" prefHeight="300.0" prefWidth="300.0" style="-fx-border-color: RED;">
          <left>
-            <Button mnemonicParsing="false" text="Button" BorderPane.alignment="CENTER" />
+            <Button fx:id="btnWest" mnemonicParsing="false" text="West" BorderPane.alignment="CENTER" />
          </left>
          <top>
-            <Button mnemonicParsing="false" text="Button" BorderPane.alignment="CENTER" />
+            <Button fx:id="btn_north" mnemonicParsing="false" text="North" BorderPane.alignment="CENTER" />
          </top>
          <right>
-            <Button mnemonicParsing="false" text="Button" BorderPane.alignment="CENTER" />
+            <Button fx:id="btnEast" mnemonicParsing="false" text="East" BorderPane.alignment="CENTER" />
          </right>
          <bottom>
-            <Button mnemonicParsing="false" text="Button" BorderPane.alignment="CENTER" />
+            <Button fx:id="btnSouth" mnemonicParsing="false" text="South" BorderPane.alignment="CENTER" />
          </bottom>
          <center>
-            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
+            <ImageView fx:id="gameBoardImage" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
          </center>
       </BorderPane>
-      <MenuButton mnemonicParsing="false" text="MenuButton">
+      <MenuButton fx:id="menu" mnemonicParsing="false" text="MenuButton">
         <items>
           <MenuItem mnemonicParsing="false" text="Action 1" />
           <MenuItem mnemonicParsing="false" text="Action 2" />
         </items>
       </MenuButton>
-      <VBox layoutY="350.0" prefHeight="76.0" prefWidth="306.0">
+      <VBox fx:id="states" layoutY="350.0" prefHeight="76.0" prefWidth="306.0">
          <children>
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            <HBox fx:id="hp" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label text="HP" />
-                  <ProgressBar prefWidth="200.0" progress="1.0" />
+                  <Label fx:id="hpLabel" text="HP" />
+                  <ProgressBar fx:id="hpProgressBar" prefWidth="200.0" progress="1.0" />
                </children>
                <VBox.margin>
                   <Insets />
                </VBox.margin>
             </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            <HBox fx:id="hunger" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label text="Hunger" />
-                  <ProgressBar prefWidth="200.0" progress="1.0" />
+                  <Label fx:id="hungerLabel" text="Hunger" />
+                  <ProgressBar fx:id="hungerProgressBar" prefWidth="200.0" progress="1.0" />
                </children>
             </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            <HBox fx:id="bodyheat" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label text="Body heat" />
-                  <ProgressBar prefWidth="200.0" progress="1.0" />
+                  <Label fx:id="bodyheatLabel" text="Body heat" />
+                  <ProgressBar fx:id="bodyheatProgressBar" prefWidth="200.0" progress="1.0" />
                </children>
             </HBox>
          </children>
       </VBox>
-      <TextField layoutX="79.0" layoutY="25.0" />
-      <VBox layoutX="307.0" layoutY="-1.0" prefHeight="426.0" prefWidth="294.0">
+      <TextField fx:id="playerName" layoutX="79.0" layoutY="25.0" />
+      <VBox fx:id="controllers" layoutX="307.0" layoutY="-1.0" prefHeight="426.0" prefWidth="294.0">
          <children>
             <ScrollPane>
                <content>
-                  <TextFlow prefHeight="200.0" prefWidth="200.0" />
+                  <TextFlow fx:id="informations" prefHeight="200.0" prefWidth="200.0" />
                </content>
             </ScrollPane>
             <ScrollPane>
                <content>
-                  <ListView prefHeight="133.0" prefWidth="245.0" />
+                  <ListView fx:id="contextList" prefHeight="133.0" prefWidth="245.0" />
                </content>
             </ScrollPane>
             <ScrollPane prefHeight="88.0" prefWidth="245.0">
                <content>
-                  <GridPane prefHeight="53.0" prefWidth="245.0">
+                  <GridPane fx:id="actions" prefHeight="53.0" prefWidth="245.0">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
