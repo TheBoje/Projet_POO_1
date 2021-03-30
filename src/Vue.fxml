@@ -15,6 +15,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.TextFlow?>
@@ -48,8 +49,9 @@
          <children>
             <HBox fx:id="hp" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label fx:id="hpLabel" text="HP" />
-                  <ProgressBar fx:id="hpProgressBar" prefWidth="200.0" progress="1.0" />
+                  <Label fx:id="hpLabel" prefHeight="17.0" prefWidth="131.0" text="HP" />
+                  <Region prefHeight="200.0" prefWidth="200.0" />
+                  <ProgressBar fx:id="hpProgressBar" minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="200.0" progress="1.0" />
                </children>
                <VBox.margin>
                   <Insets />
@@ -57,14 +59,16 @@
             </HBox>
             <HBox fx:id="hunger" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label fx:id="hungerLabel" text="Hunger" />
-                  <ProgressBar fx:id="hungerProgressBar" prefWidth="200.0" progress="1.0" />
+                  <Label fx:id="hungerLabel" prefHeight="17.0" prefWidth="217.0" text="Hunger" />
+                  <Region prefHeight="200.0" prefWidth="200.0" />
+                  <ProgressBar fx:id="hungerProgressBar" minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="200.0" progress="1.0" />
                </children>
             </HBox>
             <HBox fx:id="bodyheat" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label fx:id="bodyheatLabel" text="Body heat" />
-                  <ProgressBar fx:id="bodyheatProgressBar" prefWidth="200.0" progress="1.0" />
+                  <Label fx:id="bodyheatLabel" prefHeight="17.0" prefWidth="211.0" text="Body heat" />
+                  <Region prefHeight="200.0" prefWidth="200.0" />
+                  <ProgressBar fx:id="bodyheatProgressBar" minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="200.0" progress="1.0" />
                </children>
             </HBox>
          </children>
