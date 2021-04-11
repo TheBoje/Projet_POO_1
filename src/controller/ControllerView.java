@@ -7,9 +7,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.TextFlow;
+import modele.Game.GameManager;
 
 public class ControllerView
 {
+    GameManager gameManager = new GameManager();
+
     @FXML
     Pane root;
 
