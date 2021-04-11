@@ -20,7 +20,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.TextFlow?>
 
-<Pane id="root" fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="426.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ControllerView">
+<Pane id="root" fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="426.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ControllerView">
    <children>
       <BorderPane id="board" fx:id="gameBoard" layoutY="50.0" prefHeight="300.0" prefWidth="300.0" style="-fx-border-color: RED;">
          <left>
@@ -30,7 +30,7 @@
             <Button fx:id="btnNorth" mnemonicParsing="false" onAction="#handleBtnNorth" text="North" BorderPane.alignment="CENTER" />
          </top>
          <right>
-            <Button fx:id="btnEast" mnemonicParsing="false" onAction="#cliqueSurBtnEst" text="East" BorderPane.alignment="CENTER" />
+            <Button fx:id="btnEast" mnemonicParsing="false" onAction="#handleBtnEast" text="East" BorderPane.alignment="CENTER" />
          </right>
          <bottom>
             <Button fx:id="btnSouth" mnemonicParsing="false" onAction="#handleBtnSouth" text="South" BorderPane.alignment="CENTER" />
