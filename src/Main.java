@@ -1,6 +1,7 @@
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import modele.Game.GameManager;
 import view.Game;
 
 public class Main extends Application
@@ -17,6 +18,7 @@ public class Main extends Application
 
         stage.setTitle("le nom du jeu");
         stage.show();
+        System.out.println("bite");
     }
 
     public static void main(String[] args)
