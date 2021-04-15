@@ -1,11 +1,11 @@
 package view;
 
 import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 
-public class Game extends Pane
+public class Game extends AnchorPane
 {
     public Game()
     {
