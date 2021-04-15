@@ -11,7 +11,7 @@ public class Game extends Pane
     {
         try
         {
-            FXMLLoader fxmlLoader = new FXMLLoader(Game.class.getResource("view.Game.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(Game.class.getResource("./Game.fxml"));
             fxmlLoader.setRoot(this);
             fxmlLoader.load();
         }
