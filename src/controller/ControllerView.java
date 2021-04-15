@@ -34,24 +34,24 @@ public class ControllerView
     @FXML
     public void handleBtnNorth()
     {
-
+        System.out.println("nord");
     }
 
     @FXML
     public void handleBtnEast()
     {
-
+        System.out.println("east");
     }
 
     @FXML
     public void handleBtnSouth()
     {
-
+        System.out.println("south");
     }
 
     @FXML
     public void handleBtnWest()
     {
-
+        System.out.println("west");
     }
 }
