@@ -9,6 +9,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import modele.Game.GameManager;
+import modele.Tiles.Direction;
 
 public class ControllerView
 {
@@ -45,25 +46,52 @@ public class ControllerView
     @FXML
     public void handleBtnNorth()
     {
-        System.out.println("nord");
-        initGame();
+        try
+        {
+            gameManager.go(Direction.N);
+        }
+        catch (Exception e)
+        {
+            System.err.println(e.getMessage());
+        }
     }
 
     @FXML
     public void handleBtnEast()
     {
-        System.out.println("east");
+        try
+        {
+            gameManager.go(Direction.N);
+        }
+        catch (Exception e)
+        {
+            System.err.println(e.getMessage());
+        }
     }
 
     @FXML
     public void handleBtnSouth()
     {
-        System.out.println("south");
+        try
+        {
+            gameManager.go(Direction.N);
+        }
+        catch (Exception e)
+        {
+            System.err.println(e.getMessage());
+        }
     }
 
     @FXML
     public void handleBtnWest()
     {
-        System.out.println("west");
+        try
+        {
+            gameManager.go(Direction.N);
+        }
+        catch (Exception e)
+        {
+            System.err.println(e.getMessage());
+        }
     }
 }
