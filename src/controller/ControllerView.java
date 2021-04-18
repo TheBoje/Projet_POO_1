@@ -56,7 +56,14 @@ public class ControllerView
 
     public void updateContextListItems(List<Item> items)
     {
-        ObservableList<Item> observableItems = FXCollections.observableArrayList(items); // Vérifier si la méthode appelle le to_string
+        ObservableList<String> observableItems = FXCollections.observableArrayList();
+
+        // Pour chaque passages on regarde s'il existe et son état
+        for(Item item : items)
+        {
+            observableItems.add(item.getName());
+        }
+
         contextList.setItems(observableItems);
     }
 
@@ -70,6 +77,7 @@ public class ControllerView
     {
         ObservableList<String> observableCrossings = FXCollections.observableArrayList();
 
+        // Pour chaque passages on regarde s'il existe et son état
         for(int i = 0; i < crossings.length; i++)
         {
             if(crossings[i] != null)
@@ -88,6 +96,9 @@ public class ControllerView
         contextList.setItems(observableCrossings);
     }
 
+    /**
+     * Lance le jeu si le joueur à rentré un nom
+     */
     @FXML
     public void startGame()
     {
@@ -99,8 +110,6 @@ public class ControllerView
         {
             System.out.println("game launched");
             gameManager.initGame();
-
-
         }
     }
 
@@ -122,7 +131,7 @@ public class ControllerView
     @FXML
     public void handleBtnListItems()
     {
-
+        updateContextListItems(gameManager.getItemsOnTile());
     }
 
     @FXML
