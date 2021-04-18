@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -39,6 +40,9 @@ public class ControllerView
     @FXML
     GridPane actions;
 
+    @FXML
+    TextField playerName;
+
     public void initGame()
     {
         updateText(gameManager.initGame());
@@ -59,6 +63,20 @@ public class ControllerView
     {
         ObservableList<Personnage> observablePersonnages = FXCollections.observableArrayList(personnages);
         contextList.setItems(observablePersonnages);
+    }
+
+    @FXML
+    public void startGame()
+    {
+        if(playerName.getText().isEmpty())
+        {
+            System.err.println("player name's empty");
+        }
+        else
+        {
+            System.out.println("game launched");
+            gameManager.initGame();
+        }
     }
 
     @FXML
