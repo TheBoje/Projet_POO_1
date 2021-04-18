@@ -11,6 +11,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
+import modele.Crossings.Crossing;
 import modele.Game.GameManager;
 import modele.Items.Item;
 import modele.Personnages.Personnage;
@@ -65,6 +66,28 @@ public class ControllerView
         contextList.setItems(observablePersonnages);
     }
 
+    public void updateContextListPassways(Crossing[] crossings)
+    {
+        ObservableList<String> observableCrossings = FXCollections.observableArrayList();
+
+        for(int i = 0; i < crossings.length; i++)
+        {
+            if(crossings[i] != null)
+            {
+                try
+                {
+                    observableCrossings.add((Direction.intToDirection(i) + " " + (crossings[i].isOpen() ? "open" : "close")));
+                }
+                catch (Exception e)
+                {
+                    System.err.println(e.getMessage());
+                }
+            }
+        }
+
+        contextList.setItems(observableCrossings);
+    }
+
     @FXML
     public void startGame()
     {
@@ -76,7 +99,36 @@ public class ControllerView
         {
             System.out.println("game launched");
             gameManager.initGame();
+
+
         }
+    }
+
+
+
+    @FXML
+    public void handleBtnListCrossings()
+    {
+        try
+        {
+            updateContextListPassways(gameManager.getDirection());
+        }
+        catch (Exception e)
+        {
+            System.err.println(e.getMessage());
+        }
+    }
+
+    @FXML
+    public void handleBtnListItems()
+    {
+
+    }
+
+    @FXML
+    public void handleBtnListPersonnages()
+    {
+
     }
 
     @FXML
@@ -97,7 +149,7 @@ public class ControllerView
     {
         try
         {
-            gameManager.go(Direction.N);
+            gameManager.go(Direction.E);
         }
         catch (Exception e)
         {
@@ -108,9 +160,10 @@ public class ControllerView
     @FXML
     public void handleBtnSouth()
     {
+        updateContextListItems(gameManager.getItemsOnTile());
         try
         {
-            gameManager.go(Direction.N);
+            gameManager.go(Direction.S);
         }
         catch (Exception e)
         {
@@ -123,7 +176,7 @@ public class ControllerView
     {
         try
         {
-            gameManager.go(Direction.N);
+            gameManager.go(Direction.W);
         }
         catch (Exception e)
         {

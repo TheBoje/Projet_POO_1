@@ -255,9 +255,10 @@ public class GameManager
 
 	/***********************************GETTERS***********************************/
 	// Liste toutes les directions de la tile
-	public void getDirection() throws UnknownDirection
+	public Crossing[] getDirection() throws UnknownDirection
 	{
-		Crossing[] playerCrossings = this.player.getTile().getCrossings();
+		return this.player.getTile().getCrossings();
+		/*Crossing[] playerCrossings = this.player.getTile().getCrossings();
 		for (int i = 0; i < playerCrossings.length; i++)
 		{
 			if (playerCrossings[i] != null)
@@ -267,7 +268,7 @@ public class GameManager
 						playerCrossings[i].getClass().getSimpleName(),
 						playerCrossings[i].isOpen() ? "open" : "close");
 			}
-		}
+		}*/
 	}
 
 	// Liste les usages de tous les objets dans l'inventaire du player
