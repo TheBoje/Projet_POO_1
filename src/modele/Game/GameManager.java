@@ -299,10 +299,11 @@ public class GameManager
 	}
 
 	// Liste tous les items présents sur la tile du player
-	public void getItemsOnTile()
+	public List<Item> getItemsOnTile()
 	{
-		List<Item> items = this.player.getTile().getItems();
-		if (items.size() == 0)
+		//List<Item> items = this.player.getTile().getItems();
+		return this.player.getTile().getItems();
+		/*if (items.size() == 0)
 		{
 			System.out.format("\tNo item on this tile\n");
 		}
@@ -312,7 +313,7 @@ public class GameManager
 			{
 				System.out.format("\t[%d] %s\n", i, items.get(i).getName());
 			}
-		}
+		}*/
 	}
 
 	// Liste tous les items présents dans l'inventaire du player

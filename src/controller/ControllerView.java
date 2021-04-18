@@ -1,5 +1,7 @@
 package controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
@@ -9,7 +11,11 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import modele.Game.GameManager;
+import modele.Items.Item;
+import modele.Personnages.Personnage;
 import modele.Tiles.Direction;
+
+import java.util.List;
 
 public class ControllerView
 {
@@ -41,6 +47,18 @@ public class ControllerView
     public void updateText(String message)
     {
         informations.getChildren().add(new Text(message));
+    }
+
+    public void updateContextListItems(List<Item> items)
+    {
+        ObservableList<Item> observableItems = FXCollections.observableArrayList(items); // Vérifier si la méthode appelle le to_string
+        contextList.setItems(observableItems);
+    }
+
+    public void updateContextListPersonnages(List<Personnage> personnages)
+    {
+        ObservableList<Personnage> observablePersonnages = FXCollections.observableArrayList(personnages);
+        contextList.setItems(observablePersonnages);
     }
 
     @FXML
