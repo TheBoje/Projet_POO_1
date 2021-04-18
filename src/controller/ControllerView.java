@@ -69,7 +69,14 @@ public class ControllerView
 
     public void updateContextListPersonnages(List<Personnage> personnages)
     {
-        ObservableList<Personnage> observablePersonnages = FXCollections.observableArrayList(personnages);
+        ObservableList<String> observablePersonnages = FXCollections.observableArrayList();
+
+        // Pour chaque passages on regarde s'il existe et son état
+        for(Personnage personnage : personnages)
+        {
+            observablePersonnages.add(personnage.getName());
+        }
+
         contextList.setItems(observablePersonnages);
     }
 
@@ -137,7 +144,7 @@ public class ControllerView
     @FXML
     public void handleBtnListPersonnages()
     {
-
+        updateContextListPersonnages(gameManager.getPersonnagesOnTile());
     }
 
     @FXML

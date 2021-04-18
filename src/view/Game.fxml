@@ -34,7 +34,7 @@
                   <TextField fx:id="playerName" />
                   <BorderPane id="board" fx:id="gameBoard" prefHeight="300.0" prefWidth="300.0" style="-fx-border-color: RED;" VBox.vgrow="ALWAYS">
                      <left>
-                        <Button fx:id="btnWest" mnemonicParsing="false" text="West" BorderPane.alignment="CENTER" />
+                        <Button fx:id="btnWest" mnemonicParsing="false" onAction="#handleBtnWest" text="West" BorderPane.alignment="CENTER" />
                      </left>
                      <top>
                         <Button fx:id="btnNorth" mnemonicParsing="false" onAction="#handleBtnNorth" text="North" BorderPane.alignment="CENTER" />

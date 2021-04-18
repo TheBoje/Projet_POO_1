@@ -283,8 +283,10 @@ public class GameManager
 	}
 
 	// Liste tous les personnages présents sur la tile du player
-	public void getPersonnagesOnTile()
+	public List<Personnage> getPersonnagesOnTile()
 	{
+		return this.player.getTile().getPersonnages();
+		/*
 		for (int i = 0; i < this.player.getTile().getPersonnages().size(); i++)
 		{
 			Personnage p = this.player.getTile().getPersonnage(i);
@@ -296,7 +298,7 @@ public class GameManager
 			{
 				System.out.format("\t[%d] %s (you)\n", i, this.player.getTile().getPersonnage(i).getName());
 			}
-		}
+		}*/
 	}
 
 	// Liste tous les items présents sur la tile du player
