@@ -116,7 +116,7 @@ public class ControllerView
         else
         {
             System.out.println("game launched");
-            gameManager.initGame();
+            updateText(gameManager.initGame());
         }
     }
 
