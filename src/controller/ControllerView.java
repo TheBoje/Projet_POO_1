@@ -142,6 +142,12 @@ public class ControllerView
     }
 
     @FXML
+    public void handleBtnListInventory()
+    {
+        updateContextListItems(gameManager.getInventory());
+    }
+
+    @FXML
     public void handleBtnListPersonnages()
     {
         updateContextListPersonnages(gameManager.getPersonnagesOnTile());

@@ -320,10 +320,11 @@ public class GameManager
 	}
 
 	// Liste tous les items présents dans l'inventaire du player
-	public void getInventory()
+	public List<Item> getInventory()
 	{
-		List<Item> items = this.player.getItems();
-		if (items.size() == 0)
+		return this.player.getItems();
+		//List<Item> items = this.player.getItems();
+		/*if (items.size() == 0)
 		{
 			System.out.format("Your inventory is empty\n");
 		}
@@ -333,7 +334,7 @@ public class GameManager
 			{
 				System.out.format("\t[%d] %s\n", i, items.get(i).getName());
 			}
-		}
+		}*/
 	}
 
 	public World getWorld()
