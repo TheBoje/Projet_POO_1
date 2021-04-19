@@ -11,6 +11,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
+import javafx.stage.Popup;
 import modele.Crossings.Crossing;
 import modele.Game.GameManager;
 import modele.Game.InputError;
@@ -24,6 +25,7 @@ public class ControllerView
 {
     enum listType{INV, ITEMS, PERSO, CROSS}
 
+    int itemSelectedToUse = -1;
     listType typeInList = null;
     GameManager gameManager = new GameManager();
 
@@ -57,7 +59,7 @@ public class ControllerView
 
     public void updateText(String message)
     {
-        informations.getChildren().add(new Text(message));
+        informations.getChildren().add(new Text("> " + message + "\n"));
     }
 
     public void updateContextListItems(List<Item> items)
@@ -117,42 +119,71 @@ public class ControllerView
     @FXML
     public void useContextList()
     {
-        switch(typeInList)
+        if(itemSelectedToUse < 0)
         {
-            case INV -> {
+            switch(typeInList)
+            {
+                case INV -> {
+                    itemSelectedToUse = contextList.getSelectionModel().getSelectedIndex();
+                    updateContextListPersonnages(gameManager.getPersonnagesOnTile());
+                    typeInList = listType.PERSO;
+                }
+                case ITEMS -> {
+                    try
+                    {
+                        gameManager.take(contextList.getSelectionModel().getSelectedIndex());
+                        updateContextListItems(gameManager.getItemsOnTile());
+                    }
+                    catch (InputError e)
+                    {
+                        System.err.println(e.getMessage());
+                    }
+                }
+                case PERSO -> {
+                    try
+                    {
+                        updateText(gameManager.talk(contextList.getSelectionModel().getSelectedIndex()));
+                    }
+                    catch (Exception e)
+                    {
+                        System.err.println(e.getMessage());
+                    }
+                }
+                case CROSS -> {
+                    try
+                    {
+                        gameManager.open(Direction.intToDirection(contextList.getSelectionModel().getSelectedIndex()));
+                        updateContextListPassways(gameManager.getDirection());
+                    }
+                    catch (Exception e)
+                    {
+                        System.err.println(e.getMessage());
+                    }
+                }
             }
-            case ITEMS -> {
+        }
+        else
+        {
+            if(typeInList == listType.PERSO)
+            {
                 try
                 {
-                    gameManager.take(contextList.getSelectionModel().getSelectedIndex());
-                    updateContextListItems(gameManager.getItemsOnTile());
-                }
-                catch (InputError e)
-                {
-                    System.err.println(e.getMessage());
-                }
-            }
-            case PERSO -> {
-                try
-                {
-                    updateText("> " + gameManager.talk(contextList.getSelectionModel().getSelectedIndex()) + "\n");
+                    int targetIndex = contextList.getSelectionModel().getSelectedIndex();
+                    Personnage target = gameManager.getPersonnagesOnTile().get(targetIndex);
+                    Item usedItem = gameManager.getInventory().get(itemSelectedToUse);
+
+                    gameManager.use(itemSelectedToUse, targetIndex);
+                    updateText("Used " + usedItem.getName() + " on " + target.getName());
+                    updateContextListItems(gameManager.getInventory());
+                    typeInList = listType.INV; // TODO passer ça dans les méthodes d'update pour ne pas avoir à le réécrire
                 }
                 catch (Exception e)
                 {
                     System.err.println(e.getMessage());
                 }
             }
-            case CROSS -> {
-                try
-                {
-                    gameManager.open(Direction.intToDirection(contextList.getSelectionModel().getSelectedIndex()));
-                    updateContextListPassways(gameManager.getDirection());
-                }
-                catch (Exception e)
-                {
-                    System.err.println(e.getMessage());
-                }
-            }
+
+            itemSelectedToUse = -1;
         }
     }
 

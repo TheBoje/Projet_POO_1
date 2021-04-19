@@ -122,6 +122,18 @@ public class GameManager
 		}
 	}
 
+	public void use(int item_index, int character_index) throws InputError, InvalidTarget
+	{
+		if (character_index >= 0 && character_index < this.player.getTile().getPersonnages().size())
+		{
+			this.player.use(this.player.getItem(item_index), this.player.getTile().getPersonnage(character_index));
+		}
+		else
+		{
+			throw new InputError();
+		}
+	}
+
 	// Lancé par l'interpréteur. Permet de prendre l'objet d'index précisé
 	// sur la tile pour le placer dans l'inventaire du player.
 	public void take(int index) throws InputError
