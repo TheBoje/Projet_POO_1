@@ -88,7 +88,7 @@
                   </ScrollPane>
                   <ScrollPane VBox.vgrow="ALWAYS">
                      <content>
-                        <ListView fx:id="contextList" prefHeight="133.0" prefWidth="245.0" />
+                        <ListView fx:id="contextList" onMouseClicked="#useContextList" prefHeight="133.0" prefWidth="245.0" />
                      </content>
                   </ScrollPane>
                   <ScrollPane prefHeight="88.0" prefWidth="330.0" VBox.vgrow="ALWAYS">
@@ -108,7 +108,6 @@
                               <Button fx:id="listItems" mnemonicParsing="false" onAction="#handleBtnListItems" text="List items" GridPane.columnIndex="1" />
                               <Button fx:id="listPersonnages" mnemonicParsing="false" onAction="#handleBtnListPersonnages" text="List Personnages" GridPane.rowIndex="1" />
                               <Button fx:id="btnInventory" mnemonicParsing="false" onAction="#handleBtnListInventory" text="Inventory" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Button fx:id="btnUse" disable="true" mnemonicParsing="false" text="Use" GridPane.rowIndex="2" />
                            </children>
                         </GridPane>
                      </content>

@@ -13,6 +13,7 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import modele.Crossings.Crossing;
 import modele.Game.GameManager;
+import modele.Game.InputError;
 import modele.Items.Item;
 import modele.Personnages.Personnage;
 import modele.Tiles.Direction;
@@ -21,7 +22,11 @@ import java.util.List;
 
 public class ControllerView
 {
+    enum listType{INV, ITEMS, PERSO, CROSS}
+
+    listType typeInList = null;
     GameManager gameManager = new GameManager();
+
 
     @FXML
     AnchorPane root;
@@ -43,6 +48,7 @@ public class ControllerView
 
     @FXML
     TextField playerName;
+
 
     public void initGame()
     {
@@ -103,6 +109,31 @@ public class ControllerView
         contextList.setItems(observableCrossings);
     }
 
+    @FXML
+    public void useContextList()
+    {
+        switch(typeInList)
+        {
+            case INV -> {
+            }
+            case ITEMS -> {
+                try
+                {
+                    gameManager.take(contextList.getSelectionModel().getSelectedIndex());
+                    updateContextListItems(gameManager.getItemsOnTile());
+                }
+                catch (InputError e)
+                {
+                    System.err.println(e.getMessage());
+                }
+            }
+            case PERSO -> {
+            }
+            case CROSS -> {
+            }
+        }
+    }
+
     /**
      * Lance le jeu si le joueur à rentré un nom
      */
@@ -125,6 +156,7 @@ public class ControllerView
     @FXML
     public void handleBtnListCrossings()
     {
+        typeInList = listType.CROSS;
         try
         {
             updateContextListPassways(gameManager.getDirection());
@@ -138,18 +170,21 @@ public class ControllerView
     @FXML
     public void handleBtnListItems()
     {
+        typeInList = listType.ITEMS;
         updateContextListItems(gameManager.getItemsOnTile());
     }
 
     @FXML
     public void handleBtnListInventory()
     {
+        typeInList = listType.INV;
         updateContextListItems(gameManager.getInventory());
     }
 
     @FXML
     public void handleBtnListPersonnages()
     {
+        typeInList = listType.PERSO;
         updateContextListPersonnages(gameManager.getPersonnagesOnTile());
     }
 
