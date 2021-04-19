@@ -93,17 +93,22 @@ public class ControllerView
         // Pour chaque passages on regarde s'il existe et son état
         for(int i = 0; i < crossings.length; i++)
         {
-            if(crossings[i] != null)
-            {
+
                 try
                 {
-                    observableCrossings.add((Direction.intToDirection(i) + " " + (crossings[i].isOpen() ? "open" : "close")));
+                    if(crossings[i] != null)
+                    {
+                        observableCrossings.add((Direction.intToDirection(i) + " " + (crossings[i].isOpen() ? "open" : "close")));
+                    }
+                    else
+                    {
+                        observableCrossings.add("NO PASARAN");
+                    }
                 }
                 catch (Exception e)
                 {
                     System.err.println(e.getMessage());
                 }
-            }
         }
 
         contextList.setItems(observableCrossings);
@@ -128,8 +133,25 @@ public class ControllerView
                 }
             }
             case PERSO -> {
+                try
+                {
+                    updateText("> " + gameManager.talk(contextList.getSelectionModel().getSelectedIndex()) + "\n");
+                }
+                catch (Exception e)
+                {
+                    System.err.println(e.getMessage());
+                }
             }
             case CROSS -> {
+                try
+                {
+                    gameManager.open(Direction.intToDirection(contextList.getSelectionModel().getSelectedIndex()));
+                    updateContextListPassways(gameManager.getDirection());
+                }
+                catch (Exception e)
+                {
+                    System.err.println(e.getMessage());
+                }
             }
         }
     }

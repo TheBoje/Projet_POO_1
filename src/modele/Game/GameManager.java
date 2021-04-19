@@ -91,12 +91,12 @@ public class GameManager
 	// Lancé par l'interpréteur. Demande un speech au personnage ciblé.
 	// Le personnage ciblé est représenté par son index dans la liste
 	// des personnages de la tile.
-	public void talk(int index) throws InputError, NoSpeechAvailable, GameWonException
+	public String talk(int index) throws InputError, NoSpeechAvailable, GameWonException
 	{
 		if (index >= 0 && index < this.player.getTile().getPersonnages().size())
 		{
-			String talk_res = this.player.getTile().getPersonnage(index).talk();
-			System.out.format("[%s]: %s\n", this.player.getTile().getPersonnage(index).getName(), talk_res);
+			return this.player.getTile().getPersonnage(index).talk();
+			//System.out.format("[%s]: %s\n", this.player.getTile().getPersonnage(index).getName(), talk_res);
 		}
 		else
 		{
