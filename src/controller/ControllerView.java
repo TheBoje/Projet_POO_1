@@ -55,23 +55,36 @@ public class ControllerView
     @FXML
     TextField playerName;
 
-
+    /**
+     * Lance le texte de début de jeu
+     */
     public void initGame()
     {
         updateText(gameManager.initGame());
     }
 
+    /**
+     * Ajoute un message au panneau d'informations (il sera sous la forme : "> message\n")
+     * @param message message à passer au TextFlow
+     */
     public void updateText(String message)
     {
         informations.getChildren().add(new Text("> " + message + "\n"));
     }
 
+    /**
+     * Met à jour la ListView en lui ajoutant les items de la liste
+     * @param items Items à rentrer dans la liste sous forme de liste de chaine de caractères
+     */
     private void updateContextList(List<String> items)
     {
         ObservableList<String> observableItems = FXCollections.observableArrayList(items);
         contextList.setItems(observableItems);
     }
 
+    /**
+     * Remplace la liste précédente par celle des items sur la tile dans la ListView
+     */
     public void updateContextListItems()
     {
         List<Item> items = gameManager.getItemsOnTile();
@@ -79,6 +92,9 @@ public class ControllerView
         typeInList = listType.ITEMS;
     }
 
+    /**
+     * Remplace la liste précédente par celle des items de l'inventaire dans la ListView
+     */
     public void updateContextListInventory()
     {
         List<Item> inventory = gameManager.getInventory();
@@ -86,6 +102,10 @@ public class ControllerView
         typeInList = listType.INV;
     }
 
+    /**
+     * Remplace la liste précédente par celle des personnages sur la tile dans la ListView
+     * TODO voir pour le map ici aussi
+     */
     public void updateContextListPersonnages()
     {
         List<Personnage> personnages = gameManager.getPersonnagesOnTile();
@@ -93,6 +113,9 @@ public class ControllerView
         typeInList = listType.PERSO;
     }
 
+    /**
+     * Remplace la liste précédente par celle des passages sur la tile dans la ListView
+     */
     public void updateContextListPassways()
     {
         Crossing[] crossings = new Crossing[4];
@@ -131,17 +154,26 @@ public class ControllerView
         typeInList = listType.CROSS;
     }
 
+    /**
+     * Appelée lors d'un clique sur la ListView, elle a un comportement différent en fonction du type de donnée
+     * qui est affiché.
+     */
     @FXML
     public void useContextList()
     {
+        // Cette condition permet de gérer le cas où on utilise un item. Si on a cliqué une première fois sur un
+        // objet de notre inventaire, la liste des personnages s'affichera pour choisir la cible de l'utilisation.
         if(itemSelectedToUse < 0)
         {
             switch(typeInList)
             {
+                // Cas de l'utilisation d'un objet
                 case INV -> {
                     itemSelectedToUse = contextList.getSelectionModel().getSelectedIndex();
                     updateContextListPersonnages();
                 }
+
+                // Cas de prise d'un objet étant sur la tile
                 case ITEMS -> {
                     try
                     {
@@ -153,6 +185,8 @@ public class ControllerView
                         System.err.println(e.getMessage());
                     }
                 }
+
+                // Cas de conversation avec un PNJ
                 case PERSO -> {
                     try
                     {
@@ -163,6 +197,8 @@ public class ControllerView
                         System.err.println(e.getMessage());
                     }
                 }
+
+                // Cas d'ouverture de passage clos
                 case CROSS -> {
                     try
                     {
@@ -178,6 +214,8 @@ public class ControllerView
         }
         else
         {
+            // Ce cas intervient quand on a un item que l'on veut utilisé (son indice étant l'attribut itemSelectedToUse)
+            // Si le deuxième clique est donc sur un personnage, on utilise l'item selectionné sur lui
             if(typeInList == listType.PERSO)
             {
                 try
