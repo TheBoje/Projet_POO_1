@@ -18,8 +18,12 @@ import modele.Game.InputError;
 import modele.Items.Item;
 import modele.Personnages.Personnage;
 import modele.Tiles.Direction;
+import modele.Tiles.UnknownDirection;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ControllerView
 {
@@ -62,49 +66,59 @@ public class ControllerView
         informations.getChildren().add(new Text("> " + message + "\n"));
     }
 
-    public void updateContextListItems(List<Item> items)
+    private void updateContextList(List<String> items)
     {
-        ObservableList<String> observableItems = FXCollections.observableArrayList();
-
-        // Pour chaque passages on regarde s'il existe et son état
-        for(Item item : items)
-        {
-            observableItems.add(item.getName());
-        }
-
+        ObservableList<String> observableItems = FXCollections.observableArrayList(items);
         contextList.setItems(observableItems);
     }
 
-    public void updateContextListPersonnages(List<Personnage> personnages)
+    public void updateContextListItems()
     {
-        ObservableList<String> observablePersonnages = FXCollections.observableArrayList();
-
-        // Pour chaque passages on regarde s'il existe et son état
-        for(Personnage personnage : personnages)
-        {
-            observablePersonnages.add(personnage.getName());
-        }
-
-        contextList.setItems(observablePersonnages);
+        List<Item> items = gameManager.getItemsOnTile();
+        updateContextList(items.stream().map(Item::getName).collect(Collectors.toList()));
+        typeInList = listType.ITEMS;
     }
 
-    public void updateContextListPassways(Crossing[] crossings)
+    public void updateContextListInventory()
     {
-        ObservableList<String> observableCrossings = FXCollections.observableArrayList();
+        List<Item> inventory = gameManager.getInventory();
+        updateContextList(inventory.stream().map(Item::getName).collect(Collectors.toList()));
+        typeInList = listType.INV;
+    }
+
+    public void updateContextListPersonnages()
+    {
+        List<Personnage> personnages = gameManager.getPersonnagesOnTile();
+        updateContextList(personnages.stream().map(Personnage::getName).collect(Collectors.toList()));
+        typeInList = listType.PERSO;
+    }
+
+    public void updateContextListPassways()
+    {
+        Crossing[] crossings = new Crossing[4];
+        try
+        {
+            crossings = gameManager.getDirection();
+        }
+        catch (UnknownDirection unknownDirection)
+        {
+            unknownDirection.printStackTrace();
+        }
+
+        List<String> listCrossings = new ArrayList<>();
 
         // Pour chaque passages on regarde s'il existe et son état
         for(int i = 0; i < crossings.length; i++)
         {
-
                 try
                 {
                     if(crossings[i] != null)
                     {
-                        observableCrossings.add((Direction.intToDirection(i) + " " + (crossings[i].isOpen() ? "open" : "close")));
+                        listCrossings.add((Direction.intToDirection(i) + " " + (crossings[i].isOpen() ? "open" : "close")));
                     }
                     else
                     {
-                        observableCrossings.add("NO PASARAN");
+                        listCrossings.add("NO PASARAN");
                     }
                 }
                 catch (Exception e)
@@ -113,7 +127,8 @@ public class ControllerView
                 }
         }
 
-        contextList.setItems(observableCrossings);
+        updateContextList(listCrossings);
+        typeInList = listType.CROSS;
     }
 
     @FXML
@@ -125,14 +140,13 @@ public class ControllerView
             {
                 case INV -> {
                     itemSelectedToUse = contextList.getSelectionModel().getSelectedIndex();
-                    updateContextListPersonnages(gameManager.getPersonnagesOnTile());
-                    typeInList = listType.PERSO;
+                    updateContextListPersonnages();
                 }
                 case ITEMS -> {
                     try
                     {
                         gameManager.take(contextList.getSelectionModel().getSelectedIndex());
-                        updateContextListItems(gameManager.getItemsOnTile());
+                        updateContextListItems();
                     }
                     catch (InputError e)
                     {
@@ -153,7 +167,7 @@ public class ControllerView
                     try
                     {
                         gameManager.open(Direction.intToDirection(contextList.getSelectionModel().getSelectedIndex()));
-                        updateContextListPassways(gameManager.getDirection());
+                        updateContextListPassways();
                     }
                     catch (Exception e)
                     {
@@ -174,8 +188,7 @@ public class ControllerView
 
                     gameManager.use(itemSelectedToUse, targetIndex);
                     updateText("Used " + usedItem.getName() + " on " + target.getName());
-                    updateContextListItems(gameManager.getInventory());
-                    typeInList = listType.INV; // TODO passer ça dans les méthodes d'update pour ne pas avoir à le réécrire
+                    updateContextListInventory();
                 }
                 catch (Exception e)
                 {
@@ -209,36 +222,25 @@ public class ControllerView
     @FXML
     public void handleBtnListCrossings()
     {
-        typeInList = listType.CROSS;
-        try
-        {
-            updateContextListPassways(gameManager.getDirection());
-        }
-        catch (Exception e)
-        {
-            System.err.println(e.getMessage());
-        }
+        updateContextListPassways();
     }
 
     @FXML
     public void handleBtnListItems()
     {
-        typeInList = listType.ITEMS;
-        updateContextListItems(gameManager.getItemsOnTile());
+        updateContextListItems();
     }
 
     @FXML
     public void handleBtnListInventory()
     {
-        typeInList = listType.INV;
-        updateContextListItems(gameManager.getInventory());
+        updateContextListInventory();
     }
 
     @FXML
     public void handleBtnListPersonnages()
     {
-        typeInList = listType.PERSO;
-        updateContextListPersonnages(gameManager.getPersonnagesOnTile());
+        updateContextListPersonnages();
     }
 
     @FXML
@@ -270,7 +272,6 @@ public class ControllerView
     @FXML
     public void handleBtnSouth()
     {
-        updateContextListItems(gameManager.getItemsOnTile());
         try
         {
             gameManager.go(Direction.S);
