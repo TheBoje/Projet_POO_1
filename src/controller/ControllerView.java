@@ -292,6 +292,7 @@ public class ControllerView
         {
             System.err.println(e.getMessage());
         }
+        updateContextListPassways();
     }
 
     @FXML
@@ -305,6 +306,7 @@ public class ControllerView
         {
             System.err.println(e.getMessage());
         }
+        updateContextListPassways();
     }
 
     @FXML
@@ -318,6 +320,7 @@ public class ControllerView
         {
             System.err.println(e.getMessage());
         }
+        updateContextListPassways();
     }
 
     @FXML
@@ -331,5 +334,6 @@ public class ControllerView
         {
             System.err.println(e.getMessage());
         }
+        updateContextListPassways();
     }
 }
