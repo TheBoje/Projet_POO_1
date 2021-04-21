@@ -35,9 +35,9 @@ public class ControllerView
     enum listType{INV, ITEMS, PERSO, CROSS}
 
     int itemSelectedToUse = -1;
-    private DoubleProperty hp = new SimpleDoubleProperty();
-    private DoubleProperty hunger = new SimpleDoubleProperty();
-    private DoubleProperty heat = new SimpleDoubleProperty();
+    private final DoubleProperty hp = new SimpleDoubleProperty();
+    private final DoubleProperty hunger = new SimpleDoubleProperty();
+    private final DoubleProperty heat = new SimpleDoubleProperty();
     listType typeInList = null;
     GameManager gameManager = new GameManager();
 

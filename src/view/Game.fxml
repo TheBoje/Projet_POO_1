@@ -51,7 +51,7 @@
                   </BorderPane>
                   <VBox fx:id="states" prefHeight="76.0" prefWidth="306.0">
                      <children>
-                        <HBox fx:id="hp" prefHeight="100.0" prefWidth="200.0">
+                        <HBox fx:id="hpbox" prefHeight="100.0" prefWidth="200.0">
                            <children>
                               <Label fx:id="hpLabel" prefHeight="17.0" prefWidth="131.0" text="HP" />
                               <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
@@ -61,14 +61,14 @@
                               <Insets />
                            </VBox.margin>
                         </HBox>
-                        <HBox fx:id="hunger" prefHeight="100.0" prefWidth="200.0">
+                        <HBox fx:id="hungerbox" prefHeight="100.0" prefWidth="200.0">
                            <children>
                               <Label fx:id="hungerLabel" prefHeight="17.0" prefWidth="217.0" text="Hunger" />
                               <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
                               <ProgressBar fx:id="hungerProgressBar" minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="200.0" progress="1.0" HBox.hgrow="ALWAYS" />
                            </children>
                         </HBox>
-                        <HBox fx:id="bodyheat" prefHeight="100.0" prefWidth="200.0">
+                        <HBox fx:id="bodyheatbox" prefHeight="100.0" prefWidth="200.0">
                            <children>
                               <Label fx:id="bodyheatLabel" prefHeight="17.0" prefWidth="211.0" text="Body heat" />
                               <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
