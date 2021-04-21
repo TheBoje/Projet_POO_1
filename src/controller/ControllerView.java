@@ -1,10 +1,15 @@
 package controller;
 
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -30,12 +35,29 @@ public class ControllerView
     enum listType{INV, ITEMS, PERSO, CROSS}
 
     int itemSelectedToUse = -1;
+    private DoubleProperty hp = new SimpleDoubleProperty();
+    private DoubleProperty hunger = new SimpleDoubleProperty();
+    private DoubleProperty heat = new SimpleDoubleProperty();
     listType typeInList = null;
     GameManager gameManager = new GameManager();
 
+    public final double getHp() {return hp.get();}
+    public final void setHp(int value){hp.set(value);}
+    public DoubleProperty hpProperty() {return hp;}
+
+    public final double getHunger() {return hunger.get();}
+    public final void setHunger(int value){hunger.set(value);}
+    public DoubleProperty hungerProperty() {return hunger;}
+
+    public final double getHeat() {return heat.get();}
+    public final void setHeat(int value){heat.set(value);}
+    public DoubleProperty heatProperty() {return heat;}
 
     @FXML
     AnchorPane root;
+
+    @FXML
+    ProgressBar bodyheatProgressBar, hungerProgressBar, hpProgressBar;
 
     @FXML
     Button btnNorth, btnEast, btnSouth, btnWest;
@@ -58,8 +80,7 @@ public class ControllerView
     /**
      * Lance le texte de début de jeu
      */
-    public void initGame()
-    {
+    public void initGame() throws Exception {
         updateText(gameManager.initGame());
     }
 
@@ -159,8 +180,7 @@ public class ControllerView
      * qui est affiché.
      */
     @FXML
-    public void useContextList()
-    {
+    public void useContextList() throws Exception {
         // Cette condition permet de gérer le cas où on utilise un item. Si on a cliqué une première fois sur un
         // objet de notre inventaire, la liste des personnages s'affichera pour choisir la cible de l'utilisation.
         if(itemSelectedToUse < 0)
@@ -236,14 +256,14 @@ public class ControllerView
 
             itemSelectedToUse = -1;
         }
+        updatePlayer();
     }
 
     /**
      * Lance le jeu si le joueur à rentré un nom
      */
     @FXML
-    public void startGame()
-    {
+    public void startGame() throws Exception {
         if(playerName.getText().isEmpty())
         {
             System.err.println("player name's empty");
@@ -252,10 +272,21 @@ public class ControllerView
         {
             System.out.println("game launched");
             updateText(gameManager.initGame());
+            hp.set(gameManager.getWorld().getPlayer().getHp()/10.0);
+            hunger.set(gameManager.getWorld().getPlayer().getHunger()/10.0);
+            heat.set(gameManager.getWorld().getPlayer().getBodyHeat()/10.0);
+            hpProgressBar.progressProperty().bind(hp);
+            hungerProgressBar.progressProperty().bind(hunger);
+            bodyheatProgressBar.progressProperty().bind(heat);
         }
     }
 
-
+    @FXML
+    public void updatePlayer() throws Exception {
+        hp.set(gameManager.getWorld().getPlayer().getHp()/10.0);
+        hunger.set(gameManager.getWorld().getPlayer().getHunger()/10.0);
+        heat.set(gameManager.getWorld().getPlayer().getBodyHeat()/10.0);
+    }
 
     @FXML
     public void handleBtnListCrossings()
@@ -287,6 +318,7 @@ public class ControllerView
         try
         {
             gameManager.go(Direction.N);
+            updatePlayer();
         }
         catch (Exception e)
         {
@@ -301,6 +333,7 @@ public class ControllerView
         try
         {
             gameManager.go(Direction.E);
+            updatePlayer();
         }
         catch (Exception e)
         {
@@ -315,6 +348,7 @@ public class ControllerView
         try
         {
             gameManager.go(Direction.S);
+            updatePlayer();
         }
         catch (Exception e)
         {
@@ -329,6 +363,7 @@ public class ControllerView
         try
         {
             gameManager.go(Direction.W);
+            updatePlayer();
         }
         catch (Exception e)
         {
