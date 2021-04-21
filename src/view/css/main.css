@@ -1,0 +1,14 @@
+#btnEast{
+    -fx-graphic: url("../../Ressources/EastArrow.png");
+}
+#btnNorth{
+    -fx-graphic: url("../../Ressources/NorthArrow.png");
+}
+
+#btnSouth{
+    -fx-graphic: url("../../Ressources/SouthArrow.png");
+}
+
+#btnWest{
+    -fx-graphic: url("../../Ressources/WestArrow.png");
+}
