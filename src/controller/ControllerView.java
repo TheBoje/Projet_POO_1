@@ -22,6 +22,7 @@ import modele.Game.GameManager;
 import modele.Game.InputError;
 import modele.Items.Item;
 import modele.Personnages.Personnage;
+import modele.Personnages.Player;
 import modele.Tiles.Direction;
 import modele.Tiles.UnknownDirection;
 
@@ -32,14 +33,19 @@ import java.util.stream.Collectors;
 
 public class ControllerView
 {
+    public ControllerView() throws Exception {
+    }
+
     enum listType{INV, ITEMS, PERSO, CROSS}
 
     int itemSelectedToUse = -1;
+
     private final DoubleProperty hp = new SimpleDoubleProperty();
     private final DoubleProperty hunger = new SimpleDoubleProperty();
     private final DoubleProperty heat = new SimpleDoubleProperty();
     listType typeInList = null;
     GameManager gameManager = new GameManager();
+    private final Player player = gameManager.getWorld().getPlayer();
 
     public final double getHp() {return hp.get();}
     public final void setHp(int value){hp.set(value);}
@@ -234,7 +240,7 @@ public class ControllerView
         }
         else
         {
-            // Ce cas intervient quand on a un item que l'on veut utilisé (son indice étant l'attribut itemSelectedToUse)
+            // Ce cas intervient quand on a un item que l'on veut utiliser (son indice étant l'attribut itemSelectedToUse)
             // Si le deuxième clique est donc sur un personnage, on utilise l'item selectionné sur lui
             if(typeInList == listType.PERSO)
             {
@@ -247,6 +253,7 @@ public class ControllerView
                     gameManager.use(itemSelectedToUse, targetIndex);
                     updateText("Used " + usedItem.getName() + " on " + target.getName());
                     updateContextListInventory();
+                    updatePlayer();
                 }
                 catch (Exception e)
                 {
@@ -256,9 +263,13 @@ public class ControllerView
 
             itemSelectedToUse = -1;
         }
-        updatePlayer();
     }
-
+    @FXML
+    public void updatePlayer() throws Exception {
+        hp.set(player.getHp()/10.0);
+        hunger.set(player.getHunger()/10.0);
+        heat.set(player.getBodyHeat()/10.0);
+    }
     /**
      * Lance le jeu si le joueur à rentré un nom
      */
@@ -272,21 +283,14 @@ public class ControllerView
         {
             System.out.println("game launched");
             updateText(gameManager.initGame());
-            hp.set(gameManager.getWorld().getPlayer().getHp()/10.0);
-            hunger.set(gameManager.getWorld().getPlayer().getHunger()/10.0);
-            heat.set(gameManager.getWorld().getPlayer().getBodyHeat()/10.0);
+            updatePlayer();
             hpProgressBar.progressProperty().bind(hp);
             hungerProgressBar.progressProperty().bind(hunger);
             bodyheatProgressBar.progressProperty().bind(heat);
         }
     }
 
-    @FXML
-    public void updatePlayer() throws Exception {
-        hp.set(gameManager.getWorld().getPlayer().getHp()/10.0);
-        hunger.set(gameManager.getWorld().getPlayer().getHunger()/10.0);
-        heat.set(gameManager.getWorld().getPlayer().getBodyHeat()/10.0);
-    }
+
 
     @FXML
     public void handleBtnListCrossings()

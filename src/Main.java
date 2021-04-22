@@ -16,9 +16,8 @@ public class Main extends Application
         Scene scene = new Scene(root, WIDTH, HEIGHT);
         stage.setScene(scene);
 
-        stage.setTitle("le nom du jeu");
+        stage.setTitle("Floe Adventure");
         stage.show();
-        System.out.println("bite");
     }
 
     public static void main(String[] args)
