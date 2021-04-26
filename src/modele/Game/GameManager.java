@@ -174,7 +174,7 @@ public class GameManager
 					}
 				}
 
-				interpreteur.read();
+				//interpreteur.read();
 			} catch (Exception e)
 			{
 				if (e instanceof GameWonException)
@@ -189,7 +189,7 @@ public class GameManager
 					{
 						System.out.format("%s\n", e.getMessage());
 					}
-					this.nextTurn();
+					//this.nextTurn();
 				}
 			}
 			return true;

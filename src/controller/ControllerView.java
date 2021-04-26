@@ -131,7 +131,7 @@ public class ControllerView
 
     /**
      * Remplace la liste précédente par celle des personnages sur la tile dans la ListView
-     * TODO voir pour le map ici aussi
+     *
      */
     public void updateContextListPersonnages()
     {
@@ -142,6 +142,7 @@ public class ControllerView
 
     /**
      * Remplace la liste précédente par celle des passages sur la tile dans la ListView
+     * TODO voir pour le map ici aussi
      */
     public void updateContextListPassways()
     {
@@ -266,6 +267,7 @@ public class ControllerView
     }
     @FXML
     public void updatePlayer() throws Exception {
+        gameManager.nextTurn();
         hp.set(player.getHp()/10.0);
         hunger.set(player.getHunger()/10.0);
         heat.set(player.getBodyHeat()/10.0);
