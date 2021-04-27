@@ -268,10 +268,17 @@ public class ControllerView
     }
     @FXML
     public void updatePlayer() throws Exception {
-        gameManager.nextTurn();
-        hp.set(player.getHp()/10.0);
-        hunger.set(player.getHunger()/10.0);
-        heat.set(player.getBodyHeat()/10.0);
+        if(gameManager.nextTurn())
+        {
+            hp.set(player.getHp()/10.0);
+            hunger.set(player.getHunger()/10.0);
+            heat.set(player.getBodyHeat()/10.0);
+        }
+        else
+        {
+            gameBoardImage.setImage(new Image("/GameImages/died.png"));
+        }
+
     }
     /**
      * Lance le jeu si le joueur à rentré un nom
