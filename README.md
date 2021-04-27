@@ -17,6 +17,15 @@ Composition de notre groupe : Yann Berthelot, Vincent Commin & Louis Leenart.
 
 # Notre approche de conception en partant de la conception existante
 
+### Notre séparation modèle/vue/contrôleur
+
+&nbsp;Pour séparer correctement nos fichiers, nous nous sommes servis de la séparation modèle/vue/contrôleur vu en cours. Nous avons donc géré nos fichiers de la sorte :
+
+![schéma MVC](images/MVC.PNG)
+<p align="center"><em>Schéma du cours expliquant le MVC (modèle/vue/contrôleur)</em></p>
+- Nos fichiers de base venant du projet de POO étaient ce qui définissait notre jeu, que ce soit les items ou bien le comportement des personnages ainsi que la génération des tuiles. Nous avons donc mis ces fichiers dans le répertoire "modèle".
+- Pour la vue, nous y avons mis notre fichier .fxml ainsi que sa classe appelant le fxmlLoader permettant de le charger dans l'application.
+- Enfin, pour le contrôleur, nous avons mis la classe liant la vue au modèle.
 
 ### Notre interface
 
