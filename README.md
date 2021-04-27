@@ -17,6 +17,9 @@ Composition de notre groupe : Yann Berthelot, Vincent Commin & Louis Leenart.
 
 # Notre approche de conception en partant de la conception existante
 
+
+### Notre interface
+
 &nbsp;Notre jeu étant de base assez basique, nous n'avons pas eu besoin d'une multitude de scènes. Il n'y avait pas d'états particuliers pour les dialogues ou bien les combats, ce qui nous a simplifié la tâche et permis de tout mettre dans la même interface.
 
 ![première interface designé](images/POO%20-%20Interface%20Design.png)
