@@ -1,5 +1,6 @@
 package controller;
 
+import javafx.application.Platform;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -11,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -267,10 +269,18 @@ public class ControllerView
     }
     @FXML
     public void updatePlayer() throws Exception {
-        gameManager.nextTurn();
-        hp.set(player.getHp()/10.0);
-        hunger.set(player.getHunger()/10.0);
-        heat.set(player.getBodyHeat()/10.0);
+        if(gameManager.nextTurn())
+        {
+            hp.set(player.getHp()/10.0);
+            hunger.set(player.getHunger()/10.0);
+            heat.set(player.getBodyHeat()/10.0);
+        }
+        else
+        {
+            gameBoardImage.setImage(new Image("/GameImages/died.png"));
+            Platform.exit();
+        }
+
     }
     /**
      * Lance le jeu si le joueur à rentré un nom
@@ -289,6 +299,7 @@ public class ControllerView
             hpProgressBar.progressProperty().bind(hp);
             hungerProgressBar.progressProperty().bind(hunger);
             bodyheatProgressBar.progressProperty().bind(heat);
+            gameBoardImage.setImage(new Image("/GameImages/base.png", true));
         }
     }
 

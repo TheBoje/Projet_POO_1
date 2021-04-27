@@ -5,14 +5,14 @@ Composition de notre groupe : Yann Berthelot, Vincent Commin & Louis Leenart.
 
 # Sommaire
 - [Installation <a id="installation">](#installation)
+    - [Windows <a id="installation_windows">](#installation_windows)
+    - [Linux <a id="installation_linux">](#installation_linux)
 - [Utilisation <a id="utilisation">](#utilisation)
 - [Notre approche de conception en partant de la conception existante <a id="conception">](#conception)
 - [Autres points <a id="autres">](#autres)
 
 # Installation
-Version du JDK de java : `15.0.1`
-Version du JDK de javafx : `15.0.1`
-Le lancement de l'application se fait via la classe `src/Main.java`.
+
 # Utilisation
 
 # Notre approche de conception en partant de la conception existante
@@ -21,7 +21,7 @@ Le lancement de l'application se fait via la classe `src/Main.java`.
 
 &nbsp;Pour séparer correctement nos fichiers, nous nous sommes servis de la séparation modèle/vue/contrôleur vu en cours. Nous avons donc géré nos fichiers de la sorte :
 
-<p align="center"><img src="images/MVC.PNG"></p>
+<p align="center"><img src="images/CRImages/MVC.PNG"></p>
 <p align="center"><em>Schéma du cours expliquant le MVC (modèle/vue/contrôleur)</em></p>
 
 - Nos fichiers de base venant du projet de POO étaient ce qui définissait notre jeu, que ce soit les items ou bien le comportement des personnages ainsi que la génération des tuiles. Nous avons donc mis ces fichiers dans le répertoire "modèle".
@@ -32,10 +32,10 @@ Le lancement de l'application se fait via la classe `src/Main.java`.
 
 &nbsp;Notre jeu étant de base assez basique, nous n'avons pas eu besoin d'une multitude de scènes. Il n'y avait pas d'états particuliers pour les dialogues ou bien les combats, ce qui nous a simplifié la tâche et permis de tout mettre dans la même interface.
 
-<p align="center"><img src="images/POO%20-%20Interface%20Design.png"></p>
+<p align="center"><img src="images/CRImages/POO%20-%20Interface%20Design.png"></p>
 <p align="center"><em>Interface imaginée au départ via Lucidchart</em></p>
 
-<p align="center"><img src="images/POO_interface_jeu.PNG"></p>
+<p align="center"><img src="images/CRImages/POO_interface_jeu.PNG"></p>
 <p align="center"><em>Interface rendue du jeu</em></p>
 
 &nbsp;On peut constater que ces deux interfaces sont quasiment les mêmes à l'exception de l'inventaire et de la sortie des actions. 
