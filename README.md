@@ -21,7 +21,7 @@ Composition de notre groupe : Yann Berthelot, Vincent Commin & Louis Leenart.
 
 &nbsp;Pour séparer correctement nos fichiers, nous nous sommes servis de la séparation modèle/vue/contrôleur vu en cours. Nous avons donc géré nos fichiers de la sorte :
 
-![schéma MVC](images/MVC.PNG)
+![schéma MVC](images/CRImages/MVC.PNG)
 <p align="center"><em>Schéma du cours expliquant le MVC (modèle/vue/contrôleur)</em></p>
 
 - Nos fichiers de base venant du projet de POO étaient ce qui définissait notre jeu, que ce soit les items ou bien le comportement des personnages ainsi que la génération des tuiles. Nous avons donc mis ces fichiers dans le répertoire "modèle".
@@ -32,10 +32,10 @@ Composition de notre groupe : Yann Berthelot, Vincent Commin & Louis Leenart.
 
 &nbsp;Notre jeu étant de base assez basique, nous n'avons pas eu besoin d'une multitude de scènes. Il n'y avait pas d'états particuliers pour les dialogues ou bien les combats, ce qui nous a simplifié la tâche et permis de tout mettre dans la même interface.
 
-![première interface designé](images/POO%20-%20Interface%20Design.png)
+![première interface designé](images/CRImages/POO%20-%20Interface%20Design.png)
 <p align="center"><em>Interface imaginée au départ via Lucidchart</em></p>
 
-![interface rendue](images/POO_interface_jeu.PNG)
+![interface rendue](images/CRImages/POO_interface_jeu.PNG)
 <p align="center"><em>Interface rendue du jeu</em></p>
 
 &nbsp;On peut constater que ces deux interfaces sont quasiment les mêmes à l'exception de l'inventaire et de la sortie des actions. 
