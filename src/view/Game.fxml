@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -20,8 +21,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.TextFlow?>
 
-<?import java.net.URL?>
-<fx:root type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="controller.ControllerView">
+<fx:root type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ControllerView">
    <children>
       <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -35,16 +35,16 @@
                   <TextField fx:id="playerName" />
                   <BorderPane id="board" fx:id="gameBoard" prefHeight="300.0" prefWidth="300.0" style="-fx-border-color: RED;" VBox.vgrow="ALWAYS">
                      <left>
-                        <Button fx:id="btnWest" mnemonicParsing="false" onAction="#handleBtnWest" text="West" BorderPane.alignment="CENTER" />
+                        <Button fx:id="btnWest" disable="true" mnemonicParsing="false" onAction="#handleBtnWest" text="West" BorderPane.alignment="CENTER" />
                      </left>
                      <top>
-                        <Button fx:id="btnNorth" mnemonicParsing="false" onAction="#handleBtnNorth" text="North" BorderPane.alignment="CENTER" />
+                        <Button fx:id="btnNorth" disable="true" mnemonicParsing="false" onAction="#handleBtnNorth" text="North" BorderPane.alignment="CENTER" />
                      </top>
                      <right>
-                        <Button fx:id="btnEast" mnemonicParsing="false" onAction="#handleBtnEast" text="East" BorderPane.alignment="CENTER" />
+                        <Button fx:id="btnEast" disable="true" mnemonicParsing="false" onAction="#handleBtnEast" text="East" BorderPane.alignment="CENTER" />
                      </right>
                      <bottom>
-                        <Button fx:id="btnSouth" mnemonicParsing="false" onAction="#handleBtnSouth" text="South" BorderPane.alignment="CENTER" />
+                        <Button fx:id="btnSouth" disable="true" mnemonicParsing="false" onAction="#handleBtnSouth" text="South" BorderPane.alignment="CENTER" />
                      </bottom>
                      <center>
                         <ImageView fx:id="gameBoardImage" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
@@ -84,17 +84,17 @@
                <children>
                   <ScrollPane VBox.vgrow="ALWAYS">
                      <content>
-                        <TextFlow fx:id="informations" prefHeight="200.0" prefWidth="276.0" />
+                        <TextFlow fx:id="informations" disable="true" prefHeight="200.0" prefWidth="276.0" />
                      </content>
                   </ScrollPane>
                   <ScrollPane VBox.vgrow="ALWAYS">
                      <content>
-                        <ListView fx:id="contextList" onMouseClicked="#useContextList" prefHeight="133.0" prefWidth="245.0" />
+                        <ListView fx:id="contextList" disable="true" onMouseClicked="#useContextList" prefHeight="133.0" prefWidth="245.0" />
                      </content>
                   </ScrollPane>
                   <ScrollPane prefHeight="88.0" prefWidth="330.0" VBox.vgrow="ALWAYS">
                      <content>
-                        <GridPane fx:id="actions" prefHeight="79.0" prefWidth="293.0">
+                        <GridPane fx:id="actions" disable="true" prefHeight="79.0" prefWidth="293.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -119,6 +119,6 @@
       </HBox>
    </children>
    <stylesheets>
-      <URL value="@css/main.css"/>
+      <URL value="@css/main.css" />
    </stylesheets>
 </fx:root>

@@ -143,6 +143,20 @@ public class ControllerView
     }
 
     /**
+     * Enclenche l'interface pour le jeu.
+     */
+    public void enableGameInterface()
+    {
+        btnEast.setDisable(false);
+        btnWest.setDisable(false);
+        btnSouth.setDisable(false);
+        btnNorth.setDisable(false);
+        contextList.setDisable(false);
+        actions.setDisable(false);
+        informations.setDisable(false);
+    }
+
+    /**
      * Remplace la liste précédente par celle des passages sur la tile dans la ListView
      * TODO voir pour le map ici aussi
      */
@@ -300,6 +314,7 @@ public class ControllerView
             hungerProgressBar.progressProperty().bind(hunger);
             bodyheatProgressBar.progressProperty().bind(heat);
             gameBoardImage.setImage(new Image("/GameImages/base.png", true));
+            enableGameInterface();
         }
     }
 
