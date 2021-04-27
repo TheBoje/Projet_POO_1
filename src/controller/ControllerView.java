@@ -169,7 +169,7 @@ public class ControllerView
                     }
                     else
                     {
-                        listCrossings.add("NO PASARAN");
+                        listCrossings.add("");
                     }
                 }
                 catch (Exception e)
