@@ -1,5 +1,6 @@
 package controller;
 
+import javafx.application.Platform;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -277,6 +278,7 @@ public class ControllerView
         else
         {
             gameBoardImage.setImage(new Image("/GameImages/died.png"));
+            Platform.exit();
         }
 
     }
