@@ -17,4 +17,17 @@ Composition de notre groupe : Yann Berthelot, Vincent Commin & Louis Leenart.
 
 # Notre approche de conception en partant de la conception existante
 
+&nbsp;Notre jeu étant de base assez basique, nous n'avons pas eu besoin d'une multitude de scènes. Il n'y avait pas d'états particuliers pour les dialogues ou bien les combats, ce qui nous a simplifié la tâche et permis de tout mettre dans la même interface.
+
+![première interface designé](images/POO%20-%20Interface%20Design.png)
+<p align="center"><em>Interface imaginée au départ via Lucidchart</em></p>
+
+![interface rendue](images/POO_interface_jeu.PNG)
+<p align="center"><em>Interface rendue du jeu</em></p>
+
+&nbsp;On peut constater que ces deux interfaces sont quasiment les mêmes à l'exception de l'inventaire et de la sortie des actions. 
+
+&nbsp;A l'origine, l'inventaire devais uniquement être affiché dans la ListeView mais au fil du projet nous en avons décidé autrement. Maintenant, chaque action listant des objets/personnages/passages sont affichés dans la liste. Ceci nous permet en plus d'effectuer des actions sur les objets listés via la méthode OnMouseClicked.
+
+&nbsp;Pareil pour la sortie des actions. On pensait y faire apparaître les points de vie des personnages mais on a préféré garder la description des actions ainsi que la sortie des dialogues.
 # Autres points
