@@ -23,6 +23,7 @@ Composition de notre groupe : Yann Berthelot, Vincent Commin & Louis Leenart.
 
 ![schéma MVC](images/MVC.PNG)
 <p align="center"><em>Schéma du cours expliquant le MVC (modèle/vue/contrôleur)</em></p>
+
 - Nos fichiers de base venant du projet de POO étaient ce qui définissait notre jeu, que ce soit les items ou bien le comportement des personnages ainsi que la génération des tuiles. Nous avons donc mis ces fichiers dans le répertoire "modèle".
 - Pour la vue, nous y avons mis notre fichier .fxml ainsi que sa classe appelant le fxmlLoader permettant de le charger dans l'application.
 - Enfin, pour le contrôleur, nous avons mis la classe liant la vue au modèle.
