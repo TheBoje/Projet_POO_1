@@ -53,3 +53,7 @@ Pour lancer une partie de jeu, il faut suivre les étapes suivantes :
 &nbsp;A l'origine, l'inventaire devais uniquement être affiché dans la ListeView mais au fil du projet nous en avons décidé autrement. Maintenant, chaque action listant des objets/personnages/passages sont affichés dans la liste. Ceci nous permet en plus d'effectuer des actions sur les objets listés via la méthode OnMouseClicked.
 
 &nbsp;Pareil pour la sortie des actions. On pensait y faire apparaître les points de vie des personnages mais on a préféré garder la description des actions ainsi que la sortie des dialogues.
+
+## Quelques difficultés
+
+&nbsp;Une des difficultés rencontrée était due à notre conception. En effet tous nos affichages se faisaient sur la sortie standard. Cependant, nous devions écrire les sorties dans le TextFlow sur l'interface. Il a donc fallut changer la signature des méthodes en les faisant retourner leurs chaînes de caractères au lieu de les afficher. 
