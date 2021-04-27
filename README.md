@@ -5,16 +5,26 @@ Composition de notre groupe : Yann Berthelot, Vincent Commin & Louis Leenart.
 
 # Sommaire
 - [Installation <a id="installation">](#installation)
-    - [Windows <a id="installation_windows">](#installation_windows)
-    - [Linux <a id="installation_linux">](#installation_linux)
 - [Utilisation <a id="utilisation">](#utilisation)
 - [Notre approche de conception en partant de la conception existante <a id="conception">](#conception)
 - [Autres points <a id="autres">](#autres)
 
 # Installation
-
+Version du JDK de java : `15.0.1`
+Version du JDK de javafx : `15.0.1`
+Le lancement de l'application se fait via la classe `src/Main.java`.
 # Utilisation
-
+Pour lancer une partie de jeu, il faut suivre les étapes suivantes :
+1. Le jeu se lance via le fichier `src/Main.java`
+2. Entrer un nom pour votre personnage dans la zone d'entrée en haut à gauche
+3. Ouvrez le menu et cliquez sur `Launch Game` pour démarrer la partie
+4. Maintenant que la partie est lancée, vous pouvez faire plusieurs actions :
+    - Lister les passages disponibles en cliquant sur `List Crossings`. Vous pouvez ouvrir un passage fermé en cliquant dessus dans la liste des passage sur la partie droite de l'écran.
+    - Lister les personnages présents sur la case en cliquant sur `List Personnages`. Vous pouvez parler avec un personnage en cliquant sur son nom dans la liste des personnages affichés sur la partie droite de l'écran.
+    - Lister les objets sur la case en cliquant sur `List Items`. Vous pouvez ramasser un objet pour le mettre dans votre inventaire en cliquant sur son nom dans la liste des objets affichés sur la partie droite de l'écran.
+    - Lister les objets dans l'inventaire de votre personnage en cliquant sur `Inventory`. Vous pouvez utiliser un objet en cliquant sur son nom dans la liste des éléments, puis en sélectionnant le personnage sur lequel utiliser l'objet.
+    - Déplacer votre personnage à une case adjacente en cliquant sur le bouton flèche correspondant (si le passage vers la case est fermé, il faut l'ouvrir).
+5. Le but du jeu est de trouver le personnage `Chief Scientist` qui est présent sur une des case du jeu. Il faut ensuite lui parler pour gagner la partie.
 # Notre approche de conception en partant de la conception existante
 
 ### Notre séparation modèle/vue/contrôleur
