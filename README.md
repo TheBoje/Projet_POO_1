@@ -53,19 +53,21 @@ Pour lancer une partie de jeu, il faut suivre les étapes suivantes :
 &nbsp;A l'origine, l'inventaire devais uniquement être affiché dans la ListeView mais au fil du projet nous en avons décidé autrement. Maintenant, chaque action listant des objets/personnages/passages sont affichés dans la liste. Ceci nous permet en plus d'effectuer des actions sur les objets listés via la méthode OnMouseClicked.
 
 &nbsp;Pareil pour la sortie des actions. On pensait y faire apparaître les points de vie des personnages mais on a préféré garder la description des actions ainsi que la sortie des dialogues.
+#Autres points
 
 ## Quelques difficultés
 
+### Affichage des actions dans l'interface
 &nbsp;Une des difficultés rencontrée était due à notre conception. En effet tous nos affichages se faisaient sur la sortie standard. Cependant, nous devions écrire les sorties dans le TextFlow sur l'interface. Il a donc fallut changer la signature des méthodes en les faisant retourner leurs chaînes de caractères au lieu de les afficher. 
 
-TODO: Manque de temps
-TODO: Oula le truc du Launch game c'est pas facile et tout
-TODO: On voulait que les boutons et tout soit désactivé jusqu'a ce qu'on lance la partie (c po fait)
-TODO: C'est pas commenté (hihi)
-TODO: On a pas l'image de fin parce que le jeu se ferme directement 
-TODO: Les tours ça a été chiant à mettre en place
-TODO: Resize de la fenetre
-TODO: La liste des players / crossings / items
+### Manque de temps
+(d'où le pas commenté)
+### Lancement du jeu
+### Activation des boutons lors du lancement
+### Fermeture du jeu lors de la fin
+### Mise en place des tours de jeu
+### Redimensionnement de la fenêtre
+### Liste du contexte
 
 
 
