@@ -1,10 +1,10 @@
 # Projet IHM - Banquise
-Ce projet est à réaliser avant le 30 avril 2021, dans le cadre de l'Unité d'Enseignement "Programmation des Interfaces Homme-Machine". Il porte sur la reprise d'un projet proposé dans le cadre de l'Unité d'enseignement "Programmation Orientée Objet" dont les informations sont détaillées dans le fichier `README_POO.md`. Plus particulièrement, ce projet cible le développement d'une interface graphique à partir d'un jeu d'aventure déjà développé.
+&nbsp;Ce projet est à réaliser avant le 30 avril 2021, dans le cadre de l'Unité d'Enseignement "Programmation des Interfaces Homme-Machine". Il porte sur la reprise d'un projet proposé dans le cadre de l'Unité d'enseignement "Programmation Orientée Objet" dont les informations sont détaillées dans le fichier `README_POO.md`. Plus particulièrement, ce projet cible le développement d'une interface graphique à partir d'un jeu d'aventure déjà développé.
 
 Composition de notre groupe : 
 - Yann Berthelot
 - Vincent Commin
-- Louis Leenart.
+- Louis Leenart
 
 # Sommaire
 - Installation
@@ -16,7 +16,7 @@ Composition de notre groupe :
 - Version du JDK de java : `15.0.1`
 - Version du JDK de javafx : `15.0.1`
 - Le lancement de l'application se fait via la classe `src/Main.java`.
-# Utilisation 
+# Utilisation
 
 Pour lancer une partie de jeu, il faut suivre les étapes suivantes :
 1. Le jeu se lance via le fichier `src/Main.java`
