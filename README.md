@@ -55,19 +55,31 @@ Pour lancer une partie de jeu, il faut suivre les étapes suivantes :
 &nbsp;Pareil pour la sortie des actions. On pensait y faire apparaître les points de vie des personnages mais on a préféré garder la description des actions ainsi que la sortie des dialogues.
 #Autres points
 
-## Quelques difficultés
-
 ### Affichage des actions dans l'interface
 &nbsp;Une des difficultés rencontrée était due à notre conception. En effet tous nos affichages se faisaient sur la sortie standard. Cependant, nous devions écrire les sorties dans le TextFlow sur l'interface. Il a donc fallut changer la signature des méthodes en les faisant retourner leurs chaînes de caractères au lieu de les afficher. 
 
-### Manque de temps
-(d'où le pas commenté)
 ### Lancement du jeu
-### Activation des boutons lors du lancement
+
+&nbsp;Un de nos problèmes venait du lancement du jeu. L'interface faisant appelle à nos méthodes, il était possible de jouer au jeu sans le lancer via le menu. Nous avons donc décidé de désactiver les boutons au lancement de l'application et de les activer uniquement au lancement du jeu.
+
 ### Fermeture du jeu lors de la fin
+
+&nbsp;Lorsque le jeu est terminé (par exemple le personnage meurs), alors on modifie l'image du jeu pour l'indiquer au joueur, cependant on ferme la fenêtre au même moment, l'affichage de l'image n'est donc même pas visible. Pour palier à ce problème, il faudrait un peu avant de fermer la fenêtre ou attendre que l'utilisateur notifie la modification.
+
 ### Mise en place des tours de jeu
+
+&nbsp;Une des mécaniques principales de notre jeu était la gestion de tours pour les actions des personnages non-joueurs. L'interface appelant directement les méthodes nécessaires en fonction du déclencheur a rendue la tâche plus difficile. Pour résoudre ce problème, nous appelons donc le tour suivant à chaque action le nécessitant.
+
+&nbsp;De plus, dans notre conception de base, chaque tour appelait le suivant jusqu'à la mort ou la victoire du joueur. Nous avons donc dû modifier la méthode en retirant l'appelle récursif ainsi que l'appelle de notre interprèteur de commandes.
+
 ### Redimensionnement de la fenêtre
+
+&nbsp;Pour rendre notre jeu le plus agréable à utiliser, nous avons opté pour mettre en place une fenêtre dont la taille des éléments s'adaptent à la taille de la fenêtre. Jusque-là assez peu expérimentés, et après avoir tenté plusieurs approches, nous avons décidé de nous appuyer sur les propriété des `HBox` et `VBox` et notamment `HBox.hgrow` et `VBox.vgrow`.
+L'utilisation de ces propriétés nous permet alors d'avoir une interface dynamique quand les dimensions évoluent. 
+Cependant, nous n'avons pas réussi à implémenter le redimensionnement de certains éléments tel que le `TextFlow`, la `ListView` et l'`ImageView`.
+
 ### Liste du contexte
 
+&nbsp;Une des difficultés était la liste des personnages, passages et items. La ListView que nous utilisons fait appelle à des `ObservableList`. Or, nos méthodes retournant les personnages, passages et items nous retournaient uniquement des listes. Nous devons donc convertir les listes en `ObservableList` à chaque action du joueur demandant de lister.
 
-
+&nbsp;Un autre problème était la sélection dans la liste. Vu que nous utilisons des `ObservableList<String>` Il nous faut récupérer l'item et non la référence de l'objet dans la liste.
