@@ -7,16 +7,16 @@ Composition de notre groupe :
 - Louis Leenart
 
 # Sommaire
-- Installation
-- Utilisation
-- Notre approche de conception en partant de la conception existante
-- Autres points
+- [Installation](#installation)
+- [Utilisation](#utilisation)
+- [Notre approche de conception à partir de la conception existante](#approche)
+- [Autres points](#autre)
 
-# Installation
+# Installation <a id="installation"></a>
 - Version du JDK de java : `15.0.1`
 - Version du JDK de javafx : `15.0.1`
 - Le lancement de l'application se fait via la classe `src/Main.java`.
-# Utilisation
+# Utilisation <a id="utilisation"></a>
 
 Pour lancer une partie de jeu, il faut suivre les étapes suivantes :
 1. Le jeu se lance via le fichier `src/Main.java`
@@ -29,7 +29,7 @@ Pour lancer une partie de jeu, il faut suivre les étapes suivantes :
     - Lister les objets dans l'inventaire de votre personnage en cliquant sur `Inventory`. Vous pouvez utiliser un objet en cliquant sur son nom dans la liste des éléments, puis en sélectionnant le personnage sur lequel utiliser l'objet.
     - Déplacer votre personnage à une case adjacente en cliquant sur le bouton flèche correspondant (si le passage vers la case est fermé, il faut l'ouvrir).
 5. Le but du jeu est de trouver le personnage `Chief Scientist` qui est présent sur une des case du jeu. Il faut ensuite lui parler pour gagner la partie.
-# Notre approche de conception en partant de la conception existante
+# Notre approche de conception à partir de la conception existante <a id="approche"></a>
 
 ## Notre séparation modèle/vue/contrôleur
 
@@ -57,7 +57,7 @@ Pour lancer une partie de jeu, il faut suivre les étapes suivantes :
 &nbsp;A l'origine, l'inventaire devais uniquement être affiché dans la ListeView mais au fil du projet nous en avons décidé autrement. Maintenant, chaque action listant des objets/personnages/passages sont affichés dans la liste. Ceci nous permet en plus d'effectuer des actions sur les objets listés via la méthode OnMouseClicked.
 
 &nbsp;Pareil pour la sortie des actions. On pensait y faire apparaître les points de vie des personnages mais on a préféré garder la description des actions ainsi que la sortie des dialogues.
-# Autres points
+# Autres points <a id="autre"></a>
 
 ## Affichage des actions dans l'interface
 &nbsp;Une des difficultés rencontrée était due à notre conception. En effet tous nos affichages se faisaient sur la sortie standard. Cependant, nous devions écrire les sorties dans le TextFlow sur l'interface. Il a donc fallut changer la signature des méthodes en les faisant retourner leurs chaînes de caractères au lieu de les afficher. 
