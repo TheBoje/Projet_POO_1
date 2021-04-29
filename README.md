@@ -1,7 +1,7 @@
 # Projet IHM - Banquise
 &nbsp;Ce projet est à réaliser avant le 30 avril 2021, dans le cadre de l'Unité d'Enseignement "Programmation des Interfaces Homme-Machine". Il porte sur la reprise d'un projet proposé dans le cadre de l'Unité d'enseignement "Programmation Orientée Objet" dont les informations sont détaillées dans le fichier `README_POO.md`. Plus particulièrement, ce projet cible le développement d'une interface graphique à partir d'un jeu d'aventure déjà développé.
 
-Composition de notre groupe : 
+&nbsp;Composition de notre groupe : 
 - Yann Berthelot
 - Vincent Commin
 - Louis Leenart
@@ -13,12 +13,12 @@ Composition de notre groupe :
 - [L'interface point par point](#autre)
 
 # Installation <a id="installation"></a>
-- Version du JDK de java : `15.0.1`
-- Version du JDK de javafx : `15.0.1`
+- Version du JDK de Java : `15.0.1`
+- Version du JDK de JavaFX : `15.0.1`
 - Le lancement de l'application se fait via la classe `src/Main.java`.
 # Utilisation <a id="utilisation"></a>
 
-Pour lancer une partie de jeu, il faut suivre les étapes suivantes :
+&nbsp;Pour lancer une partie de jeu, il faut suivre les étapes suivantes :
 1. Le jeu se lance via le fichier `src/Main.java`
 2. Entrer un nom pour votre personnage dans la zone d'entrée en haut à gauche
 3. Ouvrez le menu et cliquez sur `Launch Game` pour démarrer la partie
@@ -29,12 +29,12 @@ Pour lancer une partie de jeu, il faut suivre les étapes suivantes :
     - Lister les objets dans l'inventaire de votre personnage en cliquant sur `Inventory`. Vous pouvez utiliser un objet en cliquant sur son nom dans la liste des éléments, puis en sélectionnant le personnage sur lequel utiliser l'objet.
     - Déplacer votre personnage à une case adjacente en cliquant sur le bouton flèche correspondant (si le passage vers la case est fermé, il faut l'ouvrir).
 5. Le but du jeu est de trouver le personnage `Chief Scientist` qui est présent sur une des case du jeu. Il faut ensuite lui parler pour gagner la partie.
-6. 
+
 # Notre approche de conception en partant du modèle existant <a id="approche"></a>
 
 ## Notre séparation modèle/vue/contrôleur
 
-&nbsp;Pour séparer correctement nos fichiers, nous nous sommes servis de la séparation modèle/vue/contrôleur vu en cours. Nous avons donc géré nos fichiers de la sorte :
+&nbsp;Pour séparer correctement nos fichiers, nous nous sommes servis de la séparation Modèle/Vue/Contrôleur vu en cours. Nous avons donc géré nos fichiers de la sorte :
 
 <p align="center"><img src="images/CRImages/MVC.PNG"></p>
 <p align="center"><em>Schéma du cours expliquant le MVC (modèle/vue/contrôleur)</em></p>
@@ -55,22 +55,23 @@ Pour lancer une partie de jeu, il faut suivre les étapes suivantes :
 
 &nbsp;On peut constater que ces deux interfaces sont quasiment les mêmes à l'exception de l'inventaire et de la sortie des actions. 
 
-&nbsp;A l'origine, l'inventaire devais uniquement être affiché dans la ListeView mais au fil du projet nous en avons décidé autrement. Maintenant, chaque action listant des objets/personnages/passages sont affichés dans la liste. Ceci nous permet en plus d'effectuer des actions sur les objets listés via la méthode OnMouseClicked.
+&nbsp;A l'origine, l'inventaire devais uniquement être affiché dans la `ListeView` mais au fil du projet nous en avons décidé autrement. Maintenant, chaque action listant des objets/personnages/passages sont affichés dans la liste. Ceci nous permet en plus d'effectuer des actions sur les objets listés via la méthode OnMouseClicked.
 
-&nbsp;Pareil pour la sortie des actions. On pensait y faire apparaître les points de vie des personnages mais on a préféré garder la description des actions ainsi que la sortie des dialogues.
+&nbsp;Pareil pour la sortie des actions. On pensait y faire apparaître les points de vie des personnages mais on a préféré garder uniquement la description des actions ainsi que la sortie des dialogues.
 
 # L'interface point par point <a id="autre"></a>
 
 ## Affichage des actions dans l'interface
-&nbsp;Une des difficultés rencontrée était due à notre conception. En effet tous nos affichages se faisaient sur la sortie standard. Cependant, nous devions écrire les sorties dans le TextFlow sur l'interface. Il a donc fallut changer la signature des méthodes en les faisant retourner leurs chaînes de caractères au lieu de les afficher. 
+
+&nbsp;Une des difficultés rencontrée était due à notre conception. En effet tous nos affichages se faisaient sur la sortie standard. Cependant, nous devions écrire les sorties dans le `TextFlow` sur l'interface. Il a donc fallut changer la signature des méthodes en les faisant retourner leurs chaînes de caractères au lieu de les afficher. 
 
 ## Lancement du jeu
 
-&nbsp;Un de nos problèmes venait du lancement du jeu. L'interface faisant appelle à nos méthodes, il était possible de jouer au jeu sans le lancer via le menu. Nous avons donc décidé de désactiver les boutons au lancement de l'application et de les activer uniquement au lancement du jeu.
+&nbsp;Un de nos problèmes venait du lancement du jeu. L'interface faisant appelle à nos méthodes, il était possible de jouer au jeu sans le lancer via le menu. Nous avons donc décidé de désactiver les boutons au lancement de l'application et de les activer uniquement au lancement de la partie (après que le joueur a saisit son nom et clique sur `Menu > Launch Game`).
 
 ## Fermeture du jeu lors de la fin
 
-&nbsp;Lorsque le jeu est terminé (par exemple le personnage meurs), alors on modifie l'image du jeu pour l'indiquer au joueur, cependant on ferme la fenêtre au même moment, l'affichage de l'image n'est donc même pas visible. Pour palier à ce problème, il faudrait un peu avant de fermer la fenêtre ou attendre que l'utilisateur notifie la modification.
+&nbsp;Lorsque le jeu est terminé (c'est-à-dire quand le `Chief Scientist` est trouvé ou que le personnage meurs), alors on modifie l'image du jeu pour l'indiquer au joueur, cependant on ferme la fenêtre au même moment, l'affichage de l'image n'est donc même pas visible. Pour palier à ce problème, il faudrait un peu avant de fermer la fenêtre ou attendre que l'utilisateur notifie la modification.
 
 ## Mise en place des tours de jeu
 
@@ -90,6 +91,6 @@ Cependant, nous n'avons pas réussi à implémenter le redimensionnement de cert
 
 &nbsp;Un autre problème était la sélection dans la liste. Vu que nous utilisons des `ObservableList<String>` Il nous faut récupérer l'item et non la référence de l'objet dans la liste.
 
-## les barres de progression
+## Les barres de progression
 
 &nbsp; Afin d'avoir un retour visuel sur ses statistiques du personnage, nous avons utilisé des `progress bar`, leur `progressProperty` a été bind a des `SimpleDoubleProperty` créées et qui représentent les différentes stats du joueurs. Elles sont mises à jour à chaque action du personnage et les barres de progression évoluent en temps réel.
